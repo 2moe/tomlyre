@@ -67,7 +67,7 @@ If you don't know how to do it, please feel free to submit an issue.
 
 ### Theme
 
-Use the `--theme` parameter (can be abbreviated as `-t`) to specify a theme, for example `tomlyre -t "One Dark" conv test.yml -t json`.
+Use the `--theme` argument (can be abbreviated as `-t`) to specify a theme, for example `tomlyre -t "One Dark" conv test.yml -t json`.
 
 > The `-t` of the `conv` subcommand refers to `--to`, while the `-t` of the root command is `--theme`.
 
