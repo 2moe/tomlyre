@@ -42,9 +42,9 @@ dependencies = [
 
 [[package]]
 name = "anstream"
-version = "0.3.0"
+version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9e579a7752471abc2a8268df8b20005e3eadd975f585398f17efcfd8d4927371"
+checksum = "6342bd4f5a1205d7f41e94a41a901f5647c938cdfa96036338e8533c9d6c2450"
 dependencies = [
  "anstyle",
  "anstyle-parse",
@@ -81,9 +81,9 @@ dependencies = [
 
 [[package]]
 name = "anstyle-wincon"
-version = "1.0.0"
+version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4bcd8291a340dd8ac70e18878bc4501dd7b4ff970cfa21c207d36ece51ea88fd"
+checksum = "180abfa45703aebe0093f79badacc01b8fd4ea2e35118747e5811127f926e188"
 dependencies = [
  "anstyle",
  "windows-sys 0.48.0",
@@ -1378,6 +1378,34 @@ dependencies = [
 ]
 
 [[package]]
+name = "tomlyre"
+version = "0.0.1-beta.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d2bded3d013169c16003f3f16fd60e9d8c46cb71bd3a250d74d9ea8a18b6bb6a"
+dependencies = [
+ "anyhow",
+ "bson",
+ "comfy-table",
+ "getset",
+ "glossa",
+ "glossa-codegen",
+ "json5",
+ "log",
+ "owo-colors",
+ "phf",
+ "quick-xml 0.28.2",
+ "quickxml_to_serde",
+ "ron",
+ "serde",
+ "serde-lexpr",
+ "serde_json",
+ "serde_yaml",
+ "syntect",
+ "toml",
+ "toml_edit",
+]
+
+[[package]]
 name = "tomlyre-cli"
 version = "0.0.1-beta.1"
 dependencies = [
@@ -1394,7 +1422,7 @@ dependencies = [
  "phf",
  "thiserror",
  "time",
- "tomlyre",
+ "tomlyre 0.0.1-beta.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
