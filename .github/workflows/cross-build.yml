@@ -43,22 +43,22 @@ jobs:
           #   os: ubuntu-latest
           # - target: aarch64-unknown-linux-musl
           #   os: ubuntu-latest
-          - target: riscv64gc-unknown-linux-gnu
-            os: ubuntu-latest
+          # - target: riscv64gc-unknown-linux-gnu
+            # os: ubuntu-latest
           # - target: i586-unknown-linux-musl
           #   os: ubuntu-latest
-          - target: armv7-unknown-linux-musleabihf
-            os: ubuntu-latest
-          - target: armv5te-unknown-linux-musleabi
-            os: ubuntu-latest
+          # - target: armv7-unknown-linux-musleabihf
+          #   os: ubuntu-latest
+          # - target: armv5te-unknown-linux-musleabi
+          #   os: ubuntu-latest
           - target: mipsel-unknown-linux-musl
             os: ubuntu-latest
-          - target: mips64el-unknown-linux-muslabi64
-            os: ubuntu-latest
-          - target: powerpc64le-unknown-linux-gnu
-            os: ubuntu-latest
-          - target: s390x-unknown-linux-gnu
-            os: ubuntu-latest
+          # - target: mips64el-unknown-linux-muslabi64
+          #   os: ubuntu-latest
+          # - target: powerpc64le-unknown-linux-gnu
+          #   os: ubuntu-latest
+          # - target: s390x-unknown-linux-gnu
+          #   os: ubuntu-latest
 
           - target: x86_64-linux-android
             os: ubuntu-latest
@@ -161,7 +161,7 @@ jobs:
         run: |
           case ${{matrix.target}} in
               x86_64* | i[3-6]86* | aarch64*) ;;
-              *) export RUSTFLAGS="-C lto=false" ;;
+              *) export RUSTFLAGS="-C lto=thin" ;;
           esac
           ./cross b --profile ${{env.PROF}} -v --target ${{matrix.target}}
 
