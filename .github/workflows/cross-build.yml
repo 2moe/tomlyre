@@ -69,20 +69,20 @@ jobs:
           # - target: i686-linux-android
           #   os: ubuntu-latest
 
-          - target: x86_64-unknown-netbsd
+          # - target: x86_64-unknown-netbsd
+          #   os: ubuntu-latest
+          - target: x86_64-unknown-freebsd
             os: ubuntu-latest
-          # - target: x86_64-unknown-freebsd
-          #   os: ubuntu-latest
-          # - target: x86_64-unknown-illumos
-          #   os: ubuntu-latest
-          - target: x86_64-apple-darwin
-            os: macos-latest
-          - target: aarch64-apple-darwin
-            os: macos-latest
+          - target: x86_64-unknown-illumos
+            os: ubuntu-latest
+          # - target: x86_64-apple-darwin
+          #   os: macos-latest
+          # - target: aarch64-apple-darwin
+          #   os: macos-latest
           # - target: x86_64-pc-windows-msvc
           #   os: windows-latest
-          - target: aarch64-pc-windows-msvc
-            os: windows-latest
+          # - target: aarch64-pc-windows-msvc
+          #   os: windows-latest
           # 
           # release.ron
           # x86_64-unknown-linux.tar.xz
