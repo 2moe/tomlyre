@@ -191,7 +191,9 @@ jobs:
 
       - name: get cargo-deb
         if: contains(matrix.target, 'linux') && !contains(matrix.target, 'android')
-        run: docker run -i --rm -v $PWD:/local ghcr.io/2moe/cargo-deb:latest cp /bin/cargo-deb /local
+        run: |
+          docker run -i --rm -v $PWD:/local ghcr.io/2moe/cargo-deb:latest cp /bin/cargo-deb /local
+          cp cargo-deb ${{env.DEB_WORKDIR}}
 
       - name: pack deb
         if: contains(matrix.target, 'linux') && !contains(matrix.target, 'android')
