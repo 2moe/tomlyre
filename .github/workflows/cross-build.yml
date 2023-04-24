@@ -41,24 +41,24 @@ jobs:
           #   os: ubuntu-latest
           - target: x86_64-unknown-linux-musl
             os: ubuntu-latest
-          # - target: aarch64-unknown-linux-musl
-          #   os: ubuntu-latest
-          # - target: riscv64gc-unknown-linux-gnu
-          #   os: ubuntu-latest
-          # - target: i586-unknown-linux-musl
-          #   os: ubuntu-latest
-          # - target: armv7-unknown-linux-musleabihf
-          #   os: ubuntu-latest
-          # - target: armv5te-unknown-linux-musleabi
-          #   os: ubuntu-latest
-          # - target: mipsel-unknown-linux-musl
-          #   os: ubuntu-latest
-          # - target: mips64el-unknown-linux-muslabi64
-          #   os: ubuntu-latest
-          # - target: powerpc64le-unknown-linux-gnu
-          #   os: ubuntu-latest
-          # - target: s390x-unknown-linux-gnu
-          #   os: ubuntu-latest
+          - target: aarch64-unknown-linux-musl
+            os: ubuntu-latest
+          - target: riscv64gc-unknown-linux-gnu
+            os: ubuntu-latest
+          - target: i586-unknown-linux-musl
+            os: ubuntu-latest
+          - target: armv7-unknown-linux-musleabihf
+            os: ubuntu-latest
+          - target: armv5te-unknown-linux-musleabi
+            os: ubuntu-latest
+          - target: mipsel-unknown-linux-musl
+            os: ubuntu-latest
+          - target: mips64el-unknown-linux-muslabi64
+            os: ubuntu-latest
+          - target: powerpc64le-unknown-linux-gnu
+            os: ubuntu-latest
+          - target: s390x-unknown-linux-gnu
+            os: ubuntu-latest
 
           # - target: x86_64-linux-android
           #   os: ubuntu-latest
@@ -71,10 +71,10 @@ jobs:
 
           # - target: x86_64-unknown-netbsd
           #   os: ubuntu-latest
-          - target: x86_64-unknown-freebsd
-            os: ubuntu-latest
-          - target: x86_64-unknown-illumos
-            os: ubuntu-latest
+          # - target: x86_64-unknown-freebsd
+          #   os: ubuntu-latest
+          # - target: x86_64-unknown-illumos
+          #   os: ubuntu-latest
           # - target: x86_64-apple-darwin
           #   os: macos-latest
           # - target: aarch64-apple-darwin
@@ -83,9 +83,6 @@ jobs:
           #   os: windows-latest
           # - target: aarch64-pc-windows-msvc
           #   os: windows-latest
-          # 
-          # release.ron
-          # x86_64-unknown-linux.tar.xz
 
     runs-on: ${{matrix.os}}
     env:
@@ -191,17 +188,14 @@ jobs:
 
       - name: get cargo-deb
         if: contains(matrix.target, 'linux') && !contains(matrix.target, 'android')
-        run: |
-          docker run -i --rm -v $PWD:/local ghcr.io/2moe/cargo-deb:latest cp /bin/cargo-deb /local
-          cp cargo-deb ${{env.DEB_WORKDIR}}
+        run: docker run -i --rm -v $PWD/${{env.DEB_WORKDIR}}:/local ghcr.io/2moe/cargo-deb:latest cp /bin/cargo-deb /local
 
       - name: pack deb
         if: contains(matrix.target, 'linux') && !contains(matrix.target, 'android')
         working-directory: ${{env.DEB_WORKDIR}}
+        # deb_file=$(find ${{env.DEB_DIR}} -maxdepth 1 -type f -name '*.deb' -print -quit)
         run: |
-          rm -rfv ${{env.DEB_DIR}} 2>/dev/null
-          ./cargo-deb --no-build --no-strip --profile ${{env.PROF}} -v --target ${{matrix.target}}
-          deb_file=$(find ${{env.DEB_DIR}} -maxdepth 1 -type f -name '*.deb' -print -quit)
+          deb_file=$(./cargo-deb --no-build --no-strip --profile ${{env.PROF}} --target ${{matrix.target}} | tail -n1)
           echo "archive=$deb_file" >> $GITHUB_ENV
 
       - name: pack bsd & android
