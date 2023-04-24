@@ -1,0 +1,4 @@
+invalid-path = "無效的檔案路徑"
+new-value = "新值(value)"
+unsave-warn = "由於未呼叫 `--save`, 故已修改的內容 **不會** 被儲存。"
+type = "型別"

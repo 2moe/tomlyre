@@ -1,0 +1,1 @@
+sh-completion::about-stderr: A continuación se muestra la salida stderr. Al redirigir la salida del script de autocompletado, debe utilizar `>/path/to/file` en lugar de `2>/path/to/file`.

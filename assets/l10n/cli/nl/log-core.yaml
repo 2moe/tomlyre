@@ -1,0 +1,6 @@
+debug: Debug
+error: Fout
+info: info
+init-logger: Logger initialiseren ...
+trace: Trace
+warn: waarschuwen

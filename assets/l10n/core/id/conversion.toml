@@ -1,0 +1,13 @@
+auto-detection-failed = "Gagal mendeteksi format secara otomatis.Harap tentukan secara manual."
+conv-error = "kesalahan konversi"
+currently-supported = "Daftar Format yang Didukung Saat Ini:"
+dst = "jalur file tujuan"
+"invalid-json1.0" = "file bukan format `json 1.0` yang valid, mencoba mengurai sebagai `json5` ..."
+not-included = """
+Biner ** ini tidak termasuk ** fungsionalitas konversi untuk format yang relevan.
+Anda perlu mengaktifkan fitur yang relevan di `kargo.toml` dan kompilasi ulang.
+Jika perangkat lunak ini tidak termasuk fungsionalitas yang sesuai, silakan kirimkan masalah."""
+not-saved = "konten berikut ** tidak akan ** disimpan karena `--save` tidak dipanggil."
+not-support-deser-sexp = "** Belum didukung **: Mengonversi dari `Lisp S-Expression` ke` format lain`"
+unknown-fmt = "format file yang tidak diketahui"
+unsupported = "konversi format yang tidak didukung"

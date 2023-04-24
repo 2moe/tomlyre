@@ -1,0 +1,13 @@
+auto-detection-failed = "ni uspelo samodejno zaznati oblike.Prosimo, navedite ročno."
+conv-error = "Napaka pretvorbe"
+currently-supported = "Trenutno podprti seznam formati:"
+dst = "pot ciljne datoteke"
+"invalid-json1.0" = "Datoteka ni veljavna oblika `json 1.0`, ki poskuša razčleniti kot `json5` ..."
+not-included = """
+Ta binarni ** ne vključuje ** funkcionalnosti pretvorbe za ustrezno obliko.
+Ustrezno funkcijo morate omogočiti v svojem `tovoru.Toml` in prekucljati.
+Če ta programska oprema ne vključuje ustrezne funkcionalnosti, pošljite težavo."""
+not-saved = "Naslednja vsebina ** ne bo ** shranjena, ker `--save` ni bilo poklicano."
+not-support-deser-sexp = "** še ni podprta **: pretvorba iz `lisp s-expression\" v `drugi formati`"
+unknown-fmt = "Neznana oblika datoteke"
+unsupported = "Pretvorba nepodprte oblike"

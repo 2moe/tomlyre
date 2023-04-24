@@ -1,0 +1,12 @@
+auto-detection-failed = "Gagal kanthi otomatis ndeteksi format kasebut.Mangga nemtokake kanthi manual."
+conv-error = "Konversi Kesalahan"
+currently-supported = "Daftar Format sing didhukung:"
+dst = "Jalur file tujuan"
+"invalid-json1.0" = "File dudu format dudu sing bener `Json 1.0`, nyoba parse minangka ... json5`"
+not-included = """
+BINARI BINARI iki ora kalebu ** fungsionalitas konversi kanggo format sing gegandhengan.
+Sampeyan kudu ngaktifake fitur sing relevan ing 'kargotom sampeyan lan mbalek maneh.
+Yen piranti lunak iki ora kalebu fungsi sing cocog, kirimake masalah."""
+not-support-deser-sexp = "** Ora Didhukung **: Ngonversi saka `lisp s-expression` to` Format liyane"
+unknown-fmt = "Formulir file sing ora dingerteni"
+unsupported = "konversi format sing ora didhukung"

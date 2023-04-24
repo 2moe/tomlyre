@@ -1,0 +1,13 @@
+auto-detection-failed = "Nuk arriti të zbulojë automatikisht formatin.Ju lutemi specifikoni manualisht."
+conv-error = "Gabim i Konvertimit"
+currently-supported = "Lista e formateve të mbështetur aktualisht:"
+dst = "Rruga e skedarit të destinacionit"
+"invalid-json1.0" = "Skedari nuk është një format i vlefshëm `JSON 1.0`, duke u përpjekur të analizojë si `JSON5` ..."
+not-included = """
+Ky binar ** nuk përfshin ** funksionalitetin e konvertimit për formatin përkatës.
+Ju duhet të aktivizoni veçorinë përkatëse në `Cargo.Toml` tuaj dhe të rikompiloni.
+Nëse ky softuer nuk përfshin funksionalitetin përkatës, ju lutemi paraqisni një çështje."""
+not-saved = "përmbajtja e mëposhtme ** nuk do të ruhet sepse `--save` nuk u thirr."
+not-support-deser-sexp = "** Nuk është mbështetur akoma **: Konvertimi nga `lisp s-shprehje` në` formate të tjera '"
+unknown-fmt = "Formati i panjohur i skedarit"
+unsupported = "Konvertimi i formatit të pambështetur"

@@ -1,0 +1,13 @@
+auto-detection-failed = "Neizdevās automātiski noteikt formātu.Lūdzu, norādiet manuāli."
+conv-error = "reklāmguvumu kļūda"
+currently-supported = "Pašlaik atbalstīto formātu saraksts:"
+dst = "mērķa faila ceļš"
+"invalid-json1.0" = "Fails nav derīgs `JSON 1.0` formāts, mēģinot parsēt kā `json5` ..."
+not-included = """
+Šis binārais ** neietver ** attiecīgā formāta pārveidošanas funkcionalitāti.
+Jums jāiespējo attiecīgā funkcija savā `Cargo.toml` un atkārtoti kompilējiet.
+Ja šī programmatūra neietver atbilstošo funkcionalitāti, lūdzu, iesniedziet problēmu."""
+not-saved = "Šis saturs ** netiks saglabāts, jo `--save` netika izsaukts."
+not-support-deser-sexp = "** Pagaidām nav atbalstīts **: pārveidošana no `lisp s-ekspresijas` uz\" citiem formātiem \""
+unknown-fmt = "nezināms faila formāts"
+unsupported = "neatbalstīts formāta konvertēšana"

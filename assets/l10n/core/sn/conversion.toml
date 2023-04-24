@@ -1,0 +1,12 @@
+auto-detection-failed = "Yakundikana kuti uzivewo chimiro.Ndokumbira utaure nemaoko."
+conv-error = "Kukanganisa Kukanganisa"
+currently-supported = "parizvino inotsigirwa fomu rondedzero:"
+dst = "nzira yekuenda faira"
+"invalid-json1.0" = "faira haisi yechokwadi `json 1.0` fomati, kuyedza parse se `json5` ..."
+not-included = """
+Iyi binary ** haina kusanganisira iyo yekushandura mashandiro emhando yakakodzera.
+Iwe unofanirwa kugonesa chinhu chakakodzera mune yako `cargo.Toml` uye kudzoreredza.
+Kana software iyi isingasanganisiri zvinowirirana kushanda, ndapota tumira nyaya."""
+not-support-deser-sexp = "* isingatsigirwe parizvino **: Kushandurwa kubva ku `lisp S-Expression` kune mamwe mafomati`"
+unknown-fmt = "isingazivikanwe faira fomati"
+unsupported = "Isingatauriki Fomati Kutendeuka"

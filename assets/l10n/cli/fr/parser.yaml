@@ -1,0 +1,1 @@
+sh-completion::about-stderr: Ce qui suit est une sortie STDERR. Lors de la redirection de la sortie vers un fichier pour générer des scripts de complétion pour shell, vous devriez utiliser `> /path/to/file` au lieu de `2> /path/to/file`.

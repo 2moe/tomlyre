@@ -1,0 +1,3 @@
+invalid-path = "Nevalidan dosieran vojon."
+new-value = "Nova valoro"
+unsave-warn = "La modifita enhavo ** ne estos konservita ĉar `--sv` ne estis vokita."

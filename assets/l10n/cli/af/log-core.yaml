@@ -1,0 +1,6 @@
+debug: ontfout
+error: Fout
+info: Inligting
+init-logger: Inisialisering van logger ...
+trace: Spoor
+warn: Waarsku

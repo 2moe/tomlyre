@@ -1,0 +1,3 @@
+ongeldig-pad = "Ongeldig bestandspad."
+nieuwe-waarde = "Nieuwe waarde"
+niet-opgeslagen-waarschuwing = "De gewijzigde inhoud **wordt niet** opgeslagen omdat `--sv` niet is aangeroepen."

@@ -1,0 +1,24 @@
+conv-opts = "Convierte entre formatos como toml, yaml, json y ron"
+
+from = "Especifica el archivo de entrada"
+
+conv-to = "Especifica el formato/archivo de salida, se puede utilizar varias veces."
+conv-to-help = """
+Si hay un archivo llamado **test.json** en el directorio actual, puede usar `conv test.json -t yml` para convertirlo a formato yml (yaml).
+También puede especificar la ruta del archivo manualmente: `conv test.json -t /tmp/test.yml`
+
+Los formatos compatibles dependen de las características habilitadas en este paquete. No todas las características están habilitadas de forma predeterminada.
+
+Además, hay algunas cosas que debe saber antes de usar este comando.
+- 1. Se renombrarán automáticamente las rutas que no sean específicas de archivos.
+  - 1.1: Un archivo con solo un nivel de profundidad se considera un formato de archivo, no una ruta de archivo.
+    Por ejemplo, al llamar a `conv test.toml -t ron`, el archivo de salida se renombrará automáticamente como `test.ron`, no como `ron`.
+    Si no necesita esta función, utilice `-t ./ron` o `-t $PWD/ron`.
+  - 1.2: La ruta especifica a un directorio en lugar de a un archivo
+    Por ejemplo, `-t /tmp/`. Solo podemos colocar el archivo `test.toml` en un subdirectorio de `/tmp/`, pero no reemplazar `/tmp` en sí.
+    Si no necesita esta función, especifique la ruta completa del archivo (en lugar del directorio), por ejemplo `-t /tmp/xx.toml` en lugar de `-t /tmp/`.
+- 2. Cuando no se llama a `--save`, el archivo especificado no se guarda automáticamente.
+- 3. Cuando se llama a `--save`, la entrada y salida del subcomando conv no pueden ser el mismo archivo.
+- 4. Los comentarios no se conservan después de la conversión del archivo."""
+
+save = "Cuando se llama a esta opción, el archivo especificado en `--to` se guardará."

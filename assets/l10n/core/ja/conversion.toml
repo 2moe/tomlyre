@@ -1,0 +1,13 @@
+auto-detection-failed = "自動フォーマット検出が失敗しました。手動で指定してください。"
+conv-error = "変換エラー"
+currently-supported = "現在サポートされているフォーマット"
+dst = "出力ファイルパス"
+"invalid-json1.0" = "ファイルが `json 1.0` 形式ではありません。`json5`形式として解析を試みています..."
+not-included = """
+このバイナリには、関連する形式の変換機能が**含まれていません**。
+関連する機能を `Cargo.toml` で有効にし、再コンパイルする必要があります。
+このソフトウェアに関連機能が含まれていない場合、問題を報告してください。"""
+not-saved = "`--save`が呼び出されなかったため、以下の内容は**保存されません**："
+not-support-deser-sexp = "`Lisp S-Expression` を他の形式に変換することは現在サポートされていません。"
+unknown-fmt = "不明なファイル形式"
+unsupported = "未対応の形式変換"

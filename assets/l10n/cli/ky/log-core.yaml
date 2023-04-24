@@ -1,0 +1,6 @@
+debug: Debug
+error: Error
+info: Маалымат
+init-logger: Loggerди ишке киргизүү ...
+trace: изин
+warn: Эскертүү

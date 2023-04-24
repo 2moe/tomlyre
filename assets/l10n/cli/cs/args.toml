@@ -1,0 +1,91 @@
+theme = "Specifikuje název tématu pro zvýraznění syntaxe"
+theme-help = """
+Pokud použijete pouze parametr `-t`, vypíše se seznam dostupných témat.
+Pokud nezadáte soubor s tématy, budou použity výchozí téma balíčku.
+Předpokládejme, že existuje téma s názvem **ayu-dark**, pak můžete použít `-t ayu-dark` k použití tohoto tématu.
+Pokud je název tématu obsahující mezery, musí být uzavřen do uvozovek nebo apostrofů.
+
+> Pozn.: Existuje speciální téma `None`, které reprezentuje čistý textový styl bez zvýrazňování syntaxe.
+
+Pokud nezadáte volbu `--theme`, program načte hodnotu z proměnné prostředí `$TOMLYRE_THEME`.
+Témata syntaxe pro tuto nápovědu jsou také načtena z této proměnné prostředí.
+
+> Výchozí nápověda je předem načtena, což zajišťuje velmi rychlé načtení.  
+> Načítání textu ze zabudovaného kódu a textu bez zvýraznění syntaxe je stejně rychlé jako načítání textu se specifickým tématem.  
+> Nastavení proměnné prostředí `$TOMLYRE_THEME` může způsobit opakované načtení témat, což výrazně zpomalí start programu.  
+> Pokud nemáte v úmyslu měnit téma pro tuto nápovědu nebo zakázat zvýrazňování syntaxe, použijte volbu `-t` místo změny proměnné prostředí.
+
+Příklady použití s proměnnou prostředí:
+```sh
+TOMLYRE_THEME="Monokai Extended" tomlyre --help
+```
+
+Příklady použití s přepínačem:
+```sh
+tomlyre -t "Monokai Extended" get test.toml
+```
+
+Pro obsah manuálně vygenerovaných výstupů jako `conv/get/set` atd. má nastavení tématu pomocí `-t` prioritu před proměnnou prostředí.
+Pokud není použita volba `-t`, hodnota se načte z proměnné prostředí; pokud je proměnná prázdná, použije se téma **Monokai Extended**."""
+
+theme-file = "Vlastní soubor s tématy, spolu s parametrem `--theme`, který specifikuje název tématu"
+theme-file-help = """
+Podporovaný formát souboru jsou binární data dump ze starší verze Sublime Text.
+Pokud nezadáte volbu `--tf`, program načte hodnotu z proměnné prostředí `$TOMLYRE_THEME_FILE`."""
+
+theme-uncompressed-file = "Podobný jako `theme-file`, ale vyžaduje nekomprimovaná dump data (soubor)"
+theme-uncompressed-file-help = """
+> Nepoužívejte tuto volbu, pokud není nutné použít nekomprimovaná dump data.  
+
+Pokud nezadáte volbu `--tuf`, program načte hodnotu z proměnné prostředí `$TOMLYRE_THEME_UNCOMPRESSED_FILE`."""
+
+disable-theme-background = "Zakázat pozadí tématu (výchozí stav je povolený, přepínačem `--dis-theme-bg` ho můžete zakázat)"
+
+disable-theme-background-help = """
+Pokud není zadán parametr `-dis-theme-bg`, bude načtena hodnota z proměnné prostředí `$TOMLYRE_THEME_BG`.
+
+Pokud je nastaveno na `false`, bude vypnuto.
+
+```sh
+env TOMLYRE_THEME_BG=false TOMLYRE_THEME="ayu-dark" tomlyre --help
+```"""
+
+table-style = "Specifikuje styl tabulek"
+table-style-help = """
+Pokud použijete pouze parametr `--ts`, vypíše se seznam dostupných stylů.
+Kromě markdown, který může být zkrácen na md, musí být názvy ostatních stylů úplné.
+Příklady použití: `--ts md`
+Příklady použití: `--table-style ascii`
+
+> Upozornění: Aktuálně není možné načíst sadu stylů pro tabulky ze souboru. Pokud potřebujete tuto funkci nebo jinou další, neváhejte nám poslat zpětnou vazbu prostřednictvím issue."""
+
+from-format = "Ruční specifikace formátu zdrojového souboru (výchozí je automatické rozpoznání)"
+from-format-help = """
+Při čtení dat ze stdin, například takto: `cat a | tomlyre conv -`, bude nejprve pokus o automatické rozpoznání formátu souboru.
+Nicméně, automatické rozpoznání může selhat a v takových případech je třeba formát specifikovat ručně.
+Příklad: `cat test.bson | tomlyre --src-fmt bson get -`"""
+
+shell-completion = "Vygenerování skriptu pro doplňování příkazů v shellu"
+shell-completion-help = """
+Musíte ručně specifikovat jméno shellu, pro který chcete vygenerovat skript pro doplňování příkazů.
+Například pro powershell na Windows můžete použít: `--sh-comp pwsh`
+
+> Otázka: Co znamená funkce doplňování příkazů (tab completion)?
+
+> Odpověď: Když na příkazovém řádku začnete psát příkaz a stisknete klávesu Tab, spustí se skript pro doplňování příkazů, který začne hledat možné varianty doplnění a nabídne je k výběru. Tato funkce výrazně zvyšuje efektivitu a přesnost zadávání příkazů v příkazovém řádku.
+
+Různé shelly mají různá místa pro ukládání skriptů pro doplňování příkazů. Pro zsh musí být skript uložen v cestách, které jsou obsaženy v poli `$fpath`.
+Pro získání obsahu tohoto pole můžete použít příkaz `print -l $fpath`.
+Pokud například obsahuje adresář `/usr/local/share/zsh/site-functions`, můžete pomocí následujícího příkazu zapsat skript pro doplňování příkazů do souboru `_tomlyre` v tomto adresáři.
+
+```sh
+tomlyre --sh-comp zsh | doas tee /usr/local/share/zsh/site-functions/_tomlyre
+```
+
+Abychom se vyhnuli používání oprávnění roota, můžeme skript uložit do podadresáře uživatelské složky.
+Například můžete použít následující příkazy k vložení nové položky na začátek pole a následné uložení skriptu do adresáře pro skripty pro doplňování příkazů.
+
+```zsh
+fpath=(~/.local/share/zsh/completions $fpath)
+tomlyre --sh-comp zsh > ~/.local/share/zsh/completions/_tomlyre
+```"""

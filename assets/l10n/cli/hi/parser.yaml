@@ -1,0 +1,1 @@
+sh-completion::about-stderr: नीचे stderr आउटपुट है। आउटपुट कंप्लीशन स्क्रिप्ट पर रीडायरेक्ट करते समय, आपको `2>/path/to/file` की जगह `/path/to/file` का उपयोग करना चाहिए।

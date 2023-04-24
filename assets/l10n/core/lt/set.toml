@@ -1,0 +1,3 @@
+invalid-path = "Neteisingas failo kelias."
+new-value = "Nauja vertė"
+unsave-warn = "Modifikuotas turinys ** nebus išsaugotas, nes „--sv“ nebuvo iškviestas."

@@ -1,0 +1,1 @@
+sh-completion::about-stderr: 아래는 stderr 출력입니다. 완성 스크립트를 출력으로 리디렉션 할 때 `2>/path/to/file` 대신 `>/path/to/file`을(를) 사용해야 합니다.

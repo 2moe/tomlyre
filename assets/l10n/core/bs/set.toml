@@ -1,0 +1,3 @@
+invalid-path = "Nevažeća staza datoteke."
+new-value = "Nova vrijednost"
+unsave-warn = "Modificirani sadržaj ** neće biti spremljen jer `--sv` nije zvao."

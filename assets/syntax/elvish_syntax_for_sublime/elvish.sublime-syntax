@@ -1,0 +1,368 @@
+%YAML 1.2
+---
+name: Elvish
+first_line_match: \#.*elvish
+file_extensions:
+  - elv
+scope: source.elvish
+
+contexts:
+  main:
+    - include: keywords
+    - include: punctuation
+    - include: operators
+    - include: comments
+    - include: builtin-variables
+    - include: variables
+    - include: builtins
+    - include: functions
+
+    - match: '"'
+      push: string-quoted-double
+
+    - match: "'"
+      push: string-quoted-single
+
+  string-quoted-double:
+    - meta_scope: string.quoted.double.elvish
+    - match: '"'
+      pop: true
+
+  string-quoted-single:
+    - meta_scope: string.quoted.single.elvish
+    - match: "'"
+      pop: true
+
+  functions:
+    - match: \b(fn)\s
+      push: function-definition
+
+  function-definition:
+    - meta_scope: storage.type.function.elvish
+    - match: \[
+      push: function-parameter
+    - match: \{
+      scope: punctuation.section.braces.begin.elvish
+      pop: true
+
+  function-parameter:
+    - meta_scope: variable.parameter.function.language.elvish
+    - match: '\] '
+      scope: invalid.illegal
+      pop: true
+    - match: \]
+      pop: true
+
+  keywords:
+    - match: \b(if)\s
+      scope: keyword.control.elvish
+    - match: \b(else)\s
+      scope: keyword.control.elvish
+    - match: \b(elif)\s
+      scope: keyword.control.elvish
+    - match: \b(while)\s
+      scope: keyword.control.elvish
+    - match: \b(for)\s
+      scope: keyword.control.elvish
+    - match: \b(var)\s
+      scope: storage.modifier.elvish
+    - match: \b(set)\s
+      scope: storage.modifier.elvish
+    - match: \b(del)\s
+      scope: storage.modifier.elvish
+    - match: \b(and)\s
+      scope: keyword.word.elvish
+    - match: \b(or)\s
+      scope: keyword.word.elvish
+    - match: \b(use)\s
+      scope: keyword.control.import.elvish
+    - match: \b(try)\s
+      scope: keyword.control.elvish
+    - match: \b(except)\s
+      scope: keyword.control.elvish
+    - match: \b(finally)\s
+      scope: keyword.control.elvish
+    - match: \b(continue)\s
+      scope: keyword.control.elvish
+    - match: \b(break)\s
+      scope: keyword.control.elvish
+    - match: \b(return)\s
+      scope: keyword.control.elvish
+
+
+  punctuation:
+    - match: \(
+      scope: punctuation.section.parens.begin.elvish
+    - match: \)
+      scope: punctuation.section.parens.end.elvish
+    - match: \{
+      scope: punctuation.section.braces.begin.elvish
+    - match: \}
+      scope: punctuation.section.braces.end.elvish
+    - match: \[
+      scope: punctuation.section.braces.begin.elvish
+    - match: \]
+      scope: punctuation.section.braces.end.elvish
+    - match: /
+      scope: punctuation.separator
+    - match: ;
+      scope: punctuation.separator
+    - match: ":"
+      scope: punctuation.accessor
+    - match: \\
+      scope: punctuation.separator.continuation
+    - match: \\
+      scope: punctuation.separator.continuation
+    - match: \>
+      scope: punctuation.separator
+    - match: \<
+      scope: punctuation.separator
+
+  operators:
+    - match: \?
+      scope: keyword.operator.elvish
+    - match: \+
+      scope: keyword.operator.elvish
+    - match: (\-)\s
+      scope: keyword.operator.elvish
+    - match: \*
+      scope: keyword.operator.elvish
+    - match: \^
+      scope: keyword.operator.elvish
+    - match: \=
+      scope: keyword.operator.assignment.elvish
+
+  comments:
+    - match: "#"
+      scope: punctuation.definition.comment.line.elvish
+      push:
+        - meta_scope: comment.line.number-sign.elvish
+        - match: (TODO|XXX|FIXME)\b
+          scope: keyword.codetag.notation.elvish
+        - match: \s?(\!)(.*)(elvish)
+          captures:
+            1: keyword.codetag.notation.elvish
+            2: comment.line.number-sign.elvish
+            3: keyword.codetag.notation.elvish
+        - match: \n
+          pop: true
+
+  builtin-variables:
+    - match: \$_
+      scope: variable.language.elvish
+    - match: \$after-chdir
+      scope: variable.language.elvish
+    - match: \$args
+      scope: variable.language.elvish
+    - match: \$before-chdir
+      scope: variable.language.elvish
+    - match: \$false
+      scope: variable.language.elvish
+    - match: \$ok
+      scope: variable.language.elvish
+    - match: \$num-bg-jobs
+      scope: variable.language.elvish
+    - match: \$notify-bg-job-success
+      scope: variable.language.elvish
+    - match: \$paths
+      scope: variable.language.elvish
+    - match: \$pid
+      scope: variable.language.elvish
+    - match: \$pwd
+      scope: variable.language.elvish
+    - match: \$nil
+      scope: variable.language.elvish
+    - match: \$true
+      scope: variable.language.elvish
+    - match: \$value-out-indicator
+      scope: variable.language.elvish
+    - match: \~
+      scope: variable.language.elvish
+    - match: "E:"
+      scope: variable.language.elvish
+
+  variables:
+    - match: \$@?
+      scope: punctuation.definition.variable.elvish
+      push:
+        - meta_scope: variable.elvish
+        - match: "[^a-zA-Z0-9~_:-]?"
+          pop: true
+
+  builtins:
+    - match: \b(all)\s
+      scope: support.function.elvish
+    - match: \b(assoc)\s
+      scope: support.function.elvish
+    - match: \b(base)\s
+      scope: support.function.elvish
+    - match: \b(bool)\s
+      scope: support.function.elvish
+    - match: \b(break)\s
+      scope: support.function.elvish
+    - match: \b(cd)\s
+      scope: support.function.elvish
+    - match: \b(constantly)\s
+      scope: support.function.elvish
+    - match: \b(continue)\s
+      scope: support.function.elvish
+    - match: \b(count)\s
+      scope: support.function.elvish
+    - match: \b(deprecate)\s
+      scope: support.function.elvish
+    - match: \b(dir-history)\s
+      scope: support.function.elvish
+    - match: \b(dissoc)\s
+      scope: support.function.elvish
+    - match: \b(drop)\s
+      scope: support.function.elvish
+    - match: \b(each)\s
+      scope: support.function.elvish
+    - match: \b(eawk)\s
+      scope: support.function.elvish
+    - match: \b(echo)\s
+      scope: support.function.elvish
+    - match: \b(eq)\s
+      scope: support.function.elvish
+    - match: \b(eval)\s
+      scope: support.function.elvish
+    - match: \b(exact-num)\s
+      scope: support.function.elvish
+    - match: \b(exec)\s
+      scope: support.function.elvish
+    - match: \b(exit)\s
+      scope: support.function.elvish
+    - match: \b(external)\s
+      scope: support.function.elvish
+    - match: \b(fail)\s
+      scope: support.function.elvish
+    - match: \b(fclose)\s
+      scope: support.function.elvish
+    - match: \b(float64)\s
+      scope: support.function.elvish
+    - match: \b(fopen)\s
+      scope: support.function.elvish
+    - match: \b(from-json)\s
+      scope: support.function.elvish
+    - match: \b(from-lines)\s
+      scope: support.function.elvish
+    - match: \b(from-terminated)\s
+      scope: support.function.elvish
+    - match: \b(-gc)\s
+      scope: support.function.elvish
+    - match: \b(get-env)\s
+      scope: support.function.elvish
+    - match: \b(has-env)\s
+      scope: support.function.elvish
+    - match: \b(has-external)\s
+      scope: support.function.elvish
+    - match: \b(has-key)\s
+      scope: support.function.elvish
+    - match: \b(has-value)\s
+      scope: support.function.elvish
+    - match: \b(-ifaddrs)\s
+      scope: support.function.elvish
+    - match: \b(is)\s
+      scope: support.function.elvish
+    - match: \b(keys)\s
+      scope: support.function.elvish
+    - match: \b(kind-of)\s
+      scope: support.function.elvish
+    - match: \b(-log)\s
+      scope: support.function.elvish
+    - match: \b(make-map)\s
+      scope: support.function.elvish
+    - match: \b(nop)\s
+      scope: support.function.elvish
+    - match: \b(not)\s
+      scope: support.function.elvish
+    - match: \b(not-eq)\s
+      scope: support.function.elvish
+    - match: \b(ns)\s
+      scope: support.function.elvish
+    - match: \b(num)\s
+      scope: support.function.elvish
+    - match: \b(one)\s
+      scope: support.function.elvish
+    - match: \b(only-bytes)\s
+      scope: support.function.elvish
+    - match: \b(only-values)\s
+      scope: support.function.elvish
+    - match: \b(order)\s
+      scope: support.function.elvish
+    - match: \b(path-*)\s
+      scope: support.function.elvish
+    - match: \b(peach)\s
+      scope: support.function.elvish
+    - match: \b(pipe)\s
+      scope: support.function.elvish
+    - match: \b(pprint)\s
+      scope: support.function.elvish
+    - match: \b(prclose)\s
+      scope: support.function.elvish
+    - match: \b(print)\s
+      scope: support.function.elvish
+    - match: \b(printf)\s
+      scope: support.function.elvish
+    - match: \b(put)\s
+      scope: support.function.elvish
+    - match: \b(pwclose)\s
+      scope: support.function.elvish
+    - match: \b(rand)\s
+      scope: support.function.elvish
+    - match: \b(randint)\s
+      scope: support.function.elvish
+    - match: \b(range)\s
+      scope: support.function.elvish
+    - match: \b(read-line)\s
+      scope: support.function.elvish
+    - match: \b(read-upto)\s
+      scope: support.function.elvish
+    - match: \b(repeat)\s
+      scope: support.function.elvish
+    - match: \b(repr)\s
+      scope: support.function.elvish
+    - match: \b(resolve)\s
+      scope: support.function.elvish
+    - match: \b(return)\s
+      scope: support.function.elvish
+    - match: \b(run-parallel)\s
+      scope: support.function.elvish
+    - match: \b(search-external)\s
+      scope: support.function.elvish
+    - match: \b(set-env)\s
+      scope: support.function.elvish
+    - match: \b(show)\s
+      scope: support.function.elvish
+    - match: \b(sleep)\s
+      scope: support.function.elvish
+    - match: \b(slurp)\s
+      scope: support.function.elvish
+    - match: \b(src)\s
+      scope: support.function.elvish
+    - match: \b(-stack)\s
+      scope: support.function.elvish
+    - match: \b(styled)\s
+      scope: support.function.elvish
+    - match: \b(styled-segment)\s
+      scope: support.function.elvish
+    - match: \b(take)\s
+      scope: support.function.elvish
+    - match: \b(tilde-abbr)\s
+      scope: support.function.elvish
+    - match: \b(time)\s
+      scope: support.function.elvish
+    - match: \b(to-json)\s
+      scope: support.function.elvish
+    - match: \b(to-lines)\s
+      scope: support.function.elvish
+    - match: \b(to-string)\s
+      scope: support.function.elvish
+    - match: \b(to-terminated)\s
+      scope: support.function.elvish
+    - match: \b(unset-env)\s
+      scope: support.function.elvish
+    - match: \b(use-mod)\s
+      scope: support.function.elvish
+    - match: \b(wcswidth)\s
+      scope: support.function.elvish

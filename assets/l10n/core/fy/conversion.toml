@@ -1,0 +1,13 @@
+auto-detection-failed = "Mislearre om automatysk it formaat te detektearjen.Spesifisearje asjebleaft asjebleaft."
+conv-error = "Conversion Error"
+currently-supported = "Op it stuit stipe formatenlist:"
+dst = "Bestânbestânspaad"
+"invalid-json1.0" = "It bestân is gjin jildich `JSON 1.0` Opmaak, besykje te parse as `json5` ..."
+not-included = """
+Dizze binêre ** omfettet net ** de konverzje-funksjonaliteit foar it oanbelangjende opmaak.
+Jo moatte de oanbelangjende funksje ynskeakelje yn jo `Cargo.toml` en opnij unrepelje.
+As dizze software de oerienkommende funksjonaliteit net befettet, dan yntsjinje dan in probleem."""
+not-saved = "De folgjende ynhâld ** Sil net ** wurde opslein, om't `--save 'net wurde neamd."
+not-support-deser-sexp = "** Noch net stipe **: konvertearje fan 'Lisp S-Expression' oan 'oare formaten'"
+unknown-fmt = "Unbekend bestânsformaat"
+unsupported = "Net-stipe formaat konverzje"

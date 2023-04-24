@@ -1,0 +1,12 @@
+auto-detection-failed = "Ba a yi nasarar gano tsarin ba.Da fatan za a saka hannu da hannu."
+conv-error = "Kuskure"
+currently-supported = "A halin yanzu ana tallafawa jerin abubuwan tsari:"
+dst = "Hanyar fayil mai zuwa"
+"invalid-json1.0" = "Fayil ba ingantacce bane 'Tsarin 1.0`, ƙoƙarin yin parese a matsayin' json5` ..."
+not-included = """
+Wannan binary ** bai haɗa da aikin canjin ba don tsarin da ya dace.
+Kuna buƙatar kunna fasalin da ya dace a cikin 'Cargo.toml` da kuma sake sakewa.
+Idan wannan software ɗin ba ya haɗa da ayyukan da ya dace, don Allah a gabatar da batun."""
+not-support-deser-sexp = "** Ba a tallafawa ba tukuna **: Canza daga 'FursP S-magana' zuwa 'sauran nau'i`"
+unknown-fmt = "Tsarin fayil ɗin da ba a sani ba"
+unsupported = "Canje-canje na tsari"

@@ -1,0 +1,4 @@
+invalid-path = "Ungültiger Dateipfad"
+new-value = "Neuer Wert"
+unsave-warn = "Die geänderten Inhalte werden **nicht** gespeichert, da `--save` nicht aufgerufen wurde."
+type = "Typ"

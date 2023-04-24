@@ -1,0 +1,91 @@
+theme = "指定語法高亮的主題名稱"
+theme-help = """
+當僅使用 `-t` 參數時，會列出當前主題的列表。
+若未指定主題文件，則使用內置的主題集合。
+假設存在一個主題為 **ayu-dark**, 則您可以使用 `-t ayu-dark` 來使用該主題。
+若主題名稱包含空格，則請使用雙引號或單引號將其包裹起來。
+
+> 注：有一個特殊主題為 `None`，代表沒有語法高亮的純文本樣式。
+
+當未指定 `--theme` 選項時，將會從環境變量 `$TOMLYRE_THEME` 中讀取數據。
+此幫助信息的 **語法高亮** 主題也來自於該 **環境變量**。
+
+> 默認的幫助信息是硬編碼的，加載速度非常快。  
+> 加載硬編碼的文本與加載 `None` 主題的文本的速度是同一個數量級的，而動態加載則會變慢兩個數量級及以上。  
+> 設置 `$TOMLYRE_THEME` 環境變量可能會導致它重新加載主題，這將 **嚴重** 拖慢啓動速度。  
+> 除非您打算修改幫助信息的主題，或者是禁用語法高亮，否則請使用 `-t` 參數，而不是修改環境變量。  
+
+使用環境變量的例子：
+```sh
+TOMLYRE_THEME="Monokai Extended" tomlyre --help
+```
+
+使用命令行參數的例子:
+```sh
+tomlyre -t "Monokai Extended" get test.toml
+```
+
+對於手動執行 "conv/get/set" 等相關操作所輸出的內容，`-t` 指定的主題的優先級 > 環境變量。
+若未調用 `-t`，則讀取環境變量；若環境變量為空，則使用 **Monokai Extended**。"""
+
+theme-file = "自定義主題集合文件，您還需要搭配 `--theme` 指定主題名稱"
+theme-file-help = """
+支持的文件格式為 rust crate `syntect` 所 dump 出來的二進制數據。  
+本質上，這些主題是舊版的 sublime 的主題。
+若未指定 `--tf`， 則讀取環境變量 `$TOMLYRE_THEME_FILE` 的值。"""
+
+theme-uncompressed-file = "類似於`theme-file`, 但要求未壓縮的 dump 數據(文件)"
+
+theme-uncompressed-file-help = """
+> 未壓縮的版本要比壓縮版本的優先級更高。  
+
+若未指定 `--tuf`， 則讀取環境變量 `$TOMLYRE_THEME_UNCOMPRESSED_FILE` 的值。"""
+
+
+disable-theme-background = "禁用主題背景（默認為啓用狀態，若調用`--dis-theme-bg` 則禁用）"
+
+disable-theme-background-help = """
+若未指定 `--dis-theme-bg`， 則讀取環境變量 `$TOMLYRE_THEME_BG` 的值。
+
+若該值為 false 則禁用
+
+```sh
+env TOMLYRE_THEME_BG=false TOMLYRE_THEME="ayu-dark" tomlyre --help
+```"""
+
+table-style = "指定表格的樣式"
+table-style-help = """
+當僅使用 `--ts` 參數時，會列出內置的樣式集合。
+除了 markdown 可以縮寫為 md 外, 其他的樣式都要用完整的名稱。
+用法示例1：`--ts md` 
+用法示例2：`--table-style ascii`
+
+注：目前不支持從文件中讀取 **表格樣式** 的集合，如果您需要此功能或其他額外的功能，歡迎提交 issue 進行反饋。"""
+
+from-format = "手動指定來源的文件格式（默認會自動判斷）"
+from-format-help = """
+當從 stdin 讀取數據時，例如： `cat a | tomlyre conv -`，它首先會嘗試自動判斷文件格式。
+然而，自動判斷有可能會失敗，這時候就需要手動指定格式了。
+示例：`cat test.bson | tomlyre --src-fmt bson get -`"""
+
+shell-completion = "為 shell 生成補全腳本"
+shell-completion-help = """
+您需要手動指定 shell 的名稱來生成補全腳本。
+例如，對於 Windows 上的 powershell, 您可以使用：`--sh-comp pwsh`
+
+> Q: 什麼是 shell 的補全功能？
+
+> A: 當我們在命令行上輸入命令時，如果按下Tab鍵，補全腳本就會被觸發，開始搜索可能的補全選項，並將這些選項呈現出來以供選擇。此功能可以極大地提高命令行輸入的效率和準確性。
+
+不同 shell 的補全腳本所存放的位置是不一樣的。對於 zsh，您需要將其存放於 `$fpath` 數組所包含的路徑。
+您可以使用 `print -l $fpath` 來獲取該數組的內容。
+假設裏面包含了 `/usr/local/share/zsh/site-functions` 目錄， 那麼您可以使用以下命令來將補全腳本寫入到該目錄下的 `_tomlyre` 文件。
+
+```sh
+tomlyre --sh-comp zsh | doas tee /usr/local/share/zsh/site-functions/_tomlyre
+```
+
+為了避免使用 root 權限，您可以將其放在用户子目錄下。比如説，您可以使用以下命令向該數組頭部插入一個元素，再使用相關的目錄。
+```zsh
+fpath=(~/.local/share/zsh/completions $fpath)
+```"""

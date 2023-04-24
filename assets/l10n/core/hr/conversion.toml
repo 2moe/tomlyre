@@ -1,0 +1,13 @@
+auto-detection-failed = "nije uspio automatski otkriti format.Molimo odredite ručno."
+conv-error = "Pogreška pretvorbe"
+currently-supported = "Trenutno podržani popis formata:"
+dst = "Put odredišne datoteke"
+"invalid-json1.0" = "Datoteka nije valjani `json 1.0` format, pokušavajući raščlaniti kao `json5` ..."
+not-included = """
+Ovaj binarni ** ne uključuje ** funkcionalnost pretvorbe za relevantni format.
+Morate omogućiti relevantnu značajku u svom `Cargo.toml` i prekomponi.
+Ako ovaj softver ne uključuje odgovarajuću funkcionalnost, pošaljite problem."""
+not-saved = "Sljedeći sadržaj ** neće biti spreman jer `--save` nije pozvan."
+not-support-deser-sexp = "** Još nije podržano **: Pretvaranje iz `lisp s-ekspresije` u` ostale formate`"
+unknown-fmt = "Nepoznati format datoteke"
+unsupported = "Nepodržana konverzija formata"

@@ -1,0 +1,15 @@
+"invalid-json1.0" = "該檔案不是有效的 `json 1.0` 格式, 正在嘗試解析為 `json5`..."
+not-saved = "由於未呼叫 `--save`, 故以下內容 **不會** 被儲存。"
+dst = "目標檔案路徑"
+not-support-deser-sexp = "**暫不支援** 將 `Lisp S-Expression` 轉換為 `其他格式`"
+conv-error = "轉換錯誤"
+not-included = """
+此二進位制檔案 **不包含** 相關格式的轉換功能。
+您需要在 `Cargo.toml` 裡啟用相關的功能，並重新編譯。
+如果此軟體不包含相關功能，請提交 issue。"""
+
+unsupported = "不支援的格式轉換"
+
+unknown-fmt = "未知的檔案格式"
+currently-supported = "當前支援的格式列表"
+auto-detection-failed = "自動檢測格式失敗，請手動指定。"

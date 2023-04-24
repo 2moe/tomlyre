@@ -1,0 +1,3 @@
+invalid-path = "path file tidak valid."
+new-value = "nilai baru"
+unsave-warn = "konten yang dimodifikasi ** tidak akan ** disimpan karena `--sv` tidak dipanggil."

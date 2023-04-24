@@ -1,0 +1,13 @@
+auto-detection-failed = "nu a reușit să detecteze automat formatul.Vă rugăm să specificați manual."
+conv-error = "eroare de conversie"
+currently-supported = "Lista formatelor acceptate în prezent:"
+dst = "Calea fișierului de destinație"
+"invalid-json1.0" = "Fișierul nu este un format valabil „JSON 1.0`, încercând să analizeze ca `JSON5` ..."
+not-included = """
+Acest binar ** nu include ** funcționalitatea de conversie pentru formatul relevant.
+Trebuie să activați funcția relevantă în „Cargo.toml” și să vă recompilați.
+Dacă acest software nu include funcționalitatea corespunzătoare, vă rugăm să trimiteți o problemă."""
+not-saved = "Următorul conținut nu va fi salvat pentru că „`--save` nu a fost apelat."
+not-support-deser-sexp = "** Nu este acceptat încă **: Conversia de la `Lisp S-Expresie` în` Alte formate`"
+unknown-fmt = "Format de fișier necunoscut"
+unsupported = "conversia formatului neacceptat"

@@ -1,0 +1,21 @@
+conv-opts = "Konvertiere zwischen den Formaten TOML, YAML, JSON und RON"
+
+from = "Gibt die Eingabedatei an"
+
+conv-to = "Gibt das Ausgabeformat und/oder die Ausgabedatei an, kann mehrfach genutzt werden"
+conv-to-help = """
+Wenn in dem aktuellen Verzeichnis eine Datei namens **test.json** vorhanden ist, können Sie sie mit `conv test.json -t yml` in das Format YML (YAML) konvertieren oder Sie können den Dateipfad manuell angeben: `conv test.json -t /tmp/test.yml`.
+
+Die unterstützten Formate hängen von den Funktionen ab, die von diesem Softwarepaket aktiviert wurden. Nicht alle Funktionen sind standardmäßig aktiviert.
+
+Es gibt jedoch einige wichtige Informationen, die vor der Verwendung dieser Anwendung beachtet werden sollten:
+- 1. Die Anwendung benennt automatisch Dateien um, wenn keine spezifischen Dateipfade angegeben sind.
+  - 1.1: Nur Ein-Schicht-Dateien werden als Dateiformat erkannt, nicht als Dateipfad.
+    Wenn Sie beispielsweise `conv test.toml -t ron` aufrufen, wird die Ausgabedatei automatisch in `test.ron` umbenannt, anstatt `ron`. Wenn Sie diese Funktion nicht benötigen, verwenden Sie bitte `-t ./ron` oder `-t $PWD/ron`.
+  - 1.2: Wenn auf ein Verzeichnis und nicht auf eine Datei verwiesen wird
+    Zum Beispiel `-t /tmp/`, können wir nur `test.toml` in einem Unterordner von `/tmp/` platzieren, anstatt `/tmp` selbst zu überschreiben. Wenn Sie diese Funktion nicht benötigen, verwenden Sie bitte den vollständigen (nicht-verzeichnis-) Dateipfad, z.B. `-t /tmp/xx.toml` statt `-t /tmp/`.
+- 2. Ohne `--save` wird die angegebene Datei nicht automatisch gespeichert.
+- 3. Wenn `--save` aufgerufen wird, dürfen die Eingabe- und Ausgabedateien des `conv`-Befehls nicht identisch sein.
+- 4. Konvertierte Dateien behalten keine Kommentare bei."""
+
+save = "Wenn diese Option aktiviert ist, wird die mit `--to` angegebene Datei gespeichert."

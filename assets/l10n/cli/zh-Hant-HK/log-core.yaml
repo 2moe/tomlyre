@@ -1,0 +1,6 @@
+debug: 調試
+error: 錯誤
+info: 信息
+init-logger: 正在初始化 logger（日誌記錄器）...
+trace: 追蹤
+warn: 警告

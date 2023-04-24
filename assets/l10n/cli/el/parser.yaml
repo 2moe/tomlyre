@@ -1,0 +1,1 @@
+sh-completion::about-stderr: Ακολουθεί το stderr output. Όταν ανακατευθύνετε τη συμπλήρωση εξόδου σε ένα αρχείο, πρέπει να χρησιμοποιήσετε `> /path/to/file` αντί για `2> /path/to/file`.

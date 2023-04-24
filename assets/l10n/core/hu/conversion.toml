@@ -1,0 +1,13 @@
+auto-detection-failed = "nem sikerült automatikusan észlelni a formátumot.Kérjük, adja meg manuálisan."
+conv-error = "Konverziós hiba"
+currently-supported = "Jelenleg támogatott formátumok listája:"
+dst = "célfájl elérési útja"
+"invalid-json1.0" = "A fájl nem érvényes „JSON 1.0” formátum, amely megpróbálja elemezni `JSON5 '..."
+not-included = """
+Ez a bináris ** nem tartalmazza a ** konverziós funkcionalitást a vonatkozó formátumhoz.
+Engedélyeznie kell a „Cargo.toml” releváns funkcióját, és újra kell készítenie.
+Ha ez a szoftver nem tartalmazza a megfelelő funkciót, kérjük, nyújtson be egy problémát."""
+not-saved = "A következő tartalom ** nem fog menteni, mert a `--save` nem hívták meg."
+not-support-deser-sexp = "** Még nem támogatott **: A „LISP S-Expression” -ről „más formátumokra” konvertálás"
+unknown-fmt = "Ismeretlen fájl formátum"
+unsupported = "Nem támogatott formátumkonverzió"

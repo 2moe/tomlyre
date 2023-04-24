@@ -1,0 +1,89 @@
+theme = "Specificeer de naam van het thema voor syntax highlighting"
+theme-help = """
+Wanneer alleen de parameter `-t` wordt gebruikt, wordt er een lijst weergegeven met de huidige thema's.
+Als er geen themabestand is opgegeven, wordt de ingebouwde set thema's gebruikt.
+Als er bijvoorbeeld een thema genaamd **ayu-dark** bestaat, kunt u `-t ayu-dark` gebruiken om dit thema te gebruiken.
+Als de naam van het thema spaties bevat, moet u het tussen dubbele of enkele aanhalingstekens zetten.
+
+> Opmerking: er is een speciaal thema genaamd `None`, dat staat voor de pure tekststijl zonder syntax highlighting.
+
+Als de optie `--theme` niet is gespecificeerd, wordt er gelezen uit de `$TOMLYRE_THEME`-omgevingsvariabele.
+Het thema voor syntax highlighting in deze help-informatie komt ook van deze omgevingsvariabele.
+
+> De standaard help-informatie is hard gecodeerd en laadt zeer snel.
+> Het laden van de hardgecodeerde tekst en het laden van de tekst zonder syntax highlighting (via `None`-thema) is vergelijkbaar qua snelheid, terwijl dynamisch laden veel trager zal zijn.
+> Het instellen van de `$TOMLYRE_THEME`-omgevingsvariabele kan leiden tot herladen van het thema, wat de opstarttijd **sterk** zal vertragen.
+> Gebruik de `-t`-parameter in plaats van het wijzigen van de omgevingsvariabele, tenzij u van plan bent het thema voor de help-informatie te wijzigen of syntax highlighting uit te schakelen.
+
+Voorbeeld van het gebruik van een omgevingsvariabele:
+```sh
+TOMLYRE_THEME="Monokai Extended" tomlyre --help
+```
+
+Voorbeeld van het gebruik van de opdrachtregelparameters:
+```sh
+tomlyre -t "Monokai Extended" get test.toml
+```
+
+Voor handmatige bewerkingen zoals "conv/get/set" en gerelateerde, heeft het opgegeven thema met `-t` prioriteit boven de omgevingsvariabele.
+Als er geen `-t` is opgegeven, wordt de omgevingsvariabele gelezen. Als deze variabele leeg is, wordt **Monokai Extended** gebruikt."""
+
+theme-file = "Aangepaste themaset-bestand, moet worden gebruikt samen met `--theme`-optie"
+theme-file-help = """
+Het ondersteunde bestandsformaat is binaire gegevens die zijn gedumpt door rust crate `syntect`.
+Deze thema's zijn in wezen thema's voor de oude versie van sublime.
+Als er geen `--tf` is opgegeven, wordt er gelezen uit de `$TOMLYRE_THEME_FILE`-omgevingsvariabele. """
+
+theme-uncompressed-file = "Vergelijkbaar met `theme-file`, maar ongecomprimeerde dumpgegevens (bestand) vereist"
+
+theme-uncompressed-file-help = """
+> Ongecomprimeerde versies hebben hogere prioriteit dan gecomprimeerde versies.
+
+Als er geen `--tuf` is opgegeven, wordt er gelezen uit de `$TOMLYRE_THEME_UNCOMPRESSED_FILE`-omgevingsvariabele. """
+
+disable-theme-background = "Schakel thema achtergrond uit (default is ingeschakeld, als `--dis-theme-bg` wordt gebruikt, dan uitgeschakeld)"
+
+disable-theme-background-help = """
+Als er geen `--dis-theme-bg` is gespecificeerd, wordt er gelezen uit de `$TOMLYRE_THEME_BG`-omgevingsvariabele.
+
+Als deze variabele onwaar is, wordt het uitgeschakeld
+
+```sh
+env TOMLYRE_THEME_BG=false TOMLYRE_THEME="ayu-dark" tomlyre --help
+```"""
+table-style = "Specificeer de stijl van de tabel"
+table-style-help = """
+Wanneer alleen de parameter `--ts` wordt gebruikt, wordt er een lijst weergegeven met de ingebouwde set stijlen.
+Behalve markdown die kan worden afgekort tot md, moeten andere stijlnamen volledig worden geschreven.
+Voorbeeld 1:`--ts md`
+Voorbeeld 2:`--table-style ascii`
+
+Opmerking: Het is momenteel niet mogelijk om de set **tabelstijlen** uit een bestand te lezen. Als u deze functie of andere extra functies nodig heeft, kunt u een issue indienen om feedback te geven."""
+
+from-format = "Specificeer het formaat van het bronbestand (standaard zal dit automatisch worden gedetecteerd)"
+from-format-help = """
+Wanneer gegevens van stdin worden gelezen, bijvoorbeeld `cat a | tomlyre conv -`, wordt eerst geprobeerd om het bestandsformaat automatisch te detecteren.
+Automatische detectie kan echter mislukken, waardoor handmatige specificatie nodig is.
+Voorbeeld: `cat test.bson | tomlyre --src-fmt bson get -`"""
+
+shell-completion = "Genereer autocompletie-scripts voor de shell"
+shell-completion-help = """
+U moet de naam van de shell opgeven om autocompletie-scripts te genereren.
+Bijvoorbeeld, voor PowerShell op Windows, kunt u `--sh-comp pwsh` gebruiken.
+
+> V: Wat is de functie van autocompletie in de shell?
+
+> A: Wanneer we op de opdrachtregel typen, als we op de Tab-toets drukken, wordt het autocompletiescript gestart om mogelijke voltooiingsopties te zoeken en deze opties weer te geven om uit te kiezen. Deze functie kan de efficiëntie en nauwkeurigheid van het invoeren van opdrachtregels sterk verbeteren.
+
+Autocompletie-scripts voor verschillende shells moeten worden opgeslagen in verschillende locaties. Voor zsh moet u het opslaan in een pad dat is opgenomen in de `$fpath` array.
+U kunt `print -l $fpath` gebruiken om de inhoud van deze array te verkrijgen.
+Als bijvoorbeeld de map `/usr/local/share/zsh/site-functions` hierin is opgenomen, kunt u het volgende commando gebruiken om het autocompletiescript naar het bestand `_tomlyre` in die map te schrijven.
+
+```sh
+tomlyre --sh-comp zsh | doas tee /usr/local/share/zsh/site-functions/_tomlyre
+```
+
+Om root-toegang te vermijden, kunt u het opslaan in de submap van de gebruiker. Bijvoorbeeld, u kunt het volgende commando gebruiken om een element aan het begin van deze array toe te voegen en vervolgens de relevante directory te gebruiken.
+```zsh
+fpath=(~/.local/share/zsh/completions $fpath)
+```"""

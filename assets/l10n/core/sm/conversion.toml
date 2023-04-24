@@ -1,0 +1,11 @@
+auto-detection-failed = "Ua le mafai ona otometi iloa le foliga.Faʻamolemole faʻamanino le lima."
+conv-error = "Suiga sese"
+currently-supported = "O loʻo lagolagoina nei pepa faʻavae:"
+dst = "Nofoaga faila faila"
+not-included = """
+O lenei binary ** e le aofia ai ** o le tagata faʻatau galuega mo le talafeagai lelei.
+E manaʻomia ona e faʻatagaina le mea talafeagai i lau `` Cargo.toml `reco
+Afai e le aofia ai le polokalama lea e fesoʻotaʻi ma le talafeagai, faʻamolemole aumai se mataupu."""
+not-support-deser-sexp = "** E le lagolagoina A **: Liliu mai le `O Lisp S-Exp` of` o isi ituaiga o"
+unknown-fmt = "le le iloa faila faila"
+unsupported = "le lagolagoina o le suiga"

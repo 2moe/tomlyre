@@ -1,0 +1,71 @@
+[package]
+edition = "2021"
+name = "tomlyre-cli"
+version = "0.0.1-beta.1"
+license = "Apache-2.0"
+authors = ["Moe <m@tmoe.me>"]
+categories = ["command-line-interface"]
+repository = "https://github.com/2moe/tomlyre"
+description = "This CLI utility facilitates effortless manipulation and exploration of TOML, YAML, JSON and RON files."
+readme = "../Readme.md"
+
+[[bin]]
+doc = false
+name = "tomlyre"
+path = "src/main.rs"
+
+[features]
+default = ["json", "yaml", "ron", "json5", "lexpr"]
+# all = ["json", "yaml", "ron", "json5", "bson", "lexpr", "xml"]
+# conversion = []
+json = ["tomlyre/json"]
+json5 = ["tomlyre/json5"]
+yaml = ["tomlyre/yaml"]
+ron = ["tomlyre/ron"]
+bson = ["tomlyre/bson"]
+lexpr = ["tomlyre/lexpr"]
+xml = ["tomlyre/xml"]
+
+[dependencies]
+tomlyre = { path = "../core", default-features = false }
+anyhow = "1.0.70"
+clap_complete = "4.2.0"
+getset = "0.1.2"
+log = "0.4.17"
+thiserror = "1.0.40"
+env_logger = { version = "0.10.0", default-features = false, features = [
+    "regex",
+] }
+time = { version = "0.3.20", default-features = false, features = [
+    "local-offset",
+] }
+owo-colors = "3.5.0"
+phf = "0.11.1"
+paste = "1.0.12"
+
+[dependencies.glossa]
+version = "0.0.1-alpha.9"
+# path = "../../glossa/glossa"
+
+[dependencies.clap]
+features = ["unicode", "derive", "color"]
+version = "4.2.4"
+
+[dev-dependencies]
+
+[build-dependencies.glossa-codegen]
+version = "0.0.1-alpha.4"
+# path = "../../glossa/codegen"
+default-features = false
+features = ["toml", "yaml", "highlight"]
+
+# x86_64-unknown-freebsd.tar.xz
+# macOS-intel(x64).tar.bz2
+# macOS-apple-silicon(arm64).tar.bz2
+# win_x64.exe.zip
+# win_arm64.exe.zip
+
+[package.metadata.deb]
+name = "tomlyre"
+depends = ""
+revision = "1"

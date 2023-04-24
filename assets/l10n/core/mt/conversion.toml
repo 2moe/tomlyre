@@ -1,0 +1,13 @@
+auto-detection-failed = "naqset milli tiskopri awtomatikament il-format.Jekk jogħġbok speċifika manwalment."
+conv-error = "żball ta 'konverżjoni"
+currently-supported = "Lista tal-Formati Appoġġjati bħalissa:"
+dst = "Path tal-fajl tad-destinazzjoni"
+"invalid-json1.0" = "Il-fajl mhuwiex format validu `JSON 1.0`, li jipprova parse bħala `json5` ..."
+not-included = """
+Dan il-binarju ** ma jinkludix ** il-funzjonalità ta 'konverżjoni għall-format rilevanti.
+Ikollok bżonn li tippermetti l-karatteristika rilevanti fil-`Cargo.toml` u terġa 'tittieħed.
+Jekk dan is-softwer ma jinkludix il-funzjonalità korrispondenti, jekk jogħġbok ibgħat kwistjoni."""
+not-saved = "Il-kontenut li ġej ** mhux se jkun iffrankat minħabba li `--save` ma kienx imsejjaħ."
+not-support-deser-sexp = "** Mhux appoġġjat għadu"
+unknown-fmt = "Format tal-fajl mhux magħruf"
+unsupported = "konverżjoni ta 'format mhux appoġġjat"

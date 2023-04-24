@@ -1,0 +1,19 @@
+# all
+/*
+
+# white list
+!/.git*
+!/Cargo.toml
+!/Readme*
+!/License
+!/cli
+!/core
+!/assets
+!/Cargo.lock
+
+# black list
+target
+core/src/main.rs
+test.*
+tests.*
+tmp

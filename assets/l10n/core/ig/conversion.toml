@@ -1,0 +1,11 @@
+auto-detection-failed = "Agbalaghị aka ịchọpụta usoro ahụ.Biko jiri aka dee ya."
+conv-error = "Ntughari njehie"
+currently-supported = "Ederede ndepụta aha:"
+dst = "Abinced faịlụ"
+not-included = """
+Ọnụọgụ abụọ a na-etinyeghị ** n 'arụmọrụ ntụgharị maka usoro dị mkpa.
+Ikwesiri ime ka njirimara dị mkpa na gị 'Cargo.toml' na recompile.
+Ọ bụrụ na ngwanrọ a agunyeghị arụmọrụ kwekọrọ na ya, biko nyefee okwu."""
+not-support-deser-sexp = "**Not supported yet**: converting from `Lisp S-Expression` to `other formats`"
+unknown-fmt = "Usoro faịlụ a na-amaghị"
+unsupported = "Ntughari Usoro akwadoghị"

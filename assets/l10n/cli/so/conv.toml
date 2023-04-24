@@ -1,0 +1,22 @@
+conv-opts = "Toml, yamal, json iyo ron waxay u shaqeynayaan foomaatada qoraalka"
+
+from = "Faylka soo socda la sheeg"
+
+conv-to = "Foomka/faylka soo saarida ee la shaqeeya, oo ka taageero badan"
+conv-to-help = """
+Haddii horey loo heli karo **test.json** faylka hadda jira, marka aad qabto `conv test.json -t yml`, waxaad u shaqeyn kartaa yml (yaml) foomka,
+oo aad kaladuwan isaga sugi kartaa faylka: `conv test.json -t /tmp/test.yml`
+
+Foomkaha ayaa la doonayo qaababka ku xeeran ee adeegsigaan, sidaas darteed ma waxaad iloobi kartaa dhammaan dhinaca xogta.
+- 1. Waxay samaysaa magac uruurinta faylasha aan lahayn wax kasta oo loo yaqaan, adigoo aan musuqmaasuq ahayn
+  - 1.1: Fashilka mid abuurka ah ayaa loo dhiso file format ahaan, maadaama looma baahnid inay yihiin jidhka faylka
+    Marka laga reebo `conv test.toml -t ron`, faylka tayo leh wuxuu la badalaa `test.ron`, sidaasna ma wuxuu noqon doono `ron`.
+    Haddii aadan u baahan inaad adeegsato foomkan, fadlan adeegsada `-t ./ron`, ama `-t $PWD/ron`.
+  - 1.2: Talaabooyinku waxay la xiriira ka mid ah folder ah
+    Tusaale, `-t /tmp/`, waa inaanan helin faylka `test.toml` oo aan lagu magacaabin dadka `/tmp/`, laakiinse lama marin doono `/tmp` sida dhanka fog.
+    Haddii aadan u baahan inaad adeegsato talaabooyinkaas, fadlan adeegsada file fudud (maahi folder) sida `-t /tmp/xx.toml`, ama `-t /tmp/`.
+- 2. Marka aadan adeegsan `--save`, faylka la shaqeeyo qaybinta ma noqon doono.
+- 3. Marka aadan adeegsan `--save`, ma haayo faylka soo socda iyo ee lacagta uga yar ee la shaqeeyaa.
+- 4. Foomkan la shaqeeyaa kaliya, muhiimada xogta laga saaro mayno."""
+
+save = "Marka la adeegsan yahay, faylka ayuu ku kaydsan doonaa `--to` wax ka beddelka."

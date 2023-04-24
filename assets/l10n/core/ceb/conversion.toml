@@ -1,0 +1,13 @@
+auto-detection-failed = "Napakyas sa awtomatikong makit-an ang format.Palihug ipasabut sa mano-mano."
+conv-error = "Sayup sa Pagbag-o"
+currently-supported = "Gisuportahan karon ang Lista sa Formats:"
+dst = "Destination File Dalan"
+"invalid-json1.0" = "Ang file dili usa ka balido nga format nga `JSON 1.0`, nga pagsulay sa pagpirma ingon nga `JSON5` ..."
+not-included = """
+Kini nga binary ** wala maglakip sa ** ang pag-andar sa pagkakabig alang sa may kalabutan nga format.
+Kinahanglan nimo nga hatagan ang may kalabutan nga bahin sa imong `Cargo.toml 'ug balus.
+Kung ang kini nga software wala maglakip sa katugbang nga pag-andar, palihug isumite ang usa ka isyu."""
+not-saved = "Ang mosunud nga sulud dili maluwas tungod kay `--save` wala gitawag."
+not-support-deser-sexp = "** Wala gisuportahan pa **: Pagbalhin gikan sa `Lisp S-Pahayag 'sa ubang mga formats`"
+unknown-fmt = "Wala mailhi nga Format File"
+unsupported = "Wala gisuportahan ang pagkakabig sa format"

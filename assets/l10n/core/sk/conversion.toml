@@ -1,0 +1,13 @@
+auto-detection-failed = "Nepodarilo sa automaticky zistiť formát.Zadajte ručne."
+conv-error = "Chyba konverzie"
+currently-supported = "V súčasnosti podporovaný zoznam formátov:"
+dst = "Cesta cieľového súboru"
+"invalid-json1.0" = "Súbor nie je platný formát `json 1.0`, ktorý sa snaží analyzovať ako `json5` ..."
+not-included = """
+Tento binárny ** nezahŕňa ** funkčnosť konverzie pre príslušný formát.
+Musíte povoliť relevantnú funkciu vo svojom `CARGO.Toml` a rekompilovať.
+Ak tento softvér nezahŕňa zodpovedajúcu funkčnosť, predložte problém."""
+not-saved = "Nasledujúci obsah ** sa neuloží **, pretože `--save` nebol zavolaný."
+not-support-deser-sexp = "** ešte nie je podporovaný **: Konverzia z `lisp s-expression` na` ďalšie formáty`"
+unknown-fmt = "Formát neznámeho súboru"
+unsupported = "Nepodporovaný konverzia formátu"

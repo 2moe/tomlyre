@@ -1,0 +1,1 @@
+sh-completion::about-stderr: Níže je výstup na stderr. Pokud chcete přesměrovat výstup dokončovacího skriptu, měli byste použít `>/cesta/k/souboru` namísto `2>/cesta/k/souboru`.

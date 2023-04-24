@@ -1,0 +1,3 @@
+invalid-path = "Aliquam File semita."
+new-value = "Novum Value"
+unsave-warn = "Mutatio contentus ** non ** salvus erit quia `--sv` non vocavit."

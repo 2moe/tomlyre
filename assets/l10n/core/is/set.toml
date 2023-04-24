@@ -1,0 +1,3 @@
+invalid-path = "Ógild skráarslóð."
+new-value = "nýtt gildi"
+unsave-warn = "Breytt efni ** verður ekki ** vistað vegna þess að `--sv` var ekki kallað."

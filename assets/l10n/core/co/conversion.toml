@@ -1,0 +1,11 @@
+auto-detection-failed = "Fallu automaticamente u furmatu.Per piacè specificà manualmente."
+conv-error = "Errore di cunversione"
+currently-supported = "Lista di formati attualmente supportatu:"
+dst = "PLAY DI FILE"
+not-included = """
+Questu binariu ** Ùn include micca ** A funziunalità di cunversione per u furmatu pertinente.
+Avete bisognu à attivà a funzione pertinente in u vostru 'cargu.toml` è recompile.
+Se stu prugrammu ùn include micca a funziunalità currispondente, mandate un prublema."""
+not-support-deser-sexp = "** micca sustinutu ancu **: Cunverte da 'Lisp S-espressione` à `altri Formati`"
+unknown-fmt = "Formatu di File Unknown"
+unsupported = "Conversione di Format Inutile"

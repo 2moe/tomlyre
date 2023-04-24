@@ -1,0 +1,89 @@
+theme = "Specifies the theme name for syntax highlighting."
+theme-help = """
+When using only the `-t` parameter, the list of current themes will be displayed.
+If no theme file is specified, the built-in theme collection will be used.
+Assuming there is a theme called **ayu-dark**, you can use `-t ayu-dark` to use that theme.
+If the theme name contains spaces, please enclose it in double quotes or single quotes.
+
+> Note: There is a special theme called `None`, which represents plain text style without syntax highlighting.
+
+When the `--theme` option is not specified, data will be read from the `$TOMLYRE_THEME` environment variable.
+The **syntax highlighting** theme of this help information also comes from the **environment variable**.
+
+> The default help information is hard-coded and loads very quickly.  
+> Loading hard-coded text and loading text with `None` theme have the same speed, while dynamic loading will slow down by two orders of magnitude or more.  
+> Setting the `TOMLYRE_THEME` environment variable may cause it to reload the theme, which will significantly slow down startup time.  
+> Unless you are planning to modify the theme of the help information or disable syntax highlighting, please use the `-t` parameter instead of modifying the environment variables. 
+
+Example using environment variables:
+```sh
+TOMLYRE_THEME="Monokai Extended" tomlyre --help
+```
+
+Example using command line parameters:
+```sh
+tomlyre -t "Monokai Extended" get test.toml
+```
+
+For the content output manually executed by operations such as "conv/get/set", etc., the priority of the theme specified by `-t` > the environment variable.
+If `-t` is not called, the environment variable is read; if the environment variable is empty, **Monokai Extended** is used."""
+
+theme-file = "Custom theme collection file, you also need to specify a theme name with `--theme`."
+theme-file-help = """
+The supported file format is binary data dumped by the rust crate `syntect`.
+In essence, these themes are themes of the old version of Sublime.
+If `--tf` is not specified, the value of the `$TOMLYRE_THEME_FILE` environment variable is read."""
+
+theme-uncompressed-file = "Similar to `theme-file`, but requires uncompressed dump data (file)"
+
+theme-uncompressed-file-help = """
+> The uncompressed version has a higher priority than the compressed version.
+
+If `--tuf` is not specified, the value of the `$TOMLYRE_THEME_UNCOMPRESSED_FILE` environment variable is read."""
+
+disable-theme-background = "Disables the theme background (enabled by default, disabled when `--dis-theme-bg` is called)."
+
+disable-theme-background-help = """
+If `--dis-theme-bg` is not specified, the value of the `$TOMLYRE_THEME_BG` environment variable is read.
+
+If the value is false, it will be disabled.
+```sh
+env TOMLYRE_THEME_BG=false TOMLYRE_THEME="ayu-dark" tomlyre --help
+```"""
+
+table-style = "Specifies the style for tables."
+table-style-help = """
+When using only the `--ts` parameter, the built-in style collection will be displayed.
+Except that markdown can be abbreviated as md, other styles must use the full name.
+Usage Example 1: `--ts md`
+Usage Example 2: `--table-style ascii`
+
+Note: Currently, **table style** collections cannot be read from files. If you need this or other additional features, please submit an issue for feedback. """
+
+from-format = "Manually specify the file format of the source (it will be automatically determined by default)."
+from-format-help = """
+When reading data from stdin, for example: `cat a | tomlyre conv -`, it will first try to automatically determine the file format.
+However, automatic identification may fail, and manual specification is required.
+Example: `cat test.bson | tomlyre --src-fmt bson get -`"""
+
+shell-completion = "Generates completion scripts for the shell."
+shell-completion-help = """
+You need to manually specify the name of the shell to generate the completion script.
+For example, for powershell on Windows, you can use: `--sh-comp pwsh`
+
+> Q: What is the completion function of the shell?
+
+> A: When we enter a command on the command line and press the Tab key, the completion script is triggered, which begins searching for possible completion options and presents these options for selection. This feature can greatly improve the efficiency and accuracy of command line input.
+
+The location where the completion scripts for different shells are stored is different. For zsh, you need to store it in the path included in the `$fpath` array.
+You can use `print -l $fpath` to get the contents of this array.
+Assuming that the `/usr/local/share/zsh/site-functions` directory is included, then you can use the following command to write the completion script to the `_tomlyre` file in that directory.
+
+```sh
+tomlyre --sh-comp zsh | sudo tee /usr/local/share/zsh/site-functions/_tomlyre
+```
+
+To avoid using root privileges, you can put it in a user subdirectory. For example, you can use the following command to insert an element at the beginning of that array, and then use the relevant directory.
+```zsh
+fpath=(~/.local/share/zsh/completions $fpath)
+```"""

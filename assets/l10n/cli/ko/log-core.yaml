@@ -1,0 +1,6 @@
+debug: 디버그
+error: 오류
+info: 정보
+init-logger: 로거 초기화 ...
+trace: 추적
+warn: 경고

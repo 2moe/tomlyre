@@ -1,0 +1,3 @@
+invalid-path = "Ogiltig filväg."
+new-value = "nytt värde"
+unsave-warn = "Det modifierade innehållet ** kommer inte ** att sparas eftersom `--sv` inte kallades."

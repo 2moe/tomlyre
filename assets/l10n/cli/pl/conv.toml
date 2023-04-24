@@ -1,0 +1,24 @@
+conv-opts = "Konwertuje między formatami takimi jak toml, yaml, json i ron."
+
+from = "Określa plik wejściowy"
+
+conv-to = "Określa format/plik wyjściowy, można użyć wielokrotnie"
+conv-to-help = """
+Jeśli istnieje plik **test.json** w bieżącym katalogu, możesz użyć `conv test.json -t yml`, aby przekonwertować go na format yml (yaml).
+Możesz także ręcznie określić ścieżkę do pliku: `conv test.json -t /tmp/test.yml`
+
+Obsługiwane formaty zależą od funkcji, które zostały włączone w tej paczce, a nie wszystkie funkcje są włączone domyślnie.
+
+Ponadto musisz wiedzieć przed rozpoczęciem korzystania:
+- 1. Automatyczna zmiana nazwy plików dla nieprecyzyjnych ścieżek.
+  - 1.1: Tylko pojedynczy poziom plików jest uznawany za format pliku, a nie ścieżka pliku
+    Gdy używasz `conv test.toml -t ron`, plik wyjściowy zostanie automatycznie zmieniony na `test.ron`, a nie na `ron`.
+    Jeśli nie potrzebujesz tej funkcji, użyj `-t ./ron` lub `-t $PWD/ron`.
+  - 1.2: Odwołanie do katalogu, a nie do pliku
+    Na przykład, `-t /tmp/`, możemy umieścić tylko `test.toml` jako podkatalog `/tmp/`, a nie nadpisać sam katalog `/tmp`.
+    Jeśli nie potrzebujesz tej funkcji, użyj pełnej ścieżki do pliku (a nie katalogu), np. `-t /tmp/xx.toml`, a nie `-t /tmp/`.
+- 2. Gdy nie wywołasz opcji `--save`, określony plik nie zostanie automatycznie zapisany.
+- 3. Gdy wywołasz opcję `--save`, dane wejściowe i wyjściowe polecenia conv nie mogą być tym samym plikiem.
+- 4. Skomentowane wersje plików nie zostaną zachowane po konwersji."""
+
+save = "Po użyciu tej opcji plik określony w `--to` zostanie zapisany"

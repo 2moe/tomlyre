@@ -1,0 +1,13 @@
+auto-detection-failed = "Theip ar an bhformáid a bhrath go huathoibríoch.Sonraigh de láimh le do thoil."
+conv-error = "earráid tiontaithe"
+currently-supported = "Liosta formáidí tacaithe faoi láthair:"
+dst = "cosán comhad ceann scríbe"
+"invalid-json1.0" = "Ní formáid bailí `JSON 1.0` atá sa chomhad, ag iarraidh a pharsáil mar `json5` ..."
+not-included = """
+Ní chuimsíonn an dénártha seo ** an fheidhmiúlacht tiontaithe don fhormáid ábhartha.
+Ní mór duit an ghné ábhartha a chumasú i do `Cargo.toml` agus a athchruthú.
+Mura gcuimsíonn na bogearraí seo an fheidhmiúlacht chomhfhreagrach, cuir isteach saincheist le do thoil."""
+not-saved = "Ní shábhálfar an t-ábhar seo a leanas ** toisc nár glaodh `--save`."
+not-support-deser-sexp = "** Gan tacaíocht fós **: ag athrú ó `lisp s-expression` go` formáidí eile `"
+unknown-fmt = "Formáid comhaid anaithnid"
+unsupported = "Comhshó formáide gan tacaíocht"

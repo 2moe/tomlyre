@@ -1,0 +1,3 @@
+invalid-path = "virheellinen tiedostopolku."
+new-value = "uusi arvo"
+unsave-warn = "Muokattua sisältöä ** ei ** tallennetta, koska `--sv` ei kutsuttu."

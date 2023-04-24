@@ -1,0 +1,13 @@
+auto-detection-failed = "Nehişt ku bixweber format bixwe bibîne.Ji kerema xwe bi destan diyar bikin."
+conv-error = "Errorewtiya veguherînê"
+currently-supported = "Navnîşa Formatên Piştgirî:"
+dst = "Pêla Destination Destination"
+"invalid-json1.0" = "Pel ne formatek derbasdar e `Json 1.0`, hewl dide ku wekî `JSON5` ..."
+not-included = """
+Ev binary ** ** fonksiyona veguhastinê ji bo forma têkildar nagire.
+Hûn hewce ne ku taybetmendiya têkildar di `Cargo.toml` û Recompile de çalak bikin.
+Ger ev nermalava fonksiyonê têkildar neke, ji kerema xwe pirsgirêkek bişînin."""
+not-saved = "Naveroka jêrîn ** Naha ** dê xilas nebe ji ber ku `--save` nayê gotin."
+not-support-deser-sexp = "** Piştgirî nehatiye **: Ji `Lisp S-îfadeya` LISP-ê` ji `Formatên din ve hatî veguheztin"
+unknown-fmt = "Forma pelê nediyar"
+unsupported = "Veguheztina Format a Piştgirî"

@@ -1,0 +1,13 @@
+auto-detection-failed = "Det gick inte automatiskt att upptäcka formatet.Vänligen ange manuellt."
+conv-error = "Konverteringsfel"
+currently-supported = "För närvarande stödda formatlista:"
+dst = "Destinationsfilväg"
+"invalid-json1.0" = "Filen är inte ett giltigt `JSON 1.0` -format, försöker analysera som `json5` ..."
+not-included = """
+Denna binära ** inkluderar inte ** Konverteringsfunktionen för det relevanta formatet.
+Du måste aktivera den relevanta funktionen i din `Cargo.toml` och kompilera om.
+Om den här programvaran inte inkluderar motsvarande funktionalitet, skicka ett problem."""
+not-saved = "Följande innehåll ** kommer inte ** att sparas eftersom `--save` inte kallades."
+not-support-deser-sexp = "** Stöds ännu inte **: Konvertering från `lisp s-expression` till` andra format`"
+unknown-fmt = "okänt filformat"
+unsupported = "Osledat formatkonvertering"

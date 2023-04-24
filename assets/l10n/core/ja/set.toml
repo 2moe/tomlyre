@@ -1,0 +1,4 @@
+invalid-path = "無効なファイルパス"
+new-value = "新しい値"
+unsave-warn = "`--save`が呼び出されなかったため、変更内容は**保存されません**。"
+type = "型"

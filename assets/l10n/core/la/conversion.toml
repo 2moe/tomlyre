@@ -1,0 +1,13 @@
+auto-detection-failed = "Deficio ad automatice deprehendere forma.Placere specificare manually."
+conv-error = "Conversion Error"
+currently-supported = "Currently Formats List:"
+dst = "Destination file semita"
+"invalid-json1.0" = "Quod file non valet `JSON 1.0` Forma, conatur parse ut `json5` ..."
+not-included = """
+Hoc binarii ** non includit ** conversionem functionality ad pertinet format.
+Vos postulo ut enable pertinet pluma in vestri `Cargo.toml` et recompile.
+Si hoc software non includit correspondentes functionality, velit submittere an proventus."""
+not-saved = "Sequenti contentus ** non ** salvus erit quia `--save` non dicitur."
+not-support-deser-sexp = "** ** non valet tamen **: Converting a `Lisp S-expression` ut` Alii formats`"
+unknown-fmt = "Forma"
+unsupported = "Unsupported Forma Conversion"

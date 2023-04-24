@@ -1,0 +1,350 @@
+get-opts = "يسترد قيمة الإعداد المحددة."
+
+get-opts-help = """
+مثال الاستخدام1: `get Cargo.toml -k package.name`
+مثال الاستخدام2: `get cfg.yaml -k .`
+"""
+
+key = "استخدام المفتاح (key) للاستعلام عن القيمة(value)."
+
+key-help = """
+يتم استخدام تنسيق "a.b.c" للبحث عن القيمة، حيث يتم فصل أسماء الجداول الفرعية أو مؤشرات المصفوفة باستخدام ".".
+عندما يكون هناك "." واحد فقط ، سيتم عرض جميع الجداول.
+
+"""
+
+set-opts = "يتيح إنشاء / تحديث / حذف هيكل الملفات التهيئة."
+
+set-kv = "تعيين الزوج (k-v) ، `--kv x.y.z value` يعادل `-k x.y.z -s value`."
+
+set-opts-help = """
+# set
+
+يتم اختيار المفتاح أولاً بتحديد مفتاح محدد، ثم يتم تغييره بقيمة محددة من نوع البيانات المحدد.
+
+> عندما يتم توفير المفتاح فقط ولم يتم توفير القيمة ، سيتم عرض نوع البيانات المقابل والقيمة.
+> على سبيل المثال، يتم عرض قيمة package وجداولها الفرعية بشكل أكثر تفصيلاً من `get`.
+
+## Examples
+
+### مثال 1:
+```sh
+--ts md set test.toml --key package.edition --str 2021
+```
+
+نظرًا لأن `--str` تم تحديده بدلاً من `--num` ، فإن "2021" هو نوع بيانات السلسلة ، وليس نوع بيانات الصحيح.
+
+| package | new value |
+|---------|-----------|
+| edition | "2021"    |
+
+```toml
+[package]
+edition = "2021"
+```
+
+### مثال 2:
+```sh
+set ~/.config/Code/User/settings.json --ck remote.SSH.remotePlatform --ck test --map k1 v1 --to /tmp/code.yaml
+```
+
+```yaml
+remote.SSH.remotePlatform:
+  test:
+    k1: v1
+```
+
+### مثال 3:
+```sh
+set test.yml -k main -a hello -a wonderful -a world --pre --to ron --save
+```
+
+```ron
+"main": [
+  /*[0]: This is the 1st index*/ "hello",
+  /*[1]*/ "wonderful",
+  /*[2]*/ "world",
+]
+```
+
+> ملاحظة: تبدأ جميع الأمثلة بمؤشر(argument)/sub-command، ويتم حذف اسم الأمر الجذري(root command) ، يجب أن تضيفه يدويًا في استخدام الأمر الفعلي.
+"""
+
+set-key = """تحديد المفتاح المحدد، واستخدام "." كفاصل"""
+
+concat-key = """إدخال مفاتيح متعددة وترك GPT-3 تجميعها بشكل صحيح"""
+concat-key-help = """
+يختلف `--ck` عن `-k` في أن `--ck` لا يقسم السلسلة باستخدام ".". 
+
+بالنسبة لـ [a.b.c] ، يتم التعامل مع `-k a.b.c` و `--ck a --ck b --ck c` بنفس الطريقة. 
+
+إذا احتوى اسم المفتاح على '.' ، فيرجى استخدام `--ck` بدلاً من `-k`.
+على سبيل المثال:
+
+```json
+"[typescript]": {
+    "editor.defaultFormatter": "rome.rome"
+}
+```
+
+في هذا الهيكل ، "editor.defaultFormatter" هو سلسلة كاملة ، و defaultFormatter ليس فرعًا لـ editor.
+
+عند استخدام `-k '[typescript]'.'editor.defaultFormatter'` ، يتم قسم المفتاح إلى:
+
+- "[typescript]"
+- "editor"
+- "defaultFormatter"
+
+بينما عند استخدام `--ck '[typescript]' --ck editor.defaultFormatter` ، يتم التعامل مع المفتاح كما يلي:
+
+- "[typescript]"
+- "editor.defaultFormatter"
+
+الأخير هو الهيكل الصحيح.
+"""
+
+preview = "عرض ملف كامل قبل تطبيق التغييرات"
+string = "سلسلة"
+bool = "قيم مثل boolean (true او false)"
+num = "i64: الأعداد الصحيحة مع 64 بت. ومثال على ذلك الرقم 1145."
+f64 = "الأرقام العشرية مزدوجة الدقة (IEEE 754-2008)، على سبيل المثال 3.14159265359."
+
+
+set-save-to-help = """
+يشبه تقريبًا `-t` في الأمر الفرعي `conv`، لكن الفرق الرئيسي هو أن `-t` في `conv` يمكن استخدامه متعدد مرات متتالية لتحويل إلى صيغ/ملفات متعددة.
+و `-t` في أمر الفرعي `set` يمكن استخدامه مرة واحدة فقط وستكون النتيجة في ملف واحد.
+
+> ملاحظة: عند تشغيل الأمر الفرعي `conv` ، لا يتم الاحتفاظ بالتعليقات في أي من صيغ الملفات.
+> وعلى الجانب الآخر، الأمر الفرعي `set` سوف يحفظ التعليقات في ملفات TOML فقط. كما أنه لن يحفظ التعليقات في أي شكل آخر.
+
+- إذا تم استدعاء `--save` دون استدعاء `-t` ، فسيتم الكتابة فوق الملف الأصلي.
+- إذا تم استدعاء `-t` مع `--save` ، فسيتم حفظ الملف المعدل في المسار الذي حددته
+- بشرط أن الملف المصدر والملف الذي يشير إليه `-t` لا يتطابقان ، سيتم تطبيق سلوك `-t` في أمر الفرعي `set` على نحو متسق مع `-t` في أمر الفرعي `conv`. ويتضمن هذا تغيير اسم الملفات التي ليست من نوعها تلقائيًا.
+  - على سبيل المثال، إذا كان الملف المصدر هو **test.yml** والملف المستهدف هو **json** ، فسيتم إنشاء ملف باسم **test.json** وليس باسم **json**.
+  - إذا لم يتم الحاجة إلى هذه الخاصية ، يرجى استخدام التعبيرات **./json** أو **$PWD/json** بدلاً من اسم الملف.
+"""
+
+set-save = "في حالة عدم استخدام `--to` ، سيتم الكتابة فوق الملف الحالي إذا تم استدعاؤه."
+set-save-to = "حفظ بتنسيق / اسم محدد ، ويمكن حفظ ملف واحد في كل مرة"
+array = "مصفوفة نصية"
+array-help = """
+يتم تعيين عناصر المصفوفة عن طريق استدعاء `-a` مرات متعددة.
+على سبيل المثال:
+
+```sh
+set test.toml -k test.array -a hello -a wonderful -a world
+```
+
+> يتم تعيين العنصر الأول للمصفوفة عند أول استدعاء، والثاني عند الاستدعاء الثاني، وهكذا.
+
+```toml
+[test]
+array = ["hello", "wonderful", "world"]
+```
+"""
+
+num-arr = "مصفوفة أعداد صحيحة بـ 64 بت"
+num-arr-help = """
+على سبيل المثال:
+
+```sh
+set test.json -k hello --na -1 --na -45 --na 14
+```
+
+```json
+"hello": [
+    -1,
+    -45,
+    14
+]
+```
+"""
+
+f64-arr = "مصفوفة من الأرقام العشرية المزدوجة الدقة"
+f64-arr-help = """
+على سبيل المثال:
+
+```sh
+set test.yml -k hello --fa 3.14 --fa 45e-2 --fa NaN --fa Inf
+```
+
+```yaml
+hello:
+- 3.14
+- 0.45
+- .nan
+- .inf
+```
+
+>لا يدعم JSON 1.0 NaN و Inf.
+سيتم إخراج "null" بدلاً من "NaN".
+```sh
+set test.yml -k zz --fa NaN --fa Inf --to json --pre
+```
+
+```json
+"zz": [
+    null,
+    null
+]
+```"""
+bool-arr = "مصفوفة من القيم البولية"
+bool-arr-help = """
+على سبيل المثال:
+
+```sh
+set test.ron -k hello --ba true --ba false --ba true
+```
+
+```ron
+"hello": [
+    // [0]: العنصر الأول هو `true`.
+    true,
+    /*[1]*/ false,
+    /*[2]*/ true,
+]
+```"""
+
+aot = "مصفوفة جداول (الاستخدام: `--aot 'k1 ، v1 ، k2 ، v2' --aot 'k1، v1'`)"
+aot-help = """
+على سبيل المثال:
+```sh
+set test.toml -k package --aot 'name, glossa, version, 0.0.1-alpha.6' --aot 'name, wasm-bindgen, ver sion, 0.2  .84, version, 0.2.84'
+```
+
+```toml
+[[package]]
+name = "glossa"
+version = "0.0.1-alpha.6"
+
+[[package]]
+name = "wasm-bindgen"
+"ver sion" = "0.2  .84"
+version = "0.2.84"
+```"""
+
+saot = "جدول يحتوي على زوج key-value واحد فقط (الاستخدام: `--saot k1 v1 --saot k2 v2 ...`)"
+saot-help = """
+> ملاحظة: بالرغم من أن `--saot` يسمح بإنشاء زوج key-value واحد فقط لكل جدول، إلا أنه يمكنك تحديد مؤشر لمصفوفة الجدول، ثم استخدام خيارات أخرى لتوسيعه.
+
+على سبيل المثال:
+
+```sh
+set test.toml -k mount --saot src "/sdcard/Download" --saot src "/data/media/0" --save --pre
+```
+
+```toml
+[[mount]]
+src = "/sdcard/Download"
+
+[[mount]]
+src = "/data/media/0"
+```"""
+
+table = "جدول قياسي (standard table)، يستخدم لتخزين عدة أزواج من القيم key-value"
+table-help = """
+على سبيل المثال:
+
+```sh
+set test.toml -k mount.1.test --map name sd --map os android
+```
+
+```toml
+[[mount]]
+src = "/data/media/0"
+
+[mount.test]
+name = "sd"
+os = "android"
+```
+
+```sh
+set test.yml -k container --tb arch riscv64 --tb os debian --tb codename trixie
+```
+
+```yaml
+container:
+  arch: riscv64
+  codename: trixie
+  os: debian
+```"""
+
+inline-table = "جدول مضمن ، مماثل للجدول القياسي ولكنه أكثر كفاءة في التخزين"
+inline-table-help = """
+إذا كنت غير متأكد مما إذا كان يجب عليك استخدام الجدول القياسي أو الجدول المضمن ، فاستخدم الجدول المضمن!
+
+على سبيل المثال:
+
+```sh
+set test.toml -k container --itb arch riscv64 --itb os fedora --itb codename rawhide
+```
+
+```toml
+container = { arch = "riscv64", os = "fedora", codename = "rawhide" }
+```
+
+> باستثناء `toml` ، فإن جميع التنسيقات الأخرى ستستخدم الجدول القياسي بدلاً من الجدول المضمن.
+
+```json
+"container": {
+    "arch": "riscv64",
+    "codename": "rawhide",
+    "os": "fedora"
+}
+```"""
+
+datetime = "نوع البيانات التاريخ والوقت"
+datetime-help = """
+على سبيل المثال:
+
+```sh
+set test.toml -k time --datetime '2023-04-16 09:14:44Z'
+```
+
+```toml
+time = 2023-04-16T09:14:44Z
+```
+
+> يدعم هذا الخيار فقط `toml`. إذا تم إضافة `-t json` في نهاية الأمر، فستظهر النتيجة كما يلي:
+
+```json
+"time": {
+    "$__toml_private_datetime": "2023-04-16T09:14:44Z"
+}
+```"""
+
+none = "حذف مفتاح محدد"
+none-help = """
+> ملاحظة: يمتلك TOML نوعًا حقيقيًا من `Option<T>` ، والذي يمكن أن يكون قيمته إما `Some(T)` أو `None`.
+> يقوم هذا الخيار `--none` بحذف مفتاح محدد، دون تغيير نوع القيمة إلى `Option<T>`.
+
+على سبيل المثال، إذا كان لدينا جدول مصفوفة على النحو التالي في ملف `test.yml`:
+
+```yaml
+bin:
+- doc: false
+  name: tomlyre
+  path: src/main.rs
+- doc: true
+  name: test
+  path: src/test.rs
+```
+
+يمكننا حذف مفتاح `name: test` من الجدول الثاني عبر تنفيذ الأمر التالي:
+
+```sh
+set test.yml -k bin.1.name --none
+```
+
+> ملاحظة: لا تتطابق السلسلة الفارغة مع None.
+> يمكنك استخدام الأمر `--kv bin.1.name ""` لتعيين قيمة فارغة، بينما يقوم `--none` بحذف المفتاح بالكامل.
+
+يمكننا أيضًا حذف الجدول الثاني كله (ذو المؤشر 1) باستخدام الأمر التالي:
+```sh
+set test.yml -k bin.1 --none
+```
+
+أو باستخدام `--rm`:
+```sh
+set test.yml -k bin.1 --rm
+```"""

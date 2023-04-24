@@ -1,0 +1,336 @@
+get-opts = "Pobiera wartość określonej konfiguracji"
+get-opts-help = """
+Przykład użycia 1: `get Cargo.toml -k package.name`
+Przykład użycia 2: `get cfg.yaml -k .`
+"""
+
+key = "Zapytaj o wartość dla klucza (key)"
+
+key-help = """
+Format to "a.b.c", gdzie nazwy podtabel lub indeksy tablic są połączone kropką ".".
+Jeśli wykorzystasz tylko jeden znak ".", zostanie wyświetlona pełna tabela."""
+
+set-opts = "Tworzy / aktualizuje / usuwa struktury plików konfiguracyjnych"
+set-opts-help = """
+# set
+
+Najpierw wybierz klucz, a następnie wprowadź wartość o określonym typie danych.
+
+> Jeśli podany jest tylko klucz, a nie wartość, zostanie wyświetlony typ danych i wartość.
+> Na przykład, `set Cargo.toml -k package`, wyświetli tabelę "package" i jej podtabelki z bardziej szczegółowymi informacjami niż polecenie `get`.
+
+## Przykłady
+
+### Przykład 1:
+```sh
+--ts md set test.toml --key package.edition --str 2021
+```
+
+Ze względu na użycie `--str` zamiast `--num`, "2021" będzie traktowane jako ciąg znaków, a nie liczba całkowita.
+
+| package | nowa wartość |
+|---------|-----------|
+| edition | "2021"    |
+
+
+```toml
+[package]
+edition = "2021"
+```
+
+### Przykład 2:
+```sh
+set ~/.config/Code/User/settings.json --ck remote.SSH.remotePlatform --ck test --map k1 v1 --to /tmp/code.yaml
+```
+
+```yaml
+remote.SSH.remotePlatform:
+  test:
+    k1: v1
+```
+
+### Przykład 3:
+```sh
+set test.yml -k main -a hello -a wonderful -a world --pre --to ron --save
+```
+
+```ron
+"main": [
+  /*[0]: to jest pierwszy indeks*/ "hello",
+  /*[1]*/ "wonderful",
+  /*[2]*/ "world",
+]
+```
+
+> Uwaga: powyższe przykłady zaczynają się od argumentu/podkomendy, pomijając nazwę głównego polecenia. W rzeczywistym działaniu musisz jawnie podać nazwę."""
+
+set-kv = "Ustawia pary klucz-wartość (k-v), `--kv x.y.z wartość` jest równoważne z `-k x.y.z -s wartość`."
+
+set-key = """Wybiera określony klucz (key) z użyciem kropki "." jako separatora."""
+
+concat-key = """Podaj klucz sekwencyjnie, program sam połączy je w całość. Nie używaj kropki "." jako separatora."""
+concat-key-help = """
+Różnica między `-k` polega na tym, że `--ck` nie wykonuje automatycznie `split('.')`.
+Dla [a.b.c], `-k a.b.c` i `--ck a --ck b --ck c` są identyczne.
+Dla prostszych przypadków `-k` byłby wygodniejszy.
+
+Jeśli nazwa klucza zawiera ".", należy użyć `--ck`, a nie `-k`.
+Na przykład:
+
+```json
+"[typescript]": {
+    "editor.defaultFormatter": "rome.rome"
+}
+```
+
+W tej strukturze "editor.defaultFormatter" jest pełnym ciągiem znaków, a "defaultFormatter" nie jest podkluczem "editor".
+
+Jeśli użyjesz `-k '[typescript]'.'editor.defaultFormatter'`, zostanie podzielone na:
+
+- "[typescript]"
+- "editor"
+- "defaultFormatter"
+
+Natomiast z użyciem `--ck '[typescript]' --ck editor.defaultFormatter`, będzie traktowane jako:
+
+- "[typescript]"
+- "editor.defaultFormatter"
+
+To drugie jest właściwą strukturą."""
+
+preview = "Po dokonaniu zmian, wyświetla pełny plik"
+string = "String (typ ciągu znaków)"
+bool = "bool (typ logiczny), może być tylko `true` lub `false`."
+num = "i64: typ liczby całkowitej ze znakiem 64-bitową, np. 1145"
+f64 = "Liczby zmiennoprzecinkowe podwójnej precyzji (standard IEEE 754-2008), np. 3.14159265359"
+
+set-save-to-help = """
+Bardzo podobne do `-t` w przypadku polecenia `conv`, ale największa różnica polega na tym, że `-t` w `conv` może być wywoływane wiele razy, aby wyeksportować dane do wielu formatów / plików naraz.
+Podczas gdy `-t` w `set` może być wywołane tylko raz i eksportuje do jednego pliku.
+
+> Uwaga: po wykonaniu operacji konwersji przez podkomendę `conv`, wszystkie pliki zostaną pozbawione komentarzy.
+> Jednak `set` zachowa komentarze dla plików **toml**, a dla innych formatów **nie**.
+
+- Jeśli nie użyto `-t`, to wywołanie `--save` spowoduje zastąpienie bieżącego pliku.
+- Jeśli wywołano `-t` oraz `--save`, zmodyfikowany plik zostanie zapisany w miejscu wskazanym przez parametr `-t`.
+- Chyba że źródło pliku jest takie samo jak plik wskazany przez `-t`, zachowanie `-t` w `set` będzie podobne do `-t` w `conv`, które automatycznie zmienia nazwy plików, na których nie wykonano żadnych operacji.
+  - Na przykład dla from: **test.yml**, to: **json**, wyjściowy plik zostanie zmieniony na **test.json**, a nie **json**.
+  - Jeśli ta funkcja nie jest potrzebna, należy użyć `-t ./json` lub `-t $PWD/json`, a nie `-t json`. """
+
+set-save = "Jeśli nie podano parametru `--to`, zastępuje (nadpisuje) bieżący plik"
+set-save-to = "Zapisuje plik w określonym formacie / ścieżce, można zapisać tylko jeden plik naraz."
+array = "Tablica ciągów znaków"
+
+array-help = """
+Użyj wielokrotnie `-a`, aby ustawić elementy tablicy.
+Na przykład:
+
+```sh
+set test.toml -k test.array -a hello -a wonderful -a world
+```
+
+> Pierwsze wywołanie ustawi element o indeksie 0, drugie ustawi element o indeksie 1 i tak dalej.
+
+```toml
+[test]
+array = ["hello", "wonderful", "world"]
+```"""
+
+num-arr = "Tablica liczb całkowitych ze znakiem typu i64"
+num-arr-help = """
+Przykład:
+```sh
+set test.json -k hello --na -1 --na -45 --na 14
+```
+
+```json
+"hello": [
+    -1,
+    -45,
+    14
+]
+```"""
+
+f64-arr = "Tablica liczb zmiennoprzecinkowych podwójnej precyzji typu f64"
+f64-arr-help = """
+Przykład:
+```sh
+set test.yml -k hello --fa 3.14 --fa 45e-2 --fa NaN --fa Inf
+```
+
+```yaml
+hello:
+- 3.14
+- 0.45
+- .nan
+- .inf
+```
+
+> JSON 1.0 nie obsługuje wartości NaN i Inf.
+> Zamiast tego zostanie wyświetlone `null` zamiast `NaN`.
+
+```sh
+set test.yml -k zz --fa NaN --fa Inf --to json --pre
+```
+```json
+"zz": [
+    null,
+    null
+]
+```
+"""
+
+bool-arr = "Tablica wartości logicznych typu bool"
+bool-arr-help = """
+Przykład:
+```sh
+set test.ron -k hello --ba true --ba false --ba true
+```
+
+```ron
+"hello": [
+    // [0]: pierwszy element to true
+    true,
+    /*[1]*/ false,
+    /*[2]*/ true,
+]
+```"""
+
+aot = "Tablica tabel z wieloma kluczami i wartościami (użycie: `--aot 'k1, v1, k2, v2' --aot 'k1, v1'`)"
+aot-help = """
+Przykład:
+```sh
+set test.toml -k package --aot 'name, glossa, version, 0.0.1-alpha.6' --aot 'name, wasm-bindgen, version, 0.2.84'
+```
+
+```toml
+[[package]]
+name = "glossa"
+version = "0.0.1-alpha.6"
+
+[[package]]
+name = "wasm-bindgen"
+version = "0.2.84"
+```"""
+
+saot = "Jedna para klucz-wartość dla każdej tabeli w tablicy (użycie: `--saot k1 v1 --saot k2 v2...`)"
+saot-help = """
+> Uwaga: chociaż można utworzyć tylko jedną parę K-V za pomocą `--saot`, można najpierw ustawić indeks tablicy, a następnie rozszerzyć go za pomocą innych opcji.
+
+Przykład:
+```sh
+set test.toml -k mount --saot src "/sdcard/Download" --saot src "/data/media/0" --save --pre
+```
+
+```toml
+[[mount]]
+src = "/sdcard/Download"
+
+[[mount]]
+src = "/data/media/0"
+```"""
+
+table = "Tabela standardowa, służy do przechowywania wielu par K-V"
+table-help = """
+Przykład 1:
+```sh
+set test.toml -k mount.1.test --map name sd --map os android
+```
+
+```toml
+[[mount]]
+src = "/data/media/0"
+
+[mount.test]
+name = "sd"
+os = "android"
+```
+
+Przykład 2:
+```sh
+set test.yml -k container --tb arch riscv64 --tb os debian --tb codename trixie
+```
+
+```yaml
+container:
+  arch: riscv64
+  codename: trixie
+  os: debian
+```"""
+
+inline-table = "Tabela wewnętrzna, odpowiada bardziej zwartej standardowej tabeli"
+inline-table-help = """
+Przykład:
+```sh
+set test.toml -k container --itb arch riscv64 --itb os fedora --itb codename rawhide
+```
+
+```toml
+container = { arch = "riscv64", os = "fedora", codename = "rawhide" }
+```
+
+> Poza formatem `toml`, pozostałe formaty będą używać standardowych tabel zamiast tabel wewnętrznych.
+
+```json
+"container": {
+    "arch": "riscv64",
+    "codename": "rawhide",
+    "os": "fedora"
+}
+```"""
+
+datetime = "Typ daty i czasu"
+datetime-help = """
+Przykład:
+```sh
+set test.toml -k time --datetime '2023-04-16 09:14:44Z'
+```
+
+```toml
+time = 2023-04-16T09:14:44Z
+```
+
+Ta opcja aplikuje się tylko do formatu `toml`. Jeśli dodamy `-t json` na końcu, to będzie wyglądać tak:
+
+```json
+"time": {
+    "$__toml_private_datetime": "2023-04-16T09:14:44Z"
+}
+```"""
+
+none = "Usunięcie określonego klucza"
+
+none-help = """
+> Uwaga: format `ron` posiada rzeczywisty typ `Option<T>`, który może mieć wartość `Some(T)` lub `None`.
+> Opcja `--none` służy do usunięcia określonego klucza, a nie do rzeczywistego typu `Option<T>`.
+
+Załóżmy, że w pliku `test.yml` istnieje następująca tablica tabel:
+
+```yaml
+bin:
+- doc: false
+  name: tomlyre
+  path: src/main.rs
+- doc: true
+  name: test
+  path: src/test.rs
+```
+
+Jeśli chcemy usunąć klucz **name: test**, wykonujemy polecenie:
+```sh
+set test.yml -k bin.1.name --none
+```
+
+> Uwaga: pusty ciąg znaków i `None` są różne.
+> Wywołanie `set test.yml --kv bin.1.name ""` ustawia wartość na pusty ciąg znaków, a `--none` usuwa cały klucz.
+
+Jeśli chcemy usunąć drugą tabelę z tablicy `bin` (o indeksie 1), wykonujemy:
+
+```sh
+set test.yml -k bin.1 --none
+```
+
+lub używając `--rm`:
+```sh
+set test.yml -k bin.1 --rm
+```"""

@@ -1,0 +1,12 @@
+auto-detection-failed = "Nepavyko automatiškai aptikti formato.Nurodykite rankiniu būdu."
+conv-error = "Konversijos klaida"
+currently-supported = "Šiuo metu palaikomų formatų sąrašas:"
+dst = "paskirties failo kelias"
+"invalid-json1.0" = "Failas nėra galiojantis „JSON 1.0“ formatas, bandantis išanalizuoti kaip „JSON5“ ..."
+not-included = """
+Šis dvejetainis ** neapima ** atitinkamo formato konvertavimo funkcijos.
+Turite įgalinti atitinkamą funkciją „Cargo.toml“ ir perkompiliuoti.
+Jei šioje programinėje įrangoje nėra atitinkamos funkcijos, pateikite problemą."""
+not-support-deser-sexp = "** dar nepalaikomas **: Konvertuoti iš „lisp s-ekspression“ į „kitus formatus“"
+unknown-fmt = "Nežinomas failo formatas"
+unsupported = "Nepalaikomas formato konvertavimas"

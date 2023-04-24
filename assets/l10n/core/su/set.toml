@@ -1,0 +1,3 @@
+invalid-path = "jalur file anu salah."
+new-value = "nilai anyar"
+unsave-warn = "Eusi anu dirobih ** moal ** bakal disimpen kusabab `--sv` henteu disebut."

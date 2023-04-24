@@ -1,0 +1,4 @@
+invalid-path = "Invalid file path."
+new-value = "New value"
+unsave-warn = "The modified content **will not** be saved because `--sv` was not called."
+type = "Type"

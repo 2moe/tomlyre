@@ -1,0 +1,13 @@
+auto-detection-failed = "Malsukcesis aŭtomate detekti la formaton.Bonvolu specifi permane."
+conv-error = "Konverta Eraro"
+currently-supported = "Aktuale subtenataj formataj listoj:"
+dst = "Destina Dosiera Vojo"
+"invalid-json1.0" = "La dosiero ne estas valida formato 'JSON 1.0`, provante analizi kiel `json5` ..."
+not-included = """
+Ĉi tiu binara ** ne inkluzivas ** la konvertan funkciecon por la koncernata formato.
+Vi devas ebligi la koncernan funkcion en via `Cargo.toml` kaj rekompiri.
+Se ĉi tiu programaro ne inkluzivas la respondan funkciecon, bonvolu sendi problemon."""
+not-saved = "La sekva enhavo ** ne estos konservita ĉar `--save` ne estis nomita."
+not-support-deser-sexp = "** ankoraŭ ne subtenata **: konverti de `lisp s-esprimo` al` aliaj formatoj`"
+unknown-fmt = "nekonatan dosierformaton"
+unsupported = "Nepruvitan formatan konvertiĝon"

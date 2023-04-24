@@ -1,0 +1,13 @@
+auto-detection-failed = "Ezin izan da formatua automatikoki hautematen.Mesedez, zehaztu eskuz."
+conv-error = "Bihurketa errorea"
+currently-supported = "Onartutako formatuen zerrenda:"
+dst = "Helmuga fitxategiaren bidea"
+"invalid-json1.0" = "Fitxategia ez da baliozko `Json 1.0` formatua, `json5` ... bezala analizatu nahian"
+not-included = """
+Binary ** honek ez du ** dagokion formatuaren bihurketa funtzionalitatea barne hartzen.
+Ezaugarri garrantzitsua zure `Cargo.toml` eta birplanteatuan gaitu behar duzu.
+Software honek dagokion funtzionaltasuna jasotzen ez badu, bidali arazo bat."""
+not-saved = "Hurrengo edukia ** ez da gordeko ** `--save`  deitzen ez delako."
+not-support-deser-sexp = "** ez da onartzen oraindik **: \"Lisp s-espresiotik\" beste formatu batzuetara bihurtzea"
+unknown-fmt = "Fitxategi formatu ezezaguna"
+unsupported = "Onartu gabeko formatu bihurketa"

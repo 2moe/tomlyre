@@ -1,0 +1,3 @@
+invalid-path = "Đường dẫn tệp không hợp lệ."
+new-value = "Giá trị mới"
+unsave-warn = "Nội dung được sửa đổi ** sẽ không được lưu ** vì `--sv` không được gọi."

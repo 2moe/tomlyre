@@ -1,0 +1,13 @@
+auto-detection-failed = "Kunne ikke oppdage formatet automatisk.Vennligst spesifiser manuelt."
+conv-error = "konverteringsfeil"
+currently-supported = "For øyeblikket støttede formater Liste:"
+dst = "Destinasjonsfilbane"
+"invalid-json1.0" = "Filen er ikke et gyldig `JSON 1.0` -format, og prøver å analysere som `JSON5` ..."
+not-included = """
+Denne binære ** inkluderer ikke ** konverteringsfunksjonaliteten for det aktuelle formatet.
+Du må aktivere den aktuelle funksjonen i \"lastet. Toml` og kompilen.
+Hvis denne programvaren ikke inkluderer den tilsvarende funksjonaliteten, vennligst send inn et problem."""
+not-saved = "Følgende innhold ** vil ikke ** lagres fordi `--save` ikke ble kalt."
+not-support-deser-sexp = "** Ikke støttet ennå **: Konvertere fra `Lisp S-Expression` til` andre formater`"
+unknown-fmt = "Ukjent filformat"
+unsupported = "ikke støttet formatkonvertering"

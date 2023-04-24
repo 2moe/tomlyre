@@ -1,0 +1,13 @@
+auto-detection-failed = "kunne ikke automatisk registrere formatet.Angiv venligst manuelt."
+conv-error = "Konverteringsfejl"
+currently-supported = "Liste i aktuelt understøttede formater:"
+dst = "destinationsfilsti"
+"invalid-json1.0" = "Filen er ikke et gyldigt `JSON 1.0 'format, der prøver at analysere som `JSON5` ..."
+not-included = """
+Denne binære ** inkluderer ikke ** konverteringsfunktionaliteten for det relevante format.
+Du skal aktivere den relevante funktion i din `last.toml` og omkompilere.
+Hvis denne software ikke inkluderer den tilsvarende funktionalitet, skal du indsende et problem."""
+not-saved = "Følgende indhold ** gemmes ikke **, fordi `--save` ikke blev kaldt."
+not-support-deser-sexp = "** understøttes endnu ikke **: konvertering fra `lisp s-ekspression 'til` andre formater`"
+unknown-fmt = "Ukendt filformat"
+unsupported = "Ikke -understøttet formatkonvertering"

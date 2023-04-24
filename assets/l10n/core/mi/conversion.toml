@@ -1,0 +1,12 @@
+auto-detection-failed = "I rahua te tirotiro aunoa i te whakatakotoranga.Tena koa tohuhia."
+conv-error = "Ko te hapa faafariu"
+currently-supported = "I tenei wa kua tautokohia te raarangi whakatakotoranga:"
+dst = "Te Waehere Kōnae"
+"invalid-json1.0" = "Ehara i te konae he whakatakotoranga tika a Json 1.0``````], e ngana ana ki te tarai i te 'JSON5` ..."
+not-included = """
+Ko tenei ruau ** kaore i te whakauru ** te mahinga whakawhitinga mo te whakatakotoranga e tika ana.
+Me whakahoihia e koe te ahuatanga e tika ana i roto i to `Cargo.toml` me te hoko mai.
+Mena kaore i te whakauru atu tenei raupaparorohiko ki te mahinga e tika ana, tukuna mai he take."""
+not-support-deser-sexp = "** kaore ano kia tautokohia **: te huri mai i te 'Lisp S"
+unknown-fmt = "Hōputu Kōnae Kaore e mohiotia"
+unsupported = "Ko te hurihanga hōputu kore tautokona"

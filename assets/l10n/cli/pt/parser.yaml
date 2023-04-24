@@ -1,0 +1,1 @@
+sh-completion::about-stderr: Abaixo está a saída stderr. Ao redirecionar a saída do script de conclusão, você deve usar `>/caminho/para/o/arquivo` em vez de `2>/caminho/para/o/arquivo`.

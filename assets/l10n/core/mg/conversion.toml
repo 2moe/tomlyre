@@ -1,0 +1,11 @@
+auto-detection-failed = "tsy nahavita namantatra ny format.Azafady, farito amin'ny fomba manual."
+conv-error = "Fahadisoana fiovam-po"
+currently-supported = "misy lisitra misy eo amin'ny endrika ankehitriny:"
+dst = "Lalana rakitra toerana"
+"invalid-json1.0" = "Ny rakitra dia tsy ny endrika 'JSON 1.0'"
+not-included = """
+Ity binary ity ** tsy ahitana ny fiasa ** ny fiovam-po amin'ny endrika mifanaraka amin'izany.
+Mila mamela ny endri-javatra mifanaraka amin'ny `Cargo.toml` ianao ary averina.
+Raha tsy misy ny rindranasa mifanaraka amin'izany dia azafady alefaso ny olana iray."""
+unknown-fmt = "Format rakitra tsy fantatra"
+unsupported = "fiovam-po tsy azo antoka"

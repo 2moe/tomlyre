@@ -1,0 +1,13 @@
+auto-detection-failed = "tókst ekki að greina sniðið sjálfkrafa.Vinsamlegast tilgreindu handvirkt."
+conv-error = "umbreytingarvilla"
+currently-supported = "Nú er studdur sniðslisti:"
+dst = "Destination File Path"
+"invalid-json1.0" = "Skráin er ekki gilt `json 1.0` snið, að reyna að flokka sem `json5` ..."
+not-included = """
+Þessi tvöfaldur ** felur ekki í sér ** umbreytingarvirkni fyrir viðkomandi snið.
+Þú verður að virkja viðeigandi eiginleika í `Cargo.Toml` og Rethopile.
+Ef þessi hugbúnaður felur ekki í sér samsvarandi virkni, vinsamlegast sendu mál."""
+not-saved = "Eftirfarandi efni ** verður ekki ** vistað vegna þess að `--save` var ekki kallað."
+not-support-deser-sexp = "** Ekki studd enn **: umbreyta úr `lisp s-expression` í` önnur snið`"
+unknown-fmt = "Óþekkt skráarsnið"
+unsupported = "Óstudd umbreyting á sniði"

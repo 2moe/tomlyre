@@ -1,0 +1,13 @@
+auto-detection-failed = "Yehlulekile ukuthola ngokuzenzakalelayo ifomethi.Sicela usho ngesandla."
+conv-error = "Iphutha lokuguqulwa"
+currently-supported = "Amafomethi asekelwe njengamanje Uhlu:"
+dst = "Indlela yefayela lendawo"
+"invalid-json1.0" = "Ifayela alilona ifomethi evumelekile `JSON 1.0`, izama ukunxusa njengoba `json5` ..."
+not-included = """
+Le kanambambili ** ayifaki ** Ukuguqulwa kokusebenza kwefomethi efanele.
+Udinga ukunika amandla isici esifanelekile ku-`Cargo.toml`.Tom` kanye ne-Relompyile.
+Uma le software ingafaki ukusebenza okuhambisanayo, sicela uthumele inkinga."""
+not-saved = "Okuqukethwe okulandelayo ** ngeke kugcinwe ** kugcinwe ngoba `--save` akuzange kufonele."
+not-support-deser-sexp = "** ** AKUFUNIWE okwamanje"
+unknown-fmt = "Angaziwa Ifayela"
+unsupported = "Ukuguqulwa kwenkundla okungasekelwa"

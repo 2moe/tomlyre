@@ -1,0 +1,92 @@
+theme = "Especifica el nombre del tema para el resaltado de sintaxis."
+theme-help = """
+Cuando se usa solo `-t`, se mostrará una lista de temas disponibles.
+Si no se especifica un archivo de tema, se utilizarán los temas integrados.
+Supongamos que existe un tema llamado **ayu-dark**, puede usar `-t ayu-dark` para usar este tema.
+Si el nombre del tema contiene espacios, utilice comillas simples o dobles para envolverlo.
+
+> Nota: Hay un tema especial llamado `None`, que representa un estilo de texto plano sin resaltado de sintaxis.
+
+Si no se especifica la opción `--theme`, se leerá la variable de entorno `$TOMLYRE_THEME`.
+El tema utilizado para el resaltado de sintaxis en esta información de ayuda también viene de esta variable de entorno.
+
+> La información de ayuda predeterminada está codificada en duro y se carga muy rápido.
+> Cargar texto codificado en duro y texto cargado dinámicamente sin resaltado de sintaxis tarda aproximadamente el mismo tiempo. 
+> Sin embargo, cargar texto codificado dinámicamente con resaltado de sintaxis tarda algunos órdenes de magnitud más.
+> Establecer la variable de entorno `$TOMLYRE_THEME` puede hacer que se tenga que volver a cargar el tema, lo que ralentiza **significativamente** el tiempo de inicio.
+> A menos que esté modificando el tema para la información de ayuda o deshabilitando el resaltado de sintaxis, utilice la opción `-t` en lugar de modificar la variable de entorno.
+
+Ejemplo de uso de la variable de entorno:
+```sh
+TOMLYRE_THEME="Monokai Extended" tomlyre --help
+```
+
+Ejemplo de uso de argumentos de línea de comandos:
+```sh
+tomlyre -t "Monokai Extended" get test.toml
+```
+
+Para las salidas manuales de operaciones como "conv/get/set", la prioridad del tema especificado por `-t` es mayor que la variable de entorno.
+Si no se llama a `-t`, se leerá la variable de entorno. Si la variable de entorno está vacía, se utilizará el tema **Monokai Extended**."""
+
+theme-file = "Especifica un archivo personalizado para el conjunto de temas. También debe especificar el nombre del tema con `--theme`."
+theme-file-help = """
+El formato de archivo compatible es la salida binaria volcada por la crate rust `syntect`.
+En esencia, estos son temas de la versión antigua de Sublime.
+Si no se especifica `--tf`, se leerá el valor de la variable de entorno `$TOMLYRE_THEME_FILE`."""
+
+theme-uncompressed-file = "Al igual que `theme-file`, pero los datos de volcado sin comprimir (archivo) deben estar presentes."
+
+theme-uncompressed-file-help = """
+> La versión sin comprimir tiene una prioridad más alta que la versión comprimida.
+
+Si no se especifica `--tuf`, se leerá el valor de la variable de entorno `$TOMLYRE_THEME_UNCOMPRESSED_FILE`."""
+
+
+disable-theme-background = "Deshabilita el fondo del tema (predeterminado: habilitado). Uso de `--dis-theme-bg` para deshabilitar el fondo del tema."
+
+disable-theme-background-help = """
+Si no se especifica `--dis-theme-bg`, se leerá el valor de la variable de entorno `$TOMLYRE_THEME_BG`.
+
+Si el valor es `false`, se desactivará.
+
+```sh
+env TOMLYRE_THEME_BG=false TOMLYRE_THEME="ayu-dark" tomlyre --help
+```"""
+
+table-style = "Especifica el estilo de la tabla."
+table-style-help = """
+Cuando se usa solo `--ts`, se mostrará una lista de conjuntos de estilos integrados.
+Además de Markdown, que se puede abreviar como md, los demás estilos deben especificarse con su nombre completo.
+Ejemplo de uso 1: `--ts md`
+Ejemplo de uso 2: `--table-style ascii`
+
+Nota: Actualmente no se admite la lectura del conjunto de estilos de **tabla** desde un archivo. Si necesita esta función u otras funciones adicionales, no dude en informarnos a través de un problema (issue)."""
+
+from-format = "Especifica manualmente el formato de archivo de origen (por defecto, se detecta automáticamente)."
+from-format-help = """
+Cuando se lee datos desde stdin, por ejemplo: `cat a | tomlyre conv -`, intentará determinar automáticamente el formato del archivo primero.
+Sin embargo, es posible que la detección automática falle y deba especificar manualmente el formato.
+Ejemplo: `cat test.bson | tomlyre --src-fmt bson get -`"""
+
+shell-completion = "Genera un script de autocompletado para la shell especificada."
+shell-completion-help = """
+Debe especificar manualmente el nombre de la shell para generar un script de autocompletado.
+Por ejemplo, en PowerShell para Windows, puede usar: `--sh-comp pwsh`
+
+> P: ¿Qué es la función de autocompletado de shell?
+
+> R: Cuando ingresamos un comando en la línea de comandos y presionamos la tecla Tab, se activa el script de autocompletado, que busca opciones de autocompletado posibles y las presenta para su selección. Esta función puede mejorar significativamente la eficiencia y precisión de la entrada en línea de comandos.
+
+La ubicación del archivo de script de autocompletado es diferente para diferentes shells. Para zsh, debe guardarlo en una ruta incluida en la matriz `$fpath`.
+Puede usar `print -l $fpath` para obtener el contenido de esta matriz.
+Supongamos que incluye el directorio `/usr/local/share/zsh/site-functions`, puede usar el siguiente comando para escribir el script de autocompletado en el archivo `_tomlyre` en ese directorio.
+
+```sh
+tomlyre --sh-comp zsh | sudo tee /usr/local/share/zsh/site-functions/_tomlyre
+```
+
+Para evitar usar permisos de root, puede colocarlos en un subdirectorio dentro del directorio de inicio del usuario. Por ejemplo, puede usar el siguiente comando para insertar un elemento al principio de la matriz.
+```zsh
+fpath=(~/.local/share/zsh/completions $fpath)
+```"""

@@ -1,0 +1,90 @@
+theme = "구문 강조에 사용할 테마 이름을 지정합니다."
+theme-help = """
+`-t` 매개 변수만 사용하면 현재 테마 목록이 나열됩니다.
+테마 파일이 지정되지 않은 경우 내장된 테마 집합이 사용됩니다.
+예를 들어 **ayu-dark** 라는 테마가 있다면 `-t ayu-dark`를(를) 사용하여 해당 테마를 사용할 수 있습니다.
+테마 이름에 공백이 포함된 경우 큰따옴표나 작은따옴표로 묶어주십시오.
+
+> 참고: `None` 이라는 특수한 테마가 있으며, 구문 강조 없이 일반 텍스트 스타일입니다.
+
+`--theme` 옵션이 지정되지 않은 경우 환경 변수 `$TOMLYRE_THEME`에서 데이터를 읽습니다.
+이 도움말 정보의 **구문 강조** 테마도 이 **환경 변수**에서 가져옵니다.
+
+> 기본 도움말은 하드코딩되어 있어 로드 속도가 매우 빠릅니다.
+> 하드코딩된 텍스트와 `None` 테마 텍스트를 로드하는 속도는 같은 수준이며, 동적으로 로드하면 속도가 2단계 이상 느려집니다.
+> `$TOMLYRE_THEME` 환경 변수를 설정하면 다시 테마를 로드하므로 시작 속도가 **매우** 느려질 수 있습니다.
+> 테마 정보를 수정하거나 구문 강조 기능을 비활성화하지 않는 한, 환경 변수 대신 `-t` 매개 변수를 사용하십시오.
+
+환경 변수 사용 예:
+```sh
+TOMLYRE_THEME="Monokai Extended" tomlyre --help
+```
+
+명령행 인수 사용 예:
+```sh
+tomlyre -t "Monokai Extended" get test.toml
+```
+
+`conv/get/set` 등과 같은 작업을 수동으로 실행할 때 출력되는 내용의 경우 `-t`로 지정된 테마가 우선합니다.
+`-t`를 호출하지 않으면 환경 변수를 읽고, 환경 변수가 비어 있는 경우 **Monokai Extended**를 사용합니다."""
+
+theme-file = "사용자 정의 테마 집합 파일입니다. `--theme`으로 테마 이름을 지정해야 합니다."
+theme-file-help = """
+지원되는 파일 형식은 rust crate `syntect`에서 덤프한 바이너리 데이터입니다.
+본질적으로 이러한 테마들은 이전 버전의 sublime 테마입니다.
+`--tf`가 지정되지 않은 경우, 환경 변수 `$TOMLYRE_THEME_FILE`의 값을 읽습니다. """
+
+theme-uncompressed-file = "`theme-file`과 유사하지만 압축이 풀리지 않은 덤프 데이터(파일)를 요구합니다."
+
+theme-uncompressed-file-help = """
+> 압축이 풀린 버전보다 우선 순위가 높습니다.
+
+`--tuf`가 지정되지 않은 경우, 환경 변수 `$TOMLYRE_THEME_UNCOMPRESSED_FILE`의 값을 읽습니다. """
+
+disable-theme-background = "테마 배경을 사용하지 않도록 설정합니다(기본값은 활성화됨). `--dis-theme-bg`를 호출하지 않으면 `$TOMLYRE_THEME_BG` 값을 읽습니다."
+disable-theme-background-help = """
+활성화되면 false로 설정하세요.
+
+환경 변수 사용 예:
+```sh
+env TOMLYRE_THEME_BG=false TOMLYRE_THEME="ayu-dark" tomlyre --help
+```"""
+
+table-style = "표의 스타일을 지정합니다."
+table-style-help = """
+`--ts` 매개 변수만 사용하면 내부 스타일 셋이 표시됩니다.
+Markdown은 축약형으로 `md`를 사용할 수 있으며, 다른 스타일은 모두 전체 이름을 사용해야 합니다.
+사용 방법 예1：`--ts md`
+사용 방법 예2：`--table-style ascii`
+
+참고: 현재 **표 스타일** 셋을 파일에서 읽어 오는 것은 지원하지 않습니다. 이 기능이 필요하거나 추가 기능이 필요한 경우, issue를 보내주시기 바랍니다."""
+
+from-format = "수동으로 소스 파일 형식을 지정합니다(자동으로 감지됩니다)."
+from-format-help = """
+stdin에서 데이터를 읽는 경우(`cat a | tomlyre conv -`와 같은 경우), 먼저 파일 형식을 자동으로 감지하려고 시도합니다.
+그러나 자동 감지가 실패할 수 있으므로 수동으로 형식을 지정해야 하는 경우가 있습니다.
+예: `cat test.bson | tomlyre --src-fmt bson get -`"""
+
+shell-completion = "쉘 완성 스크립트를 생성합니다."
+shell-completion-help = """
+쉘 이름을 지정하여 직접 완성 스크립트를 생성하십시오.
+예: 윈도우즈의 파워셸에서는 `--sh-comp pwsh`를 사용할 수 있습니다.
+
+> Q: 쉘 완성이란 무엇인가요?
+
+> A: 우리가 명령어를 입력할 때, 탭 키를 누르면 완성 기능이 작동하여 가능한 완성 옵션을 검색하고 제안합니다. 이러한 기능은 CLI 입력의 효율과 정확도를 크게 향상시킬 수 있습니다.
+
+각 쉘에 대한 완성 스크립트 파일의 위치는 다릅니다.
+zsh의 경우 `$fpath` 배열에 포함된 경로에 저장해야 합니다.
+`print -l $fpath`을 사용하여 해당 배열의 내용을 가져올 수 있습니다.
+예를 들어 `/usr/local/share/zsh/site-functions` 디렉토리가 포함되어 있다고 가정하면 다음 명령을 사용하여 완성 스크립트를 `_tomlyre` 파일에 작성할 수 있습니다.
+
+```sh
+tomlyre --sh-comp zsh | doas tee /usr/local/share/zsh/site-functions/_tomlyre
+```
+
+루트 권한을 피하기 위해 사용자 하위 디렉터리에 설치할 수도 있습니다.
+예를 들어 다음 명령을 사용하여 해당 배열의 맨 앞에 요소를 삽입하고 관련 디렉터리를 사용할 수 있습니다.
+```zsh
+fpath=(~/.local/share/zsh/completions $fpath)
+```"""

@@ -1,0 +1,3 @@
+invalid-path = "calea de fișier nevalid."
+new-value = "Valoare nouă"
+unsave-warn = "Conținutul modificat ** nu va fi salvat pentru că `--sv` nu a fost apelat."

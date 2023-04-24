@@ -1,0 +1,12 @@
+auto-detection-failed = "ass net automatesch d'Format automatesch z'entdecken.Gitt w.e.g. manuell un."
+conv-error = "Conversiounsfeeler"
+currently-supported = "AKTAKT KONFACHT FORMITATER Lëscht:"
+dst = "Destinatioun Dateiwee"
+"invalid-json1.0" = "ass d'Datei net e gülteg `JSON 1.0`. Format, probéiert als `JSON5` ..."
+not-included = """
+Dëst binär *** D'Konversiouns Funktionalitéit fir déi entspriechend Format.
+Dir musst déi relevant Feature an Ärem `cargo.atoml` erlaben an erholl.
+Wann dës Software net déi entspriechend Funktionalitéit enthält, da gitt w.e.g."""
+not-support-deser-sexp = "** Net huet nach net ënnerstëtzt **: Konvertéiert vun `Lisp S-Timer` op` Aner Formatoren`"
+unknown-fmt = "Onbekannt Dateiformat"
+unsupported = "net ënnerstëtzten Format Konversioun"

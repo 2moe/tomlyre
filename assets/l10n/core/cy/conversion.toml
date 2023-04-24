@@ -1,0 +1,13 @@
+auto-detection-failed = "wedi methu â chanfod y fformat yn awtomatig.Nodwch â llaw."
+conv-error = "gwall trosi"
+currently-supported = "ar hyn o bryd yn cefnogi fformatau: Rhestr Fformatau:"
+dst = "llwybr ffeil cyrchfan"
+"invalid-json1.0" = "Nid yw'r ffeil yn fformat `json 1.0` dilys, yn ceisio dosrannu fel `json5` ..."
+not-included = """
+Nid yw'r deuaidd ** hwn yn cynnwys ** ymarferoldeb trosi ar gyfer y fformat perthnasol.
+Mae angen i chi alluogi'r nodwedd berthnasol yn eich `Cargo.toml` ac ail -grynhoi.
+Os nad yw'r feddalwedd hon yn cynnwys yr ymarferoldeb cyfatebol, cyflwynwch fater."""
+not-saved = "Ni fydd y cynnwys canlynol ** yn cael ei arbed ** oherwydd ni alwyd `--save`."
+not-support-deser-sexp = "** heb ei gefnogi eto **: trosi o `lisp s-fynegiant` i` fformatau eraill`"
+unknown-fmt = "fformat ffeil anhysbys"
+unsupported = "trosi fformat heb gefnogaeth"

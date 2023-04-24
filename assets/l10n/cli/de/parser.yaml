@@ -1,0 +1,1 @@
+sh-completion::about-stderr: Das folgende ist die stderr-Ausgabe. Wenn Sie die Ausgabe des Autovervollständigungsskripts umleiten möchten, sollten Sie `>/path/to/file` anstelle von `2>/path/to/file` verwenden.

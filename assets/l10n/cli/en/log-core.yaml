@@ -1,0 +1,6 @@
+debug: DEBUG
+error: ERROR
+info: INFO
+init-logger: Initializing logger ...
+trace: TRACE
+warn: WARN

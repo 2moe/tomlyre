@@ -1,0 +1,3 @@
+invalid-path = "Geçersiz dosya yolu."
+new-value = "yeni değer"
+unsave-warn = "Değiştirilmiş içerik **, `---sv` çağrılmadığından ** kaydedilmez."

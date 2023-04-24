@@ -1,0 +1,13 @@
+auto-detection-failed = "Nabigo upang awtomatikong makita ang format.Mangyaring tukuyin nang manu -mano."
+conv-error = "error sa conversion"
+currently-supported = "Kasalukuyang suportado ang listahan ng mga format:"
+dst = "patutunguhan na landas ng file"
+"invalid-json1.0" = "Ang file ay hindi isang wastong format na `json 1.0`, sinusubukan na i -parse bilang `json5` ..."
+not-included = """
+Ang binary ** ay hindi kasama ang ** ang pag -andar ng conversion para sa may -katuturang format.
+Kailangan mong paganahin ang may -katuturang tampok sa iyong `Cargo.toml` at muling pagsasaayos.
+Kung ang software na ito ay hindi kasama ang kaukulang pag -andar, mangyaring magsumite ng isang isyu."""
+not-saved = "Ang sumusunod na nilalaman ** ay hindi ** mai-save dahil ang `--save` ay hindi tinawag."
+not-support-deser-sexp = "** hindi pa suportado **: pag-convert mula sa `lisp s-expression` sa` iba pang mga format`"
+unknown-fmt = "hindi kilalang format ng file"
+unsupported = "Hindi suportadong format ng conversion"

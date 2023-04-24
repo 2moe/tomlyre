@@ -1,0 +1,6 @@
+debug: デバッグ
+error: エラー
+info: 情報
+init-logger: ロガーの初期化...
+trace: トレース
+warn: 警告

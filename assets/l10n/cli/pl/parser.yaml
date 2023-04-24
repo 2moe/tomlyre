@@ -1,0 +1,1 @@
+sh-completion::about-stderr: Poniżej znajduje się wyjście `stderr`. Gdy przekierowujesz wynik skryptu uzupełniania do pliku, powinieneś użyć `>/path/to/file`, a nie `2>/path/to/file`.

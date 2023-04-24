@@ -1,0 +1,3 @@
+invalid-path = "Percorso del file non valido."
+new-value = "Nuovo valore"
+unsave-warn = "Il contenuto modificato ** non verrà salvato ** perché `--sv` non è stato chiamato."

@@ -1,0 +1,24 @@
+conv-opts = "Tussen formaten zoals toml, yaml, json en ron converteren"
+
+from = "Geef het invoerbestand op"
+
+conv-to = "Geef het uitvoerformaat/bestand op; meerdere aanroepen worden ondersteund"
+conv-to-help = """
+Als er bijvoorbeeld een bestand **test.json** in de huidige map staat, kunt u `conv test.json -t yml` bellen om het te converteren naar yaml (yml),
+of u kunt handmatig het bestandspad opgeven: `conv test.json -t /tmp/test.yml`
+
+Ondersteunde indelingen zijn afhankelijk van de functies die zijn ingeschakeld voor dit softwarepakket, niet alle functies zijn standaard ingeschakeld.
+
+Bovendien zijn er enkele dingen die u moet weten voordat u deze optie gebruikt.
+- 1. Het zal automatisch hernoemen voor niet-specifieke bestandspaden.
+  - 1.1: Enkelvoudige bestanden worden als bestandsindeling beschouwd in plaats van een bestandspad
+    Wanneer u `conv test.toml -t ron` oproept, wordt het uitvoerbestand automatisch `test.ron` genoemd in plaats van `ron`.
+    Als u deze functionaliteit niet nodig heeft, gebruik dan `-t ./ron` of `-t $PWD/ron`.
+  - 1.2: Verwijst naar een directory in plaats van een bestand
+    Bijv. `-t /tmp/`, we kunnen `test.toml` alleen in de submap van `/tmp/` plaatsen, niet in `/tmp` zelf overschrijven.
+    Als u deze functionaliteit niet nodig heeft, gebruik dan het volledige (niet-directory) bestandspad, bv. `-t /tmp/xx.toml` in plaats van `-t /tmp/`.
+- 2. Wanneer `--save` niet wordt aangeroepen, wordt het opgegeven bestand niet automatisch opgeslagen.
+- 3. Bij het aanroepen van `--save`, kan de invoer van de conv-subopdracht niet hetzelfde zijn als de uitvoer.
+- 4. Het geconverteerde bestand behoudt geen opmerkingen."""
+
+save = "Als deze optie wordt gebruikt, wordt het bestand dat wordt gespecificeerd door `--to` opgeslagen"

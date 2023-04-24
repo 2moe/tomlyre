@@ -1,0 +1,89 @@
+theme = "Sözdizimi vurgusunun kullanılacağı ana temayı belirtin"
+theme-help = """
+Yalnızca `-t` parametresiyle kullanıldığında, mevcut temaların bir listesi verilir.
+Temalar dosyası belirtilmezse, yerleşik tema koleksiyonu kullanılır.
+Varsayalım ki **ayu-dark** adında bir tema var, bu temayı kullanmak için `-t ayu-dark` kullanabilirsiniz.
+Tema adı boşluk içeriyorsa, çift veya tek tırnakla çevreleyin.
+
+> Not: `None` adlı özel bir tema vardır, sözdizimi vurgulama olmayan saf metin stili için kullanılır.
+
+`--theme` seçeneği belirtilmediğinde, veriler `$TOMLYRE_THEME` ortam değişkeninden okunur.
+Bu yardım bilgisinin **sözdizimi vurgusu** rengi de bu **ortam değişkeninden** gelir.
+
+> Varsayılan yardım bilgisi sert kodlu olduğundan yükleme hızı çok hızlıdır.  
+> Sert kodlamalı metnin yüklenmesi ve `None` temasına sahip metnin yüklenmesi aynı miktardadır, ancak dinamik yükleme iki boyut daha yavaş olabilir.  
+> `$TOMLYRE_THEME` ortam değişkenini değiştirmeyi planlamıyorsanız, sözdizimi vurgusu devre dışı bırakmadığınız sürece `-t` parametresini kullanın.
+
+Ortam değişkeni kullanarak örnek:
+```sh
+TOMLYRE_THEME="Monokai Extended" tomlyre --help
+```
+
+Komut satırı parametreleri kullanarak örnek:
+```sh
+tomlyre -t "Monokai Extended" get test.toml
+```
+
+Manuel olarak çalıştırılan "conv/get/set" gibi ilgili işlemler için çıktı verileri, `-t` ile belirtilen tema önceliklidir. Ortam değişkeninin içeriğine bakılır ve boş ise **Monokai Extended** teması varsayılan olarak kullanılır."""
+
+theme-file = "Özel tema dosyasını belirtin, ayrıca `--theme` ile tema adını belirtmeniz gerekir"
+theme-file-help = """
+Desteklenen dosya biçimi, rust paketi olan `syntect` tarafından dökülen ikili verilerdir.
+Temelde, bu temalar eski bir sublime temasıdır.
+`--tf` belirtilmediyse, `$TOMLYRE_THEME_FILE` ortam değişkeninin değeri okunur."""
+
+theme-uncompressed-file = "`theme-file`'a benzer, ancak sıkıştırılmamış dump verileri (dosya) gerektirir"
+
+theme-uncompressed-file-help = """
+> Sıkıştırılmamış sürüm, sıkıştırılmış sürümden daha yüksek önceliğe sahiptir.  
+
+`--tuf` belirtilmediyse, `$TOMLYRE_THEME_UNCOMPRESSED_FILE` ortam değişkeninin değeri okunur."""
+
+disable-theme-background = "Tema arka planını devre dışı bırakın (varsayılan olarak etkin durumdadır, `--dis-theme-bg` kullanıldığında devre dışı bırakılır)"
+disable-theme-background-help = """
+`--dis-theme-bg` belirtilmediyse, `$TOMLYRE_THEME_BG` ortam değişkeninin değeri okunur.
+
+Eğer bu değer false ise devre dışı bırakılacaktır.
+Örneğin:
+
+```sh
+env TOMLYRE_THEME_BG=false TOMLYRE_THEME="ayu-dark" tomlyre --help
+```"""
+
+table-style = "Tablo stilini belirtin"
+table-style-help = """
+Sadece `--ts` parametresi kullanıldığında, dahili stil koleksiyonu listelenir.
+Markdown hariç diğer stiller için tam isimler gereklidir.
+Kullanım örneği 1: `--ts md`
+Kullanım örneği 2: `--table-style ascii`
+
+Not: Şu anda **tablo stili** koleksiyonunu dosyalardan okuyacak şekilde desteklenmiyor. Eğer bu işlevselliğe veya başka ekstra işlevselliklere ihtiyacınız varsa, lütfen geri bildirimde bulunmak için bir konu açın."""
+
+from-format = "Kaynak dosya biçimini manuel belirtin (varsayılan olarak otomatik tespit edilir)"
+from-format-help = """
+Veriler stdin'den okunduğunda, örneğin: `cat a | tomlyre conv -`, ilk önce dosya biçimini otomatik olarak belirlemeye çalışır.
+Ancak, otomatik belirleme başarısız olabilir, bu durumda dosya biçimini manuel olarak belirtmeniz gerekebilir.
+Örnek: `cat test.bson | tomlyre --src-fmt bson get -`"""
+
+shell-completion = "Shell için tamamlama betiği oluşturun"
+shell-completion-help = """
+Tamamlama betiğini oluşturmak için, el ile kabuk adını belirtmeniz gerekir.
+Örneğin, Windows'taki PowerShell için şunları kullanabilirsiniz: `--sh-comp pwsh`
+
+> Soru: Nedir shell tamamlama işlevi?
+
+> Yanıt: Komut satırında bir komut yazarken, TAB tuşuna basarsanız, tamamlama betiği tetiklenir ve mümkün olan tamamlama seçeneklerinin aranmasına ve seçeneklerin seçilmesi için sunulmasına başlar. Bu özellik, komut satırı girdilerinin verimliliğini ve doğruluğunu büyük ölçüde artırabilir.
+
+Farklı kabukların tamamlama betiği farklı yerlerde saklanır. zsh için, tamamlama betiğini `$fpath` dizisinin içerdiği yollardan birinde saklamanız gerekir.
+`print -l $fpath` komutunu kullanarak bu diziye ait içeriği alabilirsiniz.
+Örneğin, `/usr/local/share/zsh/site-functions` dizini içeriyorsa, aşağıdaki komutu kullanarak tamamlama betiğini `_tomlyre` dosyasına yazabilirsiniz.
+
+```sh
+tomlyre --sh-comp zsh | doas tee /usr/local/share/zsh/site-functions/_tomlyre
+```
+
+Root izni kullanmaktan kaçınmak için, kullanıcı alt dizininde bunu yapabilirsiniz. Örneğin, aşağıdaki komutu kullanarak bu diziye bir öğe eklersiniz ve ilgili dizini kullanırsınız.
+
+```zsh
+fpath=(~/.local/share/zsh/completions $fpath)
+```"""

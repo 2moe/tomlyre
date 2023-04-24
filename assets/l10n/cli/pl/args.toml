@@ -1,0 +1,89 @@
+theme = "nazwa tematu, który ma być użyty do kolorowania składni"
+theme-help = """
+Jeśli użyjesz tylko opcji `-t`, wyświetli się lista dostępnych tematów.
+Jeśli nie podasz pliku z tematem, zostanie użyty zestaw wewnętrznych tematów.
+Załóżmy, że istnieje temat o nazwie **ayu-dark**, możesz użyć opcji `-t ayu-dark`, aby użyć tego tematu.
+Jeśli nazwa tematu zawiera spacje, należy ją umieścić w cudzysłowach lub apostrofach.
+
+> Uwaga: Istnieje specjalny temat o nazwie `None`, który oznacza styl tekstu czystego bez kolorowania składni.
+
+Jeśli nie podasz opcji `--theme`, wartość zostanie pobrana z zmiennej środowiskowej `$TOMLYRE_THEME`.
+Ten opis pomocy dla tematu **kolorowania składni** również pochodzi z tej samej **zmiennej środowiskowej**.
+
+> Domyślny opis pomocy jest zakodowany na stałe, co oznacza, że ładowanie jest bardzo szybkie.  
+> Ładowanie tekstów zakodowanych na stałe jest porównywalne do ładowania tekstów bez kolorowania składni (`None`), a ładowanie dynamiczne jest wolniejsze o dwa lub więcej rzędów wielkości.  
+> Ustawienie zmiennej środowiskowej `$TOMLYRE_THEME` może spowodować ponowne ładowanie tematów, co **znacznie** spowolni czas uruchamiania.  
+> Jeśli nie masz zamiaru zmieniać tematu opisu pomocy lub wyłączać kolorowania składni, używaj opcji `-t` zamiast modyfikować zmienną środowiskową.
+
+Przykłady użycia ze zmiennej środowiskowej:
+```sh
+TOMLYRE_THEME="Monokai Extended" tomlyre --help
+```
+
+Przykłady użycia ze wiersza poleceń:
+```sh
+tomlyre -t "Monokai Extended" get test.toml
+```
+
+Dla zawartości generowanej przez ręczne polecenia takie jak "conv/get/set", itp., priorytet ma temat podany przez `-t`, a jeśli nie podano `--theme`, wartość zostanie pobrana z zmiennej środowiskowej. Jeśli zmienna jest pusta, użyty zostanie temat **Monokai Extended**."""
+
+theme-file = "plik z niestandardowymi zestawami tematów; wymaga podania nazwy tematu za pomocą `--theme`"
+theme-file-help = """
+Obsługiwany format pliku to binarny dump danych utworzony przez paczkę rustową `syntect`.
+W gruncie rzeczy są to tematy starej wersji programu Sublime.
+Jeśli nie podasz opcji `--tf`, wartość zostanie pobrana z zmiennej środowiskowej `$TOMLYRE_THEME_FILE`."""
+
+theme-uncompressed-file = "plik z niestandardowymi zestawami tematów; wymaga podania nazwy tematu za pomocą `--theme`; wersja skompresowana"
+theme-uncompressed-file-help = """
+> Nieskompresowane wersje plików mają wyższy priorytet niż te skompresowane.  
+
+Jeśli nie podasz opcji `--tuf`, wartość zostanie pobrana z zmiennej środowiskowej `$TOMLYRE_THEME_UNCOMPRESSED_FILE`."""
+
+disable-theme-background = "Wyłącz tło tematu (domyślnie jest włączone, można wyłączyć za pomocą `--dis-theme-bg`)"
+
+disable-theme-background-help = """
+Jeśli nie podasz opcji `--dis-theme-bg`, wartość zostanie pobrana z zmiennej środowiskowej `$TOMLYRE_THEME_BG`.
+
+Jeśli ta wartość wynosi false, tło będzie wyłączone.
+
+```sh
+env TOMLYRE_THEME_BG=false TOMLYRE_THEME="ayu-dark" tomlyre --help
+```"""
+
+table-style = "Określa styl tabeli"
+table-style-help = """
+Jeśli użyjesz tylko opcji `--ts`, wyświetli się lista dostępnych stylów.
+Poza markdown, który można zapisać jako md, pozostałe style wymagają pełnej nazwy.
+Przykład użycia 1: `--ts md`
+Przykład użycia 2: `--table-style ascii`
+
+Uwaga: obecnie nie ma obsługi dla kolekcji **stylów tabel** z pliku. Jeśli potrzebujesz tej funkcji lub innych dodatkowych funkcji, zachęcamy do zgłaszania problemów."""
+
+from-format = "Ręcznie określ format pliku źródłowego (domyślnie zostanie on automatycznie wykryty)"
+from-format-help = """
+Jeśli odczytujesz dane ze standardowego wejścia (`stdin`), np. `cat a | tomlyre conv -`, program spróbuje automatycznie określić format pliku.
+Jednak automatyczne wykrywanie może czasem zawodzić, wtedy trzeba określić format ręcznie.
+Przykład użycia: `cat test.bson | tomlyre --src-fmt bson get -`"""
+
+shell-completion = "Generuje skrypt uzupełniania dla powłoki"
+shell-completion-help = """
+Musisz ręcznie podać nazwę powłoki (`shell`) w celu wygenerowania skryptu uzupełniania.
+Na przykład, dla powershell na Windowsie, możesz użyć: `--sh-comp pwsh`
+
+> Q: Co to jest funkcja uzupełniania powłoki (shell completion)?
+
+> A: Gdy wprowadzamy polecenia w wierszu poleceń i naciśniemy klawisz Tab, skrypt uzupełniania zostanie uruchomiony, aby wyszukać możliwe opcje uzupełnienia i przedstawić je do wyboru. Ta funkcja może znacznie zwiększyć wydajność i dokładność wprowadzania poleceń w wierszu poleceń.
+
+Dla różnych powłok skrypty uzupełniania są przechowywane w innych miejscach. Dla przykładu, dla powłoki `zsh`, musisz umieścić pliki w katalogach zawartych w tablicy `$fpath`.
+Możesz użyć `print -l $fpath`, aby uzyskać zawartość tej tablicy.
+Załóżmy, że katalog `/usr/local/share/zsh/site-functions` znajduje się wewnątrz tej tablicy.
+Możesz użyć poniższej komendy, aby zapisać skrypt uzupełniania w pliku `_tomlyre` w tym katalogu.
+
+```sh
+tomlyre --sh-comp zsh | doas tee /usr/local/share/zsh/site-functions/_tomlyre
+```
+
+Aby uniknąć używania uprawnień `root`, możesz umieścić ten plik w podkatalogu użytkownika. Na przykład, możesz dodać element na początek tablicy za pomocą następującego polecenia, a następnie użyć odpowiedniego katalogu.
+```zsh
+fpath=(~/.local/share/zsh/completions $fpath)
+```"""

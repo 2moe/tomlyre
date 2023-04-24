@@ -1,0 +1,6 @@
+debug: debug
+error: ຜິດພາດ
+info: ຂໍ້ມູນ
+init-logger: ເລີ່ມຕົ້ນຜູ້ຕັດໄມ້ ...
+trace: ຮ່ອງຮອຍ
+warn: ເຕືອນ

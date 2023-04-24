@@ -1,0 +1,13 @@
+auto-detection-failed = "Kon nie die formaat outomaties opspoor nie.Spesifiseer asseblief handmatig."
+conv-error = "Omskakelingsfout"
+currently-supported = "Tans ondersteunde Formate -lys:"
+dst = "bestemmingslêerpad"
+"invalid-json1.0" = "Die lêer is nie 'n geldige 'JSON 1.0' -formaat nie, en probeer om as 'JSON5' te ontleed ..."
+not-included = """
+Hierdie binêre ** sluit nie ** die omskakelingsfunksie vir die betrokke formaat in nie.
+U moet die betrokke funksie in u 'vrag.toml' in staat stel en weer saamstaan.
+As hierdie sagteware nie die ooreenstemmende funksionaliteit insluit nie, moet u 'n probleem indien."""
+not-saved = "Die volgende inhoud ** sal nie ** gestoor word nie, omdat `--save` nie geroep is nie."
+not-support-deser-sexp = "** Nog nie ondersteun nie **: omskakeling van 'lisp s-expression' na 'ander formate'"
+unknown-fmt = "Onbekende lêerformaat"
+unsupported = "Omskakeling van onondersteunde formaat"

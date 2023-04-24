@@ -1,0 +1,13 @@
+auto-detection-failed = "Không thể tự động phát hiện định dạng.Vui lòng chỉ định thủ công."
+conv-error = "Lỗi chuyển đổi"
+currently-supported = "Danh sách các định dạng hiện được hỗ trợ:"
+dst = "Đường dẫn tệp đích"
+"invalid-json1.0" = "Tệp không phải là định dạng `json 1.0` hợp lệ, cố gắng phân tích phân tích thành `json5` ..."
+not-included = """
+Binary ** này không bao gồm ** Chức năng chuyển đổi cho định dạng có liên quan.
+Bạn cần bật tính năng có liên quan trong `Cargo.toml` và Recompile.
+Nếu phần mềm này không bao gồm chức năng tương ứng, vui lòng gửi một vấn đề."""
+not-saved = "Nội dung sau ** sẽ không ** được lưu vì `--save` không được gọi."
+not-support-deser-sexp = "** Chưa được hỗ trợ"
+unknown-fmt = "Định dạng tệp không xác định"
+unsupported = "Chuyển đổi định dạng không được hỗ trợ"

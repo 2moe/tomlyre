@@ -1,0 +1,6 @@
+debug: debug
+error: kesalahan
+info: info
+init-logger: Menginisialisasi logger ...
+trace: jejak
+warn: memperingatkan

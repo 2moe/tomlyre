@@ -1,0 +1,12 @@
+auto-detection-failed = "Dh'fhàillig an cruth a lorg gu fèin-ghluasadach.Sònraich le làimh."
+conv-error = "mearachd atharrachaidh"
+currently-supported = "Liosta Cruthan taice an-dràsta:"
+dst = "Slighe faidhle ceann-uidhe"
+"invalid-json1.0" = "Chan e cruth dligheach a th 'anns an fhaidhle, a' feuchainn ri cruth a chuir air adhart mar `JSON5` ..."
+not-included = """
+Chan eil am binary *** seo a 'toirt a-steach ** an comas atharrachaidh airson an cruth iomchaidh.
+Feumaidh tu an fheart buntainneach a chomasachadh anns an `Cargo.toml` agus rempost.
+Mura h-eil am bathar-bog seo a 'toirt a-steach an gnìomh-gnìomhachd fhreagarrach, cuiridh e cùis a-steach."""
+not-saved = "Cha tèid an susbaint a leanas *** * *** a shàbhaladh oir cha deach `--save` fhaicinn."
+not-support-deser-sexp = "** Gun taic fhathast ach **. Ag atharrachadh bho `Lisp S-Consail` ri` cruthan eile"
+unknown-fmt = "cruth faidhle neo-aithnichte"

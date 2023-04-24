@@ -1,0 +1,12 @@
+auto-detection-failed = "Kuna lati wa taara ọna kika.Jọwọ ṣalaye pẹlu ọwọ."
+conv-error = "Aṣiṣe iyipada"
+currently-supported = "Lọwọlọwọ awọn ọna kika ọna kika lọwọlọwọ:"
+dst = "Ọna faili ibina"
+"invalid-json1.0" = "Faili naa ko si ni ọna kika `json 1.0` to wulo, o ngbiyanju lati tutumọ si `json5`..."
+not-included = """
+Alakomeji ** ko pẹlu ** Awọn iṣẹ iyipada fun ọna kika to wulo.
+O nilo lati ṣiṣẹ ẹya ti o yẹ ni rẹ `Cargo.toml` ati commpile.
+Ti sọfitiwia yii ko pẹlu iṣẹ ti o baamu, jọwọ gbe oro kan."""
+not-saved = "Awọn akoonu atẹle kii yoo ni igbala nitori `--save` ko pe."
+unknown-fmt = "Ọna kika faili aimọ"
+unsupported = "Iyipada ọna kika ti ko ni iṣiro"

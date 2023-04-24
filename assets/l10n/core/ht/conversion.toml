@@ -1,0 +1,13 @@
+auto-detection-failed = "echwe pou pou otomatikman detekte fòma an.Tanpri presize manyèlman."
+conv-error = "erè konvèsyon"
+currently-supported = "Lis Fòma Kounye a Sipòte:"
+dst = "chemen dosye destinasyon"
+"invalid-json1.0" = "Dosye a se pa yon valab `JSON 1.0` fòma, ap eseye analize kòm `JSON5` ..."
+not-included = """
+Sa a binè ** pa gen ladan ** fonksyonalite a konvèsyon pou fòma a ki enpòtan.
+Ou bezwen pèmèt karakteristik ki enpòtan nan `Cargo.toml 'ou ak recompile.
+Si lojisyèl sa a pa enkli fonksyonalite ki koresponn lan, tanpri soumèt yon pwoblèm."""
+not-saved = "Kontni sa yo ** pa pral ** dwe sove paske `--save` pa te rele."
+not-support-deser-sexp = "** pa sipòte ankò **: konvèti soti nan `Lisp s-ekspresyon` a` lòt fòma`"
+unknown-fmt = "fòma dosye enkoni"
+unsupported = "konvèsyon fòma ki pa sipòte"

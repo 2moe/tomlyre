@@ -1,0 +1,12 @@
+auto-detection-failed = "Ayiphumelelanga ukufumanisa ifomathi.Nceda uchaze ngesandla."
+conv-error = "Impazamo yokuguqula"
+currently-supported = "LOLULEKILE OLEKILEYO FRAATS:"
+dst = "indlela yefayile yokufika"
+not-included = """
+Le binary ** ayibandakanyi umsebenzi wokuguqula yefomathi efanelekileyo.
+Kuya kufuneka ukuba wenze into efanelekileyo kwi-`Cargo.toml` kwaye uphinde.
+Ukuba le software ayibandakanyi ukusebenza ngokuchanekileyo, nceda ungenise umba."""
+not-saved = "Lo mxholo ulandelayo ** awuyi kuba usindiswe kuba `--save` yayingabizwanga."
+not-support-deser-sexp = "*** ayixhaswanga kodwa **: Ukuguqula ukusuka kwi-Lisp s"
+unknown-fmt = "Ifomati engaziwayo yefayile"
+unsupported = "Ifomathi engacwangciswanga"

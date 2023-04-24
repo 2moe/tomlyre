@@ -1,0 +1,13 @@
+auto-detection-failed = "Nije uspjelo automatski otkriti format.Molimo navedite ručno."
+conv-error = "Pogreška konverzije"
+currently-supported = "Trenutno podržane liste formata:"
+dst = "odredišna staza datoteke"
+"invalid-json1.0" = "Datoteka nije važeći `JSON 1.0` format, pokušavajući da se raščlanjuje kao `json5` ..."
+not-included = """
+Ovaj binarni ** ne uključuje ** funkcionalnost konverzije za relevantni format.
+Morate omogućiti relevantnu značajku u svom `Cargo.Toml` i Recompile.
+Ako ovaj softver ne uključuje odgovarajuću funkcionalnost, molimo pošaljite problem."""
+not-saved = "Sljedeći sadržaj ** neće biti spremljen jer `--save` nije zvao."
+not-support-deser-sexp = "** Još nije podržana **: Pretvaranje iz `Lisp S-Expression` na` Ostale formate`"
+unknown-fmt = "Nepoznati format datoteke"
+unsupported = "Nepodržana konverzija formata"

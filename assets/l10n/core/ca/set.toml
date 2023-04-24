@@ -1,0 +1,3 @@
+invalid-path = "ruta del fitxer no vàlida."
+new-value = "valor nou"
+unsave-warn = "El contingut modificat ** no es desarà perquè no es va trucar a `--sv`."

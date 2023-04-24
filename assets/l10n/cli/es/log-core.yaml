@@ -1,0 +1,6 @@
+debug: DEPURACIÓN
+error: ERROR
+info: INFORMACIÓN
+init-logger: Inicializando el registro...
+trace: TRAZA
+warn: ADVERTENCIA

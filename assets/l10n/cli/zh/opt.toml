@@ -1,0 +1,337 @@
+get-opts = "获取指定配置的 value"
+get-opts-help = """
+用法示例1：`get Cargo.toml -k package.name`
+用法示例2：`get cfg.yaml -k .`
+"""
+key = "通过 key（键）来查询 value（值）"
+
+key-help = """
+格式为: "a.b.c", 子表名称或数组索引通过 "."（半角的dot符号）来连接。
+当只有一个 "." 时，会列出整张表"""
+
+set-opts = "创建/更新/删除 配置文件的结构"
+set-opts-help = """
+# set
+
+先通过指定的 key 来选择，再通过指定数据类型的 value 来修改。
+
+> 当仅提供 key，未提供 value 时，会列出相应的数据类型和 value。
+> 比如 `set Cargo.toml -k package`，会列出 package 及其子表的表格，并提供比 `get` 更详细的信息。
+
+## Examples
+
+### 示例1：
+```sh
+--ts md set test.toml --key package.edition --str 2021
+```
+
+由于指定了 `--str`，而不是 `--num`, 因此 "2021" 是字符串类型，而不是整数类型。
+
+| package | new value |
+|---------|-----------|
+| edition | "2021"    |
+
+
+```toml
+[package]
+edition = "2021"
+```
+
+### 示例2：
+```sh
+set ~/.config/Code/User/settings.json --ck remote.SSH.remotePlatform --ck test --map k1 v1 --to /tmp/code.yaml
+```
+
+```yaml
+remote.SSH.remotePlatform:
+  test:
+    k1: v1
+```
+
+### 示例3：
+```sh
+set test.yml -k main -a hello -a wonderful -a world --pre --to ron --save
+```
+
+```ron
+"main": [
+  /*[0]: 这是第1个索引*/ "hello",
+  /*[1]*/ "wonderful",
+  /*[2]*/ "world",
+]
+```
+
+> 注：以上示例以 参数(argument)/子命令(sub-command) 开头，省略了根命令名称，在实际操作中，您需要手动补充。"""
+
+set-kv = "设置 k-v pair，`--kv x.y.z value` 相当于`-k x.y.z -s value`"
+
+set-key = """选择指定的 key（键），以"."作为分隔符"""
+
+concat-key = """分段输入 key, 结果会自动拼接，不使用 "." 作为分隔符"""
+concat-key-help = """
+与 `-k` 的不同之处在于 `--ck` 不会自动 `split('.')`。  
+对于 [a.b.c]，`-k a.b.c` 与`--ck a --ck b --ck c`是一样的。  
+对于简单情况，用 `-k` 会更简便一点。
+
+如果 key 名包含了 '.'， 那么请使用 `--ck` 而不是 `-k`。
+举个例子： 
+
+```json
+"[typescript]": {
+    "editor.defaultFormatter": "rome.rome"
+}
+```
+
+在此结构中，"editor.defaultFormatter" 是一个完整的字符串，`defaultFormatter` 不是 `editor` 的子键（sub-key）。
+
+当您使用 `-k '[typescript]'.'editor.defaultFormatter'` 时，它会将 key 分割成：
+
+- "[typescript]"
+- "editor"
+- "defaultFormatter"
+
+而使用 `--ck '[typescript]' --ck editor.defaultFormatter`，它会将 key 当作：
+
+- "[typescript]"
+- "editor.defaultFormatter"
+
+后者才是正确的结构。"""
+
+preview = "在修改完成后，预览完整的文件"
+string = "String（字符串类型）"
+bool = "bool (布尔类型)， 只能为 `true` 或 `false`"
+num = "i64: 64位有符号整数类型, 例如：1145"
+f64 = "双精度浮点数 (IEEE 754-2008标准)，例如： 3.14159265359"
+
+set-save-to-help = """
+与 `conv` 子命令的 `-t` 非常像，最大的区别在于 `conv` 的 `-t` 能多次连续调用，输出到多种格式/多个文件。
+而 `set` 子命令的 `-t` 只能调用一次，输出到单个文件。
+
+> 注： `conv` 子命令在执行完转换操作后，所有格式的文件都不会保留注释。
+> 而 `set` 子命令会保留 **toml** 的注释，除了 **toml** 外，其他的所有格式 **都不会** 保留注释。
+
+- 在未调用 `-t` 的前提下，调用 `--save` 会覆盖自身。
+- 若已调用 `-t` ，并且还调用了 `--save`, 则修改后的文件会保存至 `-t` 所指向的文件。
+- 除非源文件与 `-t` 指向的文件相同，否则 `set` 子命令的 `-t` 的行为将会与 `conv` 的 `-t` 部分一致，它们都会对非具体文件路径进行自动更名。
+  - 假设 from: **test.yml**, to: **json**, 那么输出的文件会变成 **test.json**, 而不是 **json**
+  - 若您无需此特性，则请使用 `-t ./json` 或 `-t $PWD/json`，而不是 `-t json`。"""
+
+set-save = "在没有搭配 `--to` 的情况下，若调用则覆盖(写入)当前文件"
+set-save-to = "保存为指定的格式/文件，一次只能保存一个"
+array = "字符串数组"
+array-help = """
+通过多次调用 `-a` 来设置数组元素。
+示例：
+```sh
+set test.toml -k test.array -a hello -a wonderful -a world
+```
+
+> 第一次调用时设置索引 0 的元素，第二次设置索引 1 的元素，以此类推。
+
+```toml
+[test]
+array = ["hello", "wonderful", "world"]
+```"""
+
+num-arr = "i64的数组"
+num-arr-help = """
+示例：
+```sh
+set test.json -k hello --na -1 --na -45 --na 14
+```
+
+```json
+"hello": [
+    -1,
+    -45,
+    14
+]
+```"""
+
+f64-arr = "f64的数组"
+f64-arr-help = """
+示例：
+```sh
+set test.yml -k hello --fa 3.14 --fa 45e-2 --fa NaN --fa Inf
+```
+
+```yaml
+hello:
+- 3.14
+- 0.45
+- .nan
+- .inf
+```
+
+> json 1.0 不支持 NaN 和 Inf
+
+它会输出 `null`， 而不是 `NaN` 。
+
+```sh
+set test.yml -k zz --fa NaN --fa Inf --to json --pre
+```
+
+```json
+"zz": [
+    null,
+    null
+]
+```
+"""
+
+bool-arr = "bool 的数组"
+bool-arr-help = """
+示例：
+```sh
+set test.ron -k hello --ba true --ba false --ba true
+```
+
+```ron
+"hello": [
+    // [0]: 第1个元素是 true
+    true,
+    /*[1]*/ false,
+    /*[2]*/ true,
+]
+```"""
+
+aot = "表数组(用法：`--aot 'k1, v1, k2, v2' --aot 'k1, v1'`)"
+aot-help = """
+示例：
+```sh
+set test.toml -k package --aot 'name, glossa, version, 0.0.1-alpha.6' --aot 'name, wasm-bindgen, ver sion, 0.2  .84,  version, 0.2.84'
+```
+
+```toml
+[[package]]
+name = "glossa"
+version = "0.0.1-alpha.6"
+
+[[package]]
+name = "wasm-bindgen"
+"ver sion" = "0.2  .84"
+version = "0.2.84"
+```"""
+
+saot = "单对 key-value pair 的表数组(用法：`--saot k1 v1 --saot k2 v2...`)"
+saot-help = """
+> 注：尽管通过 `--saot` 只能为每张表创建一对 K-V pair，但您可以先指定表数组的索引，再用其他选项来扩充。
+
+示例：
+```sh
+set test.toml -k mount --saot src "/sdcard/Download" --saot src "/data/media/0" --save --pre
+```
+
+```toml
+[[mount]]
+src = "/sdcard/Download"
+
+[[mount]]
+src = "/data/media/0"
+```"""
+
+table = "标准表（standard table），用于存储多对 K-V pairs"
+table-help = """
+示例1：
+```sh
+set test.toml -k mount.1.test --map name sd --map os android
+```
+
+```toml
+[[mount]]
+src = "/data/media/0"
+
+[mount.test]
+name = "sd"
+os = "android"
+```
+
+示例2：
+```sh
+set test.yml -k container --tb arch riscv64 --tb os debian --tb codename trixie
+```
+
+```yaml
+container:
+  arch: riscv64
+  codename: trixie
+  os: debian
+```"""
+
+inline-table = "内联表，相当于更紧凑的标准表。此外，对于嵌套且不存在的keys，请使用内联表，而不是标准表。"
+inline-table-help = """
+您如果不清楚自己该用标准表，还是内联表，那就用内联表！
+
+示例：
+```sh
+set test.toml -k container --itb arch riscv64 --itb os fedora --itb codename rawhide
+```
+
+```toml
+container = { arch = "riscv64", os = "fedora", codename = "rawhide" }
+```
+
+> 除了 `toml` 外，其他格式将会输出为标准表的格式。
+
+```json
+"container": {
+    "arch": "riscv64",
+    "codename": "rawhide",
+    "os": "fedora"
+}
+```"""
+
+datetime = "日期与时间的类型"
+datetime-help = """
+示例：
+```sh
+set test.toml -k time --datetime '2023-04-16 09:14:44Z'
+```
+
+```toml
+time = 2023-04-16T09:14:44Z
+```
+
+此选项仅支持 `toml`, 如果我们在命令末尾添加 `-t json`, 那么它会变成这样子：
+
+```json
+"time": {
+    "$__toml_private_datetime": "2023-04-16T09:14:44Z"
+}
+```"""
+
+none = "删掉指定的key"
+
+none-help = """
+> 注：ron 拥有真正的 `Option<T>` 类型，值为 `Some(T)` 或 `None`
+> 此处的 `--none` 指的是删掉指定的 key，而不是真正的 `Option<T>` 类型。
+
+假设 test.yml 存在以下表数组：
+
+```yaml
+bin:
+- doc: false
+  name: tomlyre
+  path: src/main.rs
+- doc: true
+  name: test
+  path: src/test.rs
+```
+
+我们如果要删掉 **name: test**, 那么可以执行：
+```sh
+set test.yml -k bin.1.name --none
+```
+
+> 注：空字符串与 None 是不一样的
+> 调用 `set test.yml --kv bin.1.name ""` 可将其设置为空字符串，而 `--none` 则是删掉整个 key。
+
+我们如果要删掉 bin 的第二张表（索引为 1）, 那就执行: 
+```sh
+set test.yml -k bin.1 --none
+```
+
+或者是使用 `--rm`
+```sh
+set test.yml -k bin.1 --rm
+```"""

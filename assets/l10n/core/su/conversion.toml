@@ -1,0 +1,10 @@
+auto-detection-failed = "Gagal sacara otomatis pikeun ngadeteksi format.Punten tulis sacara manual."
+conv-error = "Kasalahan konvérsi"
+dst = "jalur file tujuan"
+not-included = """
+Binary ** moal kalebet ** Séktipsi konvensional pikeun format anu relevan.
+Anjeun kedah ngaktipkeun fitur anu relevan dina `kargo anjeun.Toml` sareng recomplile.
+Upami perangkat lunak ieu henteu kalebet fungsionalitas anu pakait, punten ngalebetkeun masalah."""
+not-support-deser-sexp = "** moal dirojong **: Ngarobih tina `Inkputi S-Unprési"
+unknown-fmt = "format file anu teu dipikanyaho"
+unsupported = "konvérsi format"

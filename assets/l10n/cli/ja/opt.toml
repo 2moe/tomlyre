@@ -1,0 +1,345 @@
+get-opts = "指定した設定値を取得します"
+get-opts-help = """
+使用例1：`get Cargo.toml -k package.name`
+使用例2：`get cfg.yaml -k .`
+"""
+key = "キー（key）を使ってバリュー（value）を検索する"
+
+key-help = """
+フォーマットは「a.b.c」で、サブテーブル名または配列のインデックスは「.」でつながります。
+"."が1つしかない場合は、表全体が表示されます。"""
+
+set-opts = "設定ファイルの構造を作成/更新/削除します"
+set-opts-help = """
+# set
+
+まず、指定されたキーを選択し、次に指定されたデータ型の値を変更します。
+
+> key のみが提供され、value が提供されていない場合、対応するデータ型と value を表示します。
+> たとえば、 `set Cargo.toml -k package` のようにすると、package およびそのサブテーブルのテーブルが表示され、 `get` より詳細な情報が提供されます。
+
+## 使用例
+
+### 使用例1：
+```sh
+--ts md set test.toml --key package.edition --str 2021
+```
+
+`--num`ではなく`--str`が指定されているため、"2021"は整数型ではなく文字列型です。
+
+| package | new value |
+|---------|-----------|
+| edition | "2021"    |
+
+
+```toml
+[package]
+edition = "2021"
+```
+
+### 使用例2：
+```sh
+set ~/.config/Code/User/settings.json --ck remote.SSH.remotePlatform --ck test --map k1 v1 --to /tmp/code.yaml
+```
+
+```yaml
+remote.SSH.remotePlatform:
+  test:
+    k1: v1
+```
+
+### 使用例3：
+```sh
+set test.yml -k main -a hello -a wonderful -a world --pre --to ron --save
+```
+
+```ron
+"main": [
+  /*[0]: 1つ目のインデックス*/ "hello",
+  /*[1]*/ "wonderful",
+  /*[2]*/ "world",
+]
+```
+
+> 注：上記の例は、args/サブコマンドで始まり、ルートコマンド名が省略されています。実際の操作では、手動で補完してください。"""
+
+set-kv = "k-v ペアを設定します。`--kv x.y.z 値` は `-k x.y.z -s 値` に相当します。"
+
+set-key = """指定されたキーを"."で区切って選択します"""
+
+concat-key = """キーを分割して入力し、自動的に連結されます。「.」は区切り文字として使用されません。"""
+concat-key-help = """
+`-k` との違いは、 `--ck` は自動的に `split('.')` を行わないことです。
+[a.b.c] の場合、 `-k a.b.c` と `--ck a --ck b --ck c` は同じです。
+簡単な場合には、`-k` を使用する方が便利です。
+
+ただし、キー名に '.' が含まれる場合は、`-k` ではなく `--ck` を使用してください。
+例：
+
+```json
+"[typescript]": {
+    "editor.defaultFormatter": "rome.rome"
+}
+```
+
+この構造体では、"editor.defaultFormatter" は完全な文字列であり、`defaultFormatter` は `editor` の sub-key ではありません。
+
+`-k '[typescript]'.'editor.defaultFormatter'` を使用すると、キーが分割されます：
+
+- "[typescript]"
+- "editor"
+- "defaultFormatter"
+
+一方、 `--ck '[typescript]' --ck editor.defaultFormatter` を使用すると、以下のようになります：
+
+- "[typescript]"
+- "editor.defaultFormatter"
+
+後者が正しい構造体です。"""
+
+preview = "変更を完了した後、ファイル全体をプレビューします"
+string = "文字列型（String）"
+bool = "ブール型(Bool)，`true`または`false`のみ可能です。"
+num = "i64: 64ビット符号付き整数型, 例：1145"
+f64 = "倍精度浮動小数点数（IEEE 754-2008標準），例：3.14159265359"
+
+set-save-to-help = """
+`conv` サブコマンドの `-t` に非常に似ていますが、最大の違いは `conv` の `-t` は複数回連続呼び出しが可能で、複数のフォーマット/ファイルに出力できることです。
+一方、 `set` サブコマンドの `-t` は1回だけ呼び出すことができます。単一のファイルに出力されます。
+
+> 注： `conv` サブコマンドは変換操作の後、すべてのファイル形式でコメントを保持しません。
+> ただし、 `set` サブコマンドは **toml** を除くすべてのフォーマットでコメントを保持します。
+
+- `-t` を呼び出さない前提で `--save` を呼び出すと、自身を上書きします。
+- `-t` が呼び出され、 `--save` も呼び出された場合、変更後のファイルは `-t` で指定されたファイルに保存されます。
+- 元のファイルと `-t` の指定するファイルが異なる場合、 `set` サブコマンドの `-t` 指定は `conv` の `-t` 指定に非常に似た動作をすることになります。どちらも具体的なファイルパス以外は自動的に名前を変更します。
+  - たとえば、from: **test.yml**、to: **json** の場合、出力ファイルは **test.json** ではなく **json** になります。
+  - この機能は必要ない場合は、`-t json` ではなく `-t ./json` や `-t $PWD/json` を使用してください。"""
+
+set-save = "`--to` を指定せずに呼び出される場合、現在のファイルを上書き（書き込み）します。"
+set-save-to = "指定されたフォーマット/ファイル名で保存します。一度に1つのみ保存できます。"
+
+array = "文字列の配列"
+array-help = """
+`-a`を複数回呼び出すことで、配列要素を設定します。
+例：
+
+```sh
+set test.toml -k test.array -a hello -a wonderful -a world
+```
+
+> 最初の呼び出しでインデックス0の要素を設定し、2番目の呼び出しでインデックス1、以此類推。
+
+```toml
+[test]
+array = ["hello", "wonderful", "world"]
+```"""
+
+num-arr = "i64型の配列"
+num-arr-help = """
+例：
+
+```sh
+set test.json -k hello --na -1 --na -45 --na 14
+```
+
+```json
+"hello": [
+    -1,
+    -45,
+    14
+]
+```"""
+
+f64-arr = "f64型の配列"
+f64-arr-help = """
+例：
+
+```sh
+set test.yml -k hello --fa 3.14 --fa 45e-2 --fa NaN --fa Inf
+```
+
+```yaml
+hello:
+- 3.14
+- 0.45
+- .nan
+- .inf
+```
+
+> JSON 1.0 はNaNとInfをサポートしていません。代わりに、nullが出力されます。
+
+```sh
+set test.yml -k zz --fa NaN --fa Inf --to json --pre
+```
+
+```json
+"zz": [
+    null,
+    null
+]
+```
+"""
+
+bool-arr = "bool型の配列"
+bool-arr-help = """
+例：
+
+```sh
+set test.ron -k hello --ba true --ba false --ba true
+```
+
+```ron
+"hello": [
+    // 注: [0]: 最初の要素は true
+    true,
+    /*[1]*/ false,
+    /*[2]*/ true,
+]
+```"""
+
+aot = "テーブルの配列（使用方法：`--aot 'k1, v1, k2, v2' --aot 'k1, v1'`）"
+aot-help = """
+例：
+
+```sh
+set test.toml -k package --aot 'name, glossa, version, 0.0.1-alpha.6' --aot 'name, wasm-bindgen, ver sion, 0.2  .84,  version, 0.2.84'
+```
+
+```toml
+[[package]]
+name = "glossa"
+version = "0.0.1-alpha.6"
+
+[[package]]
+name = "wasm-bindgen"
+"ver sion" = "0.2  .84"
+version = "0.2.84"
+```"""
+
+saot = "単一のキーと値で構成されるテーブルの配列（使用方法：`--saot k1 v1 --saot k2 v2...`）"
+saot-help = """
+> 注意：`--saot` を使用して、各テーブルに対して1つのK-Vペアしか作成できませんが、他のオプションを使用してテーブル配列のインデックスを指定し、拡張することができます。
+
+例：
+
+```sh
+set test.toml -k mount --saot src "/sdcard/Download" --saot src "/data/media/0" --save --pre
+```
+
+```toml
+[[mount]]
+src = "/sdcard/Download"
+
+[[mount]]
+src = "/data/media/0"
+```"""
+
+table = "複数のK-Vペアを格納するための標準テーブル（standard table）"
+table-help = """
+例1：
+```sh
+set test.toml -k mount.1.test --map name sd --map os android
+```
+
+```toml
+[[mount]]
+src = "/data/media/0"
+
+[mount.test]
+name = "sd"
+os = "android"
+```
+
+例2：
+```sh
+set test.yml -k container --tb arch riscv64 --tb os debian --tb codename trixie
+```
+
+```yaml
+container:
+  arch: riscv64
+  codename: trixie
+  os: debian
+```"""
+
+inline-table = "インラインテーブル、よりコンパクトな標準テーブル"
+inline-table-help = """
+例：
+
+```sh
+set test.toml -k container --itb arch riscv64 --itb os fedora --itb codename rawhide
+```
+
+```toml
+container = { arch = "riscv64", os = "fedora", codename = "rawhide" }
+```
+
+> `toml` の場合、他のフォーマットではデフォルトで標準テーブルが使用されます。
+
+```json
+"container": {
+    "arch": "riscv64",
+    "codename": "rawhide",
+    "os": "fedora"
+}
+```"""
+
+datetime = "日時の型"
+datetime-help = """
+例：
+
+```sh
+set test.toml -k time --datetime '2023-04-16 09:14:44Z'
+```
+
+```toml
+time = 2023-04-16T09:14:44Z
+```
+
+このオプションは `toml` のみをサポートしています。コマンドの末尾に `-t json` を追加すると、次のようになります。
+
+```json
+"time": {
+    "$__toml_private_datetime": "2023-04-16T09:14:44Z"
+}
+```"""
+
+none = "指定されたキーを削除する"
+none-help = """
+> 注意：Ronには本当の `Option<T>` 型があり、値は `Some(T)` または `None` です。
+> ここでの `--none` は、真の `Option<T>` 型ではなく、指定されたキーを削除することを意味します。
+
+test.ymlに次のテーブル配列がある場合、
+
+```yaml
+bin:
+- doc: false
+  name: tomlyre
+  path: src/main.rs
+- doc: true
+  name: test
+  path: src/test.rs
+```
+
+次のようにして **name: test** を削除できます：
+
+```sh
+set test.yml -k bin.1.name --none
+```
+
+> 注：空文字列とNoneは異なります。
+> `set test.yml --kv bin.1.name ""` を使用することで空文字列に設定できますが、`--none` はキー全体を削除します。
+
+
+2番目のテーブル（インデックス1）を削除するには、次のようにします。
+
+```sh
+set test.yml -k bin.1 --none
+```
+
+または `--rm` を使用することもできます。
+
+```sh
+set test.yml -k bin.1 --rm
+```"""

@@ -1,0 +1,3 @@
+invalid-path = "Ugyldig filsti."
+new-value = "Ny verdi"
+unsave-warn = "Det modifiserte innholdet ** vil ikke ** lagres fordi `-SV` ikke ble kalt."

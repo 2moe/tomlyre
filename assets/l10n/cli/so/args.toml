@@ -1,0 +1,88 @@
+theme = "Magaca muhimka ee syntax-highlighting-ka"
+theme-help = """
+Marka ay ka isticmaalaan paramada `-t` oo kaliya, waxaa loo qoray liiska ardayda hadda jira ee midigta ah.
+Haddii magacaagana aan lagu talin faylka ah, waxaad adeegsataa collection-ka asaliga ah. Haddii liiska jira xulasho **ayu-dark**, marka aad doonto `-t ayu-dark`, waxaad adeegsataa midigtaas.
+Haddii magaca luuqada ku jiro meelaha, fadlan adeegsada dabin ama naagtan.
+
+> Fikirkii: Midigta aan la mid ahayn `None`, wuxuu dhacmeysaa habka illao dhammaystiran ee qoraalka sax ah
+
+Marka aadan adeegsan opshinka `--theme`, waxaa loo akhriyaa macluumaadkani `$TOMLYRE_THEME` ee milieu gaar ah.
+Magac muhimka ee **syntax-highlighting**-ka ee macluumaadkan ayaa kalaba la xayeysiinaysa in lagu samaysto **milieu-goobta**.
+
+> Macluumaadkan aasaaska ah wuxuu ah in uu noqdo khariidada dhabta ah, sidaas darteed waxaa loogu talagalay.  
+> Xiriirka macluumaadkan iyo `None`-ka ee syntax-highlighting-ka waa midka qaarkood in ay tahay.
+> Marka aad isu diiwaangashan kartid magaca miisaanka ah ee `$TOMLYRE_THEME`, waxaad qabtaa qarsoodiga daarana waxaa lagu soo saari karaa midigta si uu u kala faa'idi doono.
+
+Ficilka adeegsada milieu-goobta:
+```sh
+TOMLYRE_THEME="Monokai Extended" tomlyre --help
+```
+
+Ficilka adeegsada xallinteeda:
+```sh
+tomlyre -t "Monokai Extended" get test.toml
+```
+
+Haddii aadan adeegsan `-t` oo kaliya, waxaa loo akhriyaa macluumaadkan milieu-goobta ah. Haddii milieu-gaalka aan waxba ka jirin, waxaad adeegsataa **Monokai Extended**.
+
+Tusaaleeyaha ka hor adeegsiga `conv/get/set` iyo calaamado kale oo la sameeyey, magac muhimka ee `-t` wuxuu awood u leh > magaca milieu-gaalka.  
+Marka aan la adeegsan `-t`, waxaan akhriyaa milieu-gaalkan; haddii milieu-gaalku aanay mid ahayn, waxaad adeegsataa **Monokai Extended**."""
+
+theme-file = "faylka cradka ee xogta la shaqeeyay, waxaad sidoo kale u baahan tahay inaad ku taliso magaca muhimka."
+theme-file-help = """
+Qaababka faylasha ee la gudbiyay wuxuu ah in uu ka kooban yahay xogta dhabta ah ee bin kale la shaqeeyay.  
+Dhammaadka ah, midigtaas waa mid ka mid ah main menu-ka **sublime**.
+Haddii aadan adeegsan `--tf`, waxaa loo akhriyaa macluumaadkan `$TOMLYRE_THEME_FILE` ee milieu gaar ah."""
+
+theme-uncompressed-file = "Waxaad isticmaali kartaa faylka shaqo u qaadan ee la shaqeeyay, oo kaliya haddii aanay compress geliyay."
+
+theme-uncompressed-file-help = """
+> Faah-faahintii sare ee la samayay faylasha aanay compress geliyay, sideedana xayiraaya sida macluumaadkan lagu bilawdaami karo.
+Haddii maqlayo `-tuf`, waxaa loo akhriyaa macluumaadkan `$TOMLYRE_THEME_UNCOMPRESSED_FILE` ee milieu gaar ah."""
+
+disable-theme-background = "Aan u diiwaan gelin magaca muhimka ah (asal ahaan loo isticmaalayo; haddii `--dis-theme-bg` laga soo saaray, marka la diiwaan geliyo)."
+
+disable-theme-background-help = """
+Haddii maqlayo `--dis-theme-bg`, waxaa loo akhriyaa macluumaadkan `$TOMLYRE_THEME_BG` ee milieu gaar ah.
+
+Haddii qiimaheeda ka yar yahay midigtaas, wuxuu ku diiwaan gashaa
+
+```sh
+env TOMLYRE_THEME_BG=false TOMLYRE_THEME="ayu-dark" tomlyre --help
+```"""
+
+table-style = "Soo jeedinta qaabka miisaanka"
+table-style-help = """
+Marka aad adeegsato `--ts` kaliya, waxaa loo qoray liiska midigta ah ee qaabka asaliga ah.
+Isbedelka miisaanka markdown fadlan qaabeel md-ka sidaas darteed waxaa loo baahan yahay magac buuxaan.
+Sida looga baahan yahay:
+kaliya1: `--ts md`
+kaliya2: `--table-style ascii`
+
+Fikirka: Haddii aad u baahan tahay faah-faahin dheeraad ah oo kugu caawiyey ama waxaad rabtaa wax khatar ah oo kale, fadlan dib u eeg arrimaha sare. """
+
+from-format = "Qiimaha dhawrka soo dirka ah ee faylka asaliga ah ( waxaa loo baahan yahay in loo adeegsado qaabka sii soconaya)"
+from-format-help = """
+Marka aad ka akhrisan kartid dakhliga stdin-ka, sidaas darteed haddii aadan soo dirin isticmaalaha ama formatka faylka sax ah.
+Sida loogu baahan yahay: `cat test.bson | tomlyre --src-fmt bson get -`"""
+
+shell-completion = "Laga bilaabo shell-ga ah oo ku shaqeeya xaqiijinta"
+shell-completion-help = """
+Waxaad u baahan tahay inaad soo jeediyaan magaca shell-ga si aad ugu shaqeyso xaqiijinta.
+Tusaale sida, powershell ee Windows -ku, waxaad adeegsan kartaa: `--sh-comp pwsh`
+
+> Q: Maxaa la bilaabayo xaqiijinta shell?
+
+> A: marka aanu dhiganno amarada websaydhka, haddii waa Hubkiisa, haddii aan hoggaaminnoo qorshaha kooxaha, ama haddii aan mas'uuliyad tirobad leh si fiican u diyaariyeen habka guuleysiga iyo saxda awooda sare weyn ee hawlgalada. Waxaa suuragal ah in ay ka baxaan saameynada amarnaanta command-lineka uma aragtidaba.
+
+Calaamadka xaqiijinta hal-abuuraha ee shell-ga ah waxaa la keydiyey meelaha kala duwan. Haddii aanu yeelano zsh, waxaad u baahan tahay inaad ku xirto dhamaan jidka `$fpath`. Waxaad adeegsataa `print -l $fpath` si aad u heshid xogtaas.
+Haddii jidka ku jira `/usr/local/share/zsh/site-functions` directory, tusaale sidaas dartaa ka isticmaalo sawirada dhanka hoos ee lagu soo saarayo in ay diiwaan galiyaan faylka `_tomlyre`
+
+```sh
+tomlyre --sh-comp zsh | doas tee /usr/local/share/zsh/site-functions/_tomlyre
+```
+Si loo talagalay in la adeegsan karo aqoon gaar ah, waxaad ka fiican tahay inaad sameeso hoyga shaqada.
+
+```zsh
+fpath=(~/.local/share/zsh/completions $fpath)
+```"""

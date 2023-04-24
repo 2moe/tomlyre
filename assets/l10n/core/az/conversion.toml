@@ -1,0 +1,13 @@
+auto-detection-failed = "Formatı avtomatik aşkar edə bilmədi.Zəhmət olmasa əl ilə göstərin."
+conv-error = "Dönüşüm xətası"
+currently-supported = "Hal-hazırda dəstəklənən formatlar siyahısı:"
+dst = "Təyinat faylı yolu"
+"invalid-json1.0" = "Fayl, `JSON5` kimi təhlil etməyə çalışaraq, etibarlı bir `JSON 1.0` formatı deyil ..."
+not-included = """
+Bu ikili ** müvafiq format üçün dönüşüm funksionallığı daxil deyil.
+'Cargo.toml' da müvafiq xüsusiyyətə imkan verməlisiniz və yenidən tərtib etməlisiniz.
+Bu proqramın müvafiq funksionallıq daxil deyilsə, xahiş edirəm bir məsələ təqdim edin."""
+not-saved = "Aşağıdakı məzmun qənaət olunmayacaq, çünki `--save` deyildi."
+not-support-deser-sexp = "** Dəstəklənməyib **: `Lisp S-ifadəsindən 'digər formatlara'"
+unknown-fmt = "Naməlum fayl formatı"
+unsupported = "Dəstəklənməyən format dönüşüm"

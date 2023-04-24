@@ -1,0 +1,3 @@
+invalid-path = "유효하지 않은 파일 경로"
+new-value = "새 값(value)"
+unsave-warn = "`--save`를 호출하지 않았기 때문에 수정된 내용은 **저장되지 않습니다**."

@@ -1,0 +1,1 @@
+sh-completion::about-stderr: 以下は stderr の出力です。補完スクリプトの出力をリダイレクトする場合、`2>/path/to/file`ではなく、`>/path/to/file`を使用する必要があります。

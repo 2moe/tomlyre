@@ -1,0 +1,6 @@
+debug: depuració
+error: Error
+info: Info
+init-logger: Inicialització del registre ...
+trace: TRACE
+warn: adverteix

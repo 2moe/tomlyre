@@ -1,0 +1,25 @@
+conv-opts = "toml, yaml, json ve ron gibi biçimler arasında dönüştürme yapın"
+
+from = "Giriş dosyasını belirtin"
+
+conv-to = "Çıktı formatını/dosyasını belirtin, birden fazla çağrıya izin verilir"
+conv-to-help = """
+Eğer mevcut dizinde **test.json** dosyası varsa, `conv test.json -t yml` komutuyla onu yml (yaml) olarak dönüştürebilirsiniz.
+Ayrıca, dosya yolu manuel olarak belirtilebilir: `conv test.json -t /tmp/test.yml`
+
+Desteklenen biçimler, bu paketin hangi özelliklerinin etkinleştirildiğine bağlıdır ve tüm özellikler varsayılan olarak etkinleştirilmez.
+
+Bunun yanı sıra, önceden bilmeniz gereken bazı hususlar vardır:
+- 1. Belirli olmayan dosya yolları otomatik olarak yeniden adlandırılır.
+  - 1.1: Dosyanın yalnızca bir katmanı biçim olarak belirlendiğinden, dosya yolu olarak değil.
+    Örneğin `conv test.toml -t ron` komutunu kullanarak çıktı dosyasını ron biçimine dönüştürdüğünüzde, çıktı dosyası otomatik olarak `test.ron` olarak adlandırılır, `ron` olarak değil.
+    Bu özelliğe ihtiyacınız yoksa, `-t ./ron` veya `-t $PWD/ron` kullanın.
+  - 1.2: Belirtilen şey bir dizinse, dosya yolunun kendisi değil.
+    Örneğin `conv -f toml -t /tmp/` komutunu kullandığınızda, `test.toml` dosyasını `/tmp/` alt dizininde yerleştirmeniz gerektiğini unutmayın, `/tmp` dizinini kendisi üzerine yazamazsınız.
+    Bu özellik size gerekli değilse, tam (dizin olmayan) bir dosya yolu belirtin, örneğin `-t /tmp/xx.toml` yerine `-t /tmp/` kullanın.
+- 2. `--save` çağrılmadığında, belirtilen dosya otomatik olarak kaydedilmez.
+- 3. `--save` çağrıldığında, conv alt komutu giriş ve çıkış için aynı dosyayı kullanamaz.
+- 4. Dönüştürülen dosyanın açıklaması saklanmaz."""
+
+
+save = "`--to` seçeneği belirlendiğinde, dönüştürülmüş dosya kaydedilecektir."

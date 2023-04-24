@@ -1,0 +1,3 @@
+invalid-path = "Ruta de archivo no válida"
+new-value = "Nuevo valor"
+unsave-warn = "Dado que no se llamó a la opción `--save`, la información modificada **no será** guardada."

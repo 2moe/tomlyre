@@ -1,0 +1,13 @@
+auto-detection-failed = "Biçimi otomatik olarak algılayamadı.Lütfen manuel olarak belirtin."
+conv-error = "dönüşüm hatası"
+currently-supported = "Şu anda Desteklenen Formatlar Listesi:"
+dst = "Hedef Dosya Yolu"
+"invalid-json1.0" = "Dosya geçerli bir `JSON 1.0` biçimi değil, `json5 'olarak ayrıştırmaya çalışan ..."
+not-included = """
+Bu ikili ilgili format için dönüşüm işlevini içermez.
+`Cargo.toml` ve yeniden derlemenizdeki ilgili özelliği etkinleştirmeniz gerekir.
+Bu yazılım ilgili işlevleri içermiyorsa, lütfen bir sorun gönderin."""
+not-saved = "Aşağıdaki içerik ** `--save` çağrılmadığı için ** kaydedilmez."
+not-support-deser-sexp = "** Henüz desteklenmedi **: Lisp S-ekspresyonundan `` Diğer Biçimler '' e dönüştürülme"
+unknown-fmt = "Bilinmeyen dosya biçimi"
+unsupported = "Desteklenmemiş Biçim Dönüşümü"

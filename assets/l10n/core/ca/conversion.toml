@@ -1,0 +1,13 @@
+auto-detection-failed = "No s'ha pogut detectar automàticament el format.Especifiqueu manualment."
+conv-error = "error de conversió"
+currently-supported = "Llista de formats actualment compatibles:"
+dst = "ruta del fitxer de destinació"
+"invalid-json1.0" = "El fitxer no és un format `json 1.0` vàlid, intentant analitzar com a `json5` ..."
+not-included = """
+Aquest binari ** no inclou ** la funcionalitat de conversió del format rellevant.
+Heu d'activar la funció rellevant al vostre `Cargo.toml` i recompilar.
+Si aquest programari no inclou la funcionalitat corresponent, envieu un problema."""
+not-saved = "El contingut següent ** no es desarà perquè no es va trucar a `--save`."
+not-support-deser-sexp = "** encara no és compatible **: convertint de `lisp s-expression` a` altres formats '"
+unknown-fmt = "Format de fitxer desconegut"
+unsupported = "Conversió de format no suport"

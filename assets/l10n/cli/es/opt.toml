@@ -1,0 +1,350 @@
+get-opts = "Obtener el valor de una configuración específica."
+get-opts-help = """
+Ejemplo de uso 1: `get Cargo.toml -k package.name`
+Ejemplo de uso 2: `get cfg.yaml -k .`
+
+Nota: Cuando se proporciona solo la clave (`-k`), se mostrará el tipo de datos y los valores correspondientes en una tabla detallada.
+Por ejemplo, `set Cargo.toml -k package` mostraría una tabla con información detallada sobre el paquete y sus subtablas. """
+
+key = "Consultar un valor mediante una clave."
+
+key-help = """
+El formato es "a.b.c", donde las tablas secundarias o las indicaciones de matriz están conectadas por "." (puntos).
+Cuando hay solo un ".", se mostrará toda la tabla."""
+
+set-opts = "Crear/actualizar/borrar la estructura de un archivo de configuración."
+set-opts-help = """
+# set
+
+Primero, seleccione la clave especificada y luego modifique la estructura del archivo especificando el tipo de datos del valor.
+
+> Si solo proporciona la clave pero no el valor, se mostrarán los tipos de datos y los valores correspondientes.
+> Por ejemplo, `set Cargo.toml -k package` mostrará una tabla detallada del paquete y sus subtablas.
+
+## Ejemplos
+
+### Ejemplo 1:
+```sh
+--ts md set test.toml --key package.edition --str 2021
+```
+
+Dado que se especificó `--str`, en lugar de `--num`, "2021" se trata como una cadena de texto en lugar de un número.
+
+| package | nuevo valor |
+|---------|-----------|
+| edition | "2021"    |
+
+
+```toml
+[package]
+edition = "2021"
+```
+
+### Ejemplo 2:
+```sh
+set ~/.config/Code/User/settings.json --ck remote.SSH.remotePlatform --ck test --map k1 v1 --to /tmp/code.yaml
+```
+
+```yaml
+remote.SSH.remotePlatform:
+  test:
+    k1: v1
+```
+
+### Ejemplo 3:
+```sh
+set test.yml -k main -a hello -a wonderful -a world --pre --to ron --save
+```
+
+```ron
+"main": [
+  /*[0]: Este es el primer índice */ "hello",
+  /*[1]*/ "wonderful",
+  /*[2]*/ "world",
+]
+```
+
+Nota: Los ejemplos anteriores omiten el nombre del comando raíz y comienzan con un argumento/subcomando, por lo que deberá especificarlo manualmente en la práctica."""
+
+set-kv = "Establecer pares clave-valor (`--kv x.y.z value` es equivalente a `-k x.y.z -s value`)."
+
+set-key = """Seleccionar una clave (key) específica, separada por puntos (".")"""
+
+concat-key = """Introducir la clave en secciones y se unirán automáticamente, sin utilizar "." como separador."""
+
+concat-key-help = """
+La diferencia entre `--ck` y `-k` es que `--ck` no dividirá automáticamente la clave con el símbolo ".".
+Para [a.b.c], `-k a.b.c` es lo mismo que `--ck a --ck b --ck c`.
+Para casos simples, usar `-k` puede ser más sencillo.
+
+Si el nombre de la clave contiene ".", use `--ck` en lugar de `-k`.
+Por ejemplo:
+
+```json
+"[typescript]": {
+    "editor.defaultFormatter": "rome.rome"
+}
+```
+
+En esta estructura, "editor.defaultFormatter" es una cadena completa, no una subclave de "editor".
+
+Cuando usa `-k '[typescript]'.'editor.defaultFormatter'`, la clave se divide en:
+
+- "[typescript]"
+- "editor"
+- "defaultFormatter"
+
+Mientras que con `--ck '[typescript]' --ck editor.defaultFormatter'`, la clave se trata como:
+
+- "[typescript]"
+- "editor.defaultFormatter"
+
+Esta última es la estructura correcta."""
+
+
+preview = "Vista previa del archivo completo después de las modificaciones."
+string = "Tipo string (cadena de texto)."
+bool = "Tipo bool (booleano), sólo puede ser `true` o `false`."
+num = "Tipo i64: número entero con signo de 64 bits, por ejemplo: 1145."
+f64 = "Tipo flotante de doble precisión (estándar IEEE 754-2008), por ejemplo: 3.14159265359."
+
+set-save-to-help = """
+Similar al uso de la opción `-t` para el sub-comando `conv`, la mayor diferencia es que la opción `-t` para el sub-comando `set` solo puede ser llamada una vez para guardar en un único archivo.
+Mientras que la opción `-t` para el sub-comando `conv` se puede llamar varias veces seguidas para generar múltiples formatos/archivos.
+
+> Nota: Después de ejecutar la operación de conversión, todos los archivos de todos los formatos perderán los comentarios en el sub-comando `conv`.
+> Mientras que el sub-comando `set` conservará los comentarios para **toml**, pero no para otros formatos.
+
+- Si no se utiliza la opción `-t`, llamar a `--save` sobrescribirá el propio archivo.
+- Si se ha utilizado `-t` y también se llama a `--save`, el archivo modificado será guardado en el archivo apuntado por `-t`.
+- A menos que el archivo origen sea el mismo que el archivo apuntado por `-t`, el comportamiento de la opción `-t` para el sub-comando `set` será similar al de la opción `-t` para el sub-comando `conv`. Ambas renombrarán automáticamente las rutas de archivo no específicas.
+  - Suponiendo de: **test.yml**, a: **json**, entonces el archivo de salida se convertirá en **test.json**, no en **json**
+  - Si no se necesita esta característica, utilice `-t ./json` o `-t $PWD/json` en lugar de `-t json`. """
+
+set-save = "Si no se especifica `--to`, sobrescribe (escribe) el archivo actual."
+set-save-to = "Guardar como formato/archivo especificado. Solo se puede guardar uno a la vez."
+
+array = "Array de cadenas de texto."
+
+array-help = """
+Establezca los elementos del array llamando a `-a` varias veces.
+
+Por ejemplo:
+```sh
+set test.toml -k test.array -a hello -a wonderful -a world
+```
+
+> La primera vez se establece el elemento 0, la segunda vez se establece el elemento 1 y así sucesivamente.
+
+```toml
+[test]
+array = ["hello", "wonderful", "world"]
+```"""
+
+num-arr = "Array de números enteros con signo de 64 bits (i64)."
+
+num-arr-help = """
+Ejemplo:
+```sh
+set test.json -k hello --na -1 --na -45 --na 14
+```
+
+```json
+"hello": [
+    -1,
+    -45,
+    14
+]
+```"""
+
+f64-arr = "Array de flotantes de doble precisión (f64)."
+
+f64-arr-help = """
+Ejemplo:
+```sh
+set test.yml -k hello --fa 3.14 --fa 45e-2 --fa NaN --fa Inf
+```
+
+```yaml
+hello:
+- 3.14
+- 0.45
+- .nan
+- .inf
+```
+
+> JSON 1.0 no admite NaN e Inf
+
+En su lugar, se imprimirá `null` en lugar de `NaN`.
+
+```sh
+set test.yml -k zz --fa NaN --fa Inf --to json --pre
+```
+
+```json
+"zz": [
+    null,
+    null
+]
+```
+"""
+
+bool-arr = "Array de booleanos."
+
+bool-arr-help = """
+Ejemplo:
+```sh
+set test.ron -k hello --ba true --ba false --ba true
+```
+
+```ron
+"hello": [
+    // [0]: El primer elemento es true
+    true,
+    /*[1]*/ false,
+    /*[2]*/ true,
+]
+```"""
+
+aot = "Array de tablas. (modo de uso: `--aot 'k1, v1, k2, v2' --aot 'k1, v1'`)"
+aot-help = """
+Ejemplo:
+```sh
+set test.toml -k package --aot 'name, glossa, version, 0.0.1-alpha.6' --aot 'name, wasm-bindgen, ver sion, 0.2  .84,  version, 0.2.84'
+```
+
+```toml
+[[package]]
+name = "glossa"
+version = "0.0.1-alpha.6"
+
+[[package]]
+name = "wasm-bindgen"
+"ver sion" = "0.2  .84"
+version = "0.2.84"
+```"""
+
+saot = "Array de tablas con una sola pareja de clave-valor cada una. (Modo de uso: `--saot k1 v1 --saot k2 v2...`)"
+
+saot-help = """
+> Nota: Aunque sólo se puede crear una pareja clave-valor por tabla con `--saot`, aún puede especificar el índice del array de tablas primero y luego usar otras opciones para ampliarlo.
+
+Ejemplo:
+```sh
+set test.toml -k mount --saot src "/sdcard/Download" --saot src "/data/media/0" --save --pre
+```
+
+```toml
+[[mount]]
+src = "/sdcard/Download"
+
+[[mount]]
+src = "/data/media/0"
+```"""
+
+table = "Tabla estándar utilizada para almacenar varias parejas clave-valor."
+
+table-help = """
+Ejemplo 1:
+```sh
+set test.toml -k mount.1.test --map name sd --map os android
+```
+
+```toml
+[[mount]]
+src = "/data/media/0"
+
+[mount.test]
+name = "sd"
+os = "android"
+```
+
+Ejemplo 2:
+```sh
+set test.yml -k container --tb arch riscv64 --tb os debian --tb codename trixie
+```
+
+```yaml
+container:
+  arch: riscv64
+  codename: trixie
+  os: debian
+```"""
+
+inline-table = "Tabla en línea, esencialmente una versión más compacta de una tabla estándar."
+
+inline-table-help = """
+Ejemplo:
+```sh
+set test.toml -k container --itb arch riscv64 --itb os fedora --itb codename rawhide
+```
+
+```toml
+container = { arch = "riscv64", os = "fedora", codename = "rawhide" }
+```
+
+> Excepto `toml`, otros formatos utilizarán una tabla estándar, no una tabla en línea.
+
+```json
+"container": {
+    "arch": "riscv64",
+    "codename": "rawhide",
+    "os": "fedora"
+}
+```"""
+
+datetime = "Tipo de fecha y hora."
+
+datetime-help = """
+Ejemplo:
+```sh
+set test.toml -k time --datetime '2023-04-16 09:14:44Z'
+```
+
+```toml
+time = 2023-04-16T09:14:44Z
+```
+
+Esta opción sólo es compatible con `toml`. Si agregamos `-t json` al final del comando, se verá así:
+
+```json
+"time": {
+    "$__toml_private_datetime": "2023-04-16T09:14:44Z"
+}
+```"""
+
+none = "Elimina la clave especificada."
+
+none-help = """
+> Nota: RON tiene un tipo `Option<T>` real que puede ser `Some(T)` o `None`. 
+> El uso de `--none` aquí es para eliminar una clave específica, no para un verdadero tipo `Option<T>`.
+
+Supongamos que tenemos el siguiente array de tabla en `test.yml`:
+
+```yaml
+bin:
+- doc: false
+  name: tomlyre
+  path: src/main.rs
+- doc: true
+  name: test
+  path: src/test.rs
+```
+
+Si deseamos eliminar la entrada `name: test`, podemos hacer lo siguiente:
+```sh
+set test.yml -k bin.1.name --none
+```
+
+> Nota: una cadena vacía y `None` son cosas diferentes.
+> Usando `set test.yml --kv bin.1.name ""` podemos establecerla como una cadena vacía, mientras que `--none` elimina toda la clave.
+
+Si queremos eliminar la segunda tabla (`index = 1`) de `bin`, podemos hacer lo siguiente:
+```sh
+set test.yml -k bin.1 --none
+```
+
+O use `--rm`:
+```sh
+set test.yml -k bin.1 --rm
+```"""

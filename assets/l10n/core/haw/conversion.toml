@@ -1,0 +1,6 @@
+"invalid-json1.0" = "ʻaʻole he faile i kahi o ka `JSON 1.0`"
+not-included = """
+ʻAʻole pili kēia binary **ʻaʻole e hoʻopili ** i ka hana hoʻololi no keʻano kūpono.
+Ponoʻoe e hiki i ka hiʻohiʻona kūpono i kāu 'Cargo.Mtl` a uku hou.
+Ināʻaʻole pili kēia polokalamu i ka hana pili i ka hana, eʻoluʻolu e hāʻawi i kahi pilikia."""
+not-support-deser-sexp = "ʻaʻole kākoʻoʻiaʻo *** **: E hoʻohuli ana mai ka 'Lisp S-Express"

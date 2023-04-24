@@ -1,0 +1,13 @@
+auto-detection-failed = "gagal secara automatik mengesan format.Sila nyatakan secara manual."
+conv-error = "ralat penukaran"
+currently-supported = "Senarai Format yang disokong sekarang:"
+dst = "laluan fail destinasi"
+"invalid-json1.0" = "Fail bukan format `json 1.0` yang sah, cuba menghuraikan `json5` ..."
+not-included = """
+Binari ini ** tidak termasuk ** fungsi penukaran untuk format yang berkaitan.
+Anda perlu mengaktifkan ciri yang relevan dalam `Cargo.toml` dan recompile.
+Jika perisian ini tidak termasuk fungsi yang sepadan, sila hantar isu."""
+not-saved = "kandungan berikut ** tidak akan ** disimpan kerana `--save` tidak dipanggil."
+not-support-deser-sexp = "** belum disokong **: menukar dari `lisp s-expression` ke` format lain`"
+unknown-fmt = "format fail yang tidak diketahui"
+unsupported = "penukaran format yang tidak disokong"

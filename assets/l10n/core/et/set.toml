@@ -1,0 +1,3 @@
+invalid-path = "Vale failitee."
+new-value = "Uus väärtus"
+unsave-warn = "Muudetud sisu ** ei salvestata **, kuna `--sv` ei kutsutud."

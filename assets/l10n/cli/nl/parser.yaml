@@ -1,0 +1,1 @@
+sh-completion::about-stderr: Hieronder vindt u de standaardfout (stderr) uitvoer. Bij het omleiden van de uitvoer van de automatisch-aanvullen script, moet u `>/path/to/file` gebruiken in plaats van `2>/path/to/file`.

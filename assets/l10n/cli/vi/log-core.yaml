@@ -1,0 +1,6 @@
+debug: gỡ lỗi
+error: lỗi
+info: thông tin
+init-logger: Khởi tạo logger ...
+trace: dấu vết
+warn: cảnh báo

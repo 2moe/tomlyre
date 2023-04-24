@@ -1,0 +1,3 @@
+invalid-path = "Dalan file sing ora bener."
+new-value = "Nilai Anyar"
+unsave-warn = "Konten sing wis diowahi ** Dadi ** disimpen amarga `--sv` ora diarani."

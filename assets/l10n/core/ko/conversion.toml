@@ -1,0 +1,13 @@
+"invalid-json1.0" = "`json 1.0` 형식이 올바르지 않습니다. `json5`로 분석 중입니다..."
+not-saved = "`--save`를 호출하지 않았기 때문에 다음 내용은 **저장되지 않습니다**."
+dst = "대상 파일 경로"
+not-support-deser-sexp = "`Lisp S-Expression`을(를) `다른 형식`으로 변환하는 것은 **아직 지원되지 않습니다**."
+conv-error = "변환 오류"
+not-included = """
+이 바이너리 파일에는 관련된 형식의 변환 기능이 **포함되어 있지 않습니다**.
+`Cargo.toml`에서 해당 기능을 활성화하고 다시 컴파일해야 합니다.
+이 소프트웨어에 해당 기능이 없으면 이슈를 제출하세요."""
+unsupported = "지원되지 않는 형식 변환"
+unknown-fmt = "알 수 없는 파일 형식"
+currently-supported = "현재 지원되는 형식 목록"
+auto-detection-failed = "자동 형식 감지 실패, 수동으로 지정해야 합니다."

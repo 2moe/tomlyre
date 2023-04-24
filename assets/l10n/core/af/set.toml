@@ -1,0 +1,3 @@
+invalid-path = "Ongeldige lêerpad."
+new-value = "Nuwe waarde"
+unsave-warn = "Die gewysigde inhoud ** sal nie ** gestoor word nie omdat `--sv` nie genoem is nie."

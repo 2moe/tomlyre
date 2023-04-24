@@ -1,0 +1,6 @@
+debug: ladenie
+error: chyba
+info: Informácie
+init-logger: Inicializácia Loggeru ...
+trace: stopa
+warn: varovať

@@ -1,0 +1,11 @@
+auto-detection-failed = "Formatni avtomatik ravishda aniqlab bo'lmadi.Iltimos, qo'lda belgilang."
+conv-error = "Konversiya xato"
+currently-supported = "Xursand qilingan formatlar ro'yxati:"
+dst = "Belgilangan fayl yo'li"
+not-included = """
+Ushbu ikkilik ** tegishli format uchun konversiya funktsiyalarini o'z ichiga olmaydi.
+Siz \"yuk tashish\" va qayta ishlashda tegishli xususiyatni yoqishingiz kerak.
+Agar ushbu dastur mos funktsiyani o'z ichiga olmasa, iltimos, muammoni taqdim eting."""
+not-support-deser-sexp = "Qo'llab-quvvatlanmaydi **: \"lisp s-ifoda\" dan \"boshqa forss\" gacha o'zgarishi"
+unknown-fmt = "Noma'lum fayl formati"
+unsupported = "Qo'llab-quvvatlanmaydigan formatni o'zgartirish"

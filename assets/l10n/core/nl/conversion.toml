@@ -1,0 +1,13 @@
+auto-detection-failed = "Automatische herkenning van het formaat is mislukt. Geef dit alstublieft handmatig aan."
+conv-error = "Conversiefout"
+currently-supported = "Lijst met momenteel ondersteunde formaten:"
+dst = "Bestemmingsbestandpad"
+"invalid-json1.0" = "Het bestand is geen geldig `json 1.0` formaat, poging om te parsen als `json5`..."
+not-included = """
+Deze software **bevat niet** de functionaliteit voor de conversie van het relevante formaat.
+U moet de juiste functies inschakelen in uw `Cargo.toml` en opnieuw compileren.
+Als deze software de bijbehorende functionaliteit niet bevat, dient u een probleemrapport in."""
+not-saved = "De volgende inhoud wordt **niet** opgeslagen omdat `--save` niet is aangeroepen."
+not-support-deser-sexp = "**Nog niet ondersteund**: converteren van `Lisp S-Expressie` naar `andere formaten`"
+unknown-fmt = "Onbekend bestandsformaat"
+unsupported = "Niet-ondersteunde formaatconversie"

@@ -1,0 +1,1 @@
+sh-completion::about-stderr: 下面是 stderr 輸出，在重定向輸出補全腳本時，您應該使用 `>/path/to/file` 而不是 `2>/path/to/file`

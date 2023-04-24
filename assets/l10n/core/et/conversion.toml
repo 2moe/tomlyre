@@ -1,0 +1,13 @@
+auto-detection-failed = "Vormingu automaatselt tuvastamine ebaõnnestus.Palun täpsustage käsitsi."
+conv-error = "teisendamise viga"
+currently-supported = "Praegu toetatud vormingute loend:"
+dst = "sihtfaili tee"
+"invalid-json1.0" = "Fail ei ole kehtiv `JSON 1.0` vorming, üritades sõeluda kui `json5`..."
+not-included = """
+See binaarne ** ei hõlma ** vastava vormingu teisendamise funktsionaalsust.
+Peate lubama oma `Cargo.toml` ja uuesti kompileerimise asjakohase funktsiooni.
+Kui see tarkvara ei sisalda vastavat funktsionaalsust, esitage palun probleem."""
+not-saved = "Järgmist sisu ** ei salvestata **, kuna `--save` ei kutsutud."
+not-support-deser-sexp = "** pole veel toetatud **: teisendamine `Lisp S-Expression`` muudeks vorminguteks"
+unknown-fmt = "Tundmatu failivorming"
+unsupported = "Vormingu toetamata muundamine"

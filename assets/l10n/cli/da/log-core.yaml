@@ -1,0 +1,6 @@
+debug: debug
+error: fejl
+info: info
+init-logger: Initialisering af logger ...
+trace: Spor
+warn: advare

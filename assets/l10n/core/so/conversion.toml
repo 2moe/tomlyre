@@ -1,0 +1,12 @@
+auto-detection-failed = "Ku guuldareystay in si otomaatig ah loo ogaado qaabka.Fadlan gacanta ku sheeg."
+conv-error = "Khaladka is-beddelka"
+currently-supported = "Hadda la taageeray liiska qaabab qaabab:"
+dst = "Jidka faylka loo aado"
+"invalid-json1.0" = "Faylku ma aha mid ansax ah `JSON 1.0` qaabka, isku dayga inuu yahay sida `JSON5` ..."
+not-included = """
+Binary-gu ** kuma jiraan ** waxqabadka beddelka ee qaabka ay khusayso.
+Waxaad u baahan tahay inaad awood u yeelatid muuqaalka ku habboon 'xamuul'
+Haddii software-kan uusan ku darin waxqabadka u dhigma, fadlan soo gudbi arin."""
+not-saved = "Waxyaabaha soo socda ee soo socda ** Ma badbaadin doono sababtoo ah `--save` weli lama wicin."
+unknown-fmt = "Qaabka feylasha aan la aqoon"
+unsupported = "Samee loo beddelo qaab aan la taageerin"

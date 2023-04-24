@@ -1,0 +1,24 @@
+conv-opts = "Převádění mezi formáty jako toml, yaml, json a ron"
+
+from = "Specifikuje vstupní soubor"
+
+conv-to = "Specifikuje výstupní formát/soubor, lze použít vícekrát"
+conv-to-help = """
+Pokud existuje soubor **test.json** v aktuálním adresáři, můžete jej převést na yml (yaml) pomocí `conv test.json -t yml`
+nebo ručně specifikovat cestu k souboru: `conv test.json -t /tmp/test.yml`
+
+Podporované formáty závisí na funkcích povolených v této balíčku a ne všechny funkce jsou implicitně povoleny.
+
+Kromě toho musíte vědět následující věci před použitím:
+- 1. Automaticky přejmenuje nekonkrétní cesty k souborům.
+  - 1.1: Pouze soubory s jediným vrstvou se berou jako souborový formát místo cesty k souboru
+    Pokud zavoláte `conv test.toml -t ron`, název výstupního souboru se změní na `test.ron` namísto `ron`.
+    Pokud tuto funkci nepotřebujete, použijte `-t ./ron` nebo `-t $PWD/ron`.
+  - 1.2: Cesta ukazuje na adresář místo souboru
+    Například `-t /tmp/`, můžeme umístit `test.toml` pouze do podadresářů `/tmp/`, nikoli do adresáře `/tmp`.
+    Pokud tuto funkci nepotřebujete, uveďte úplnou cestu k souboru (nikoli adresáři) jako `-t /tmp/xx.toml` namísto `-t /tmp/`.
+- 2. Pokud není volána volba `--save`, specifikované soubory se automaticky neuloží.
+- 3. Pokud je volba `--save` použita, vstup a výstup příkazu conv nesmí být stejný soubor.
+- 4. Převzaté soubory nezachovávají komentáře. """
+
+save = "Při použití této volby budou soubory specifikované pomocí `--to` uloženy"

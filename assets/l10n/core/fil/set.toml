@@ -1,0 +1,3 @@
+invalid-path = "hindi wastong landas ng file."
+new-value = "Bagong halaga"
+unsave-warn = "Ang binagong nilalaman ** ay hindi ** mai-save dahil ang `--sv` ay hindi tinawag."

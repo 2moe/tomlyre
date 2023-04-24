@@ -1,0 +1,5 @@
+auto-detection-failed = "...Chonde lingalirani pamanja."
+not-included = """
+Binary iyi ** siyikuphatikiza ** kutembenuka koyenera kwa mtundu woyenera.
+Muyenera kuti muthandizireni gawo loyenerera mu `chonyamula.toml` ndi recomple.
+Ngati pulogalamuyi sinaphatikize magwiridwe antchito omwewo, chonde perekani vuto."""

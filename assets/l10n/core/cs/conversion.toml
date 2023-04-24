@@ -1,0 +1,13 @@
+auto-detection-failed = "Automatické rozpoznání formátu selhalo. Prosím, specifikujte ho ručně."
+conv-error = "Chyba konverze"
+currently-supported = "Aktuálně podporované formáty:"
+dst = "Cílová cesta k výstupnímu souboru"
+"invalid-json1.0" = "Soubor není platný formát `json 1.0`, pokus o parsování jako `json5`..."
+not-included = """
+Tento binární soubor **neobsahuje** funkcionalitu pro konverzi příslušného formátu.
+Je nutné zapnout odpovídající funkci v `Cargo.toml` a znovu zkompilovat.
+Pokud toto softwaru nezahrnuje odpovídající funkčnost, neváhejte nám poslat issue."""
+not-saved = "Následující obsah **nebude** uložen, protože nebylo použito `--save`."
+not-support-deser-sexp = "**Zatím nepodporováno**: konverze z `Lisp S-Expression` na `ostatní formáty`"
+unknown-fmt = "Neznámý formát souboru"
+unsupported = "Konverze nepodporována"

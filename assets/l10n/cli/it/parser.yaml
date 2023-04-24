@@ -1,0 +1,1 @@
+sh-completion::about-stderr: Questo è l'output di stderr. Quando si reindirizza l'output dello script di completamento, si dovrebbe utilizzare `>/path/to/file` invece di `2>/path/to/file`.

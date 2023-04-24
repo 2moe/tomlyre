@@ -1,0 +1,3 @@
+invalid-path = "nederīgs faila ceļš."
+new-value = "jauna vērtība"
+unsave-warn = "Modificētais saturs ** netiks saglabāts, jo `--sv` netika izsaukts."

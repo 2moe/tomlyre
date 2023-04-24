@@ -1,0 +1,13 @@
+auto-detection-failed = "Muodon automaattisesti havaitseminen epäonnistui.Määritä manuaalisesti."
+conv-error = "muuntamisvirhe"
+currently-supported = "Tällä hetkellä tuetut muodot -luettelo:"
+dst = "kohdetiedostopolku"
+"invalid-json1.0" = "Tiedosto ei ole kelvollinen `JSON 1.0` -muoto, yrittäen jäsentää nimellä `JSON5`..."
+not-included = """
+Tämä binaari ** ei sisällä ** asiaankuuluvan muodon muuntamistoimintoja.
+Sinun on otettava käyttöön asiaankuuluva ominaisuus `Cargo.toml` -sivustollasi ja käännettävä uudelleen.
+Jos tämä ohjelmisto ei sisällä vastaavia toimintoja, lähetä ongelma."""
+not-saved = "Seuraavaa sisältöä ** ei ** tallenneta, koska `--save` ei kutsuttu."
+not-support-deser-sexp = "** ei ole vielä tuettu **: muuntaminen `Lisp S-Expression` -järjestelmästä `muihin muotoihin`"
+unknown-fmt = "tuntematon tiedostomuoto"
+unsupported = "tukemattoman muodon muuntaminen"

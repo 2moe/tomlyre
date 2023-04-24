@@ -1,0 +1,12 @@
+auto-detection-failed = "Imeshindwa kugundua kiotomatiki muundo.Tafadhali taja mwenyewe."
+conv-error = "kosa la ubadilishaji"
+currently-supported = "Orodha ya Fomati inayoungwa mkono kwa sasa:"
+dst = "Njia ya faili ya marudio"
+"invalid-json1.0" = "Faili sio muundo halali wa `json 1.0`, kujaribu kujaribu kama `json5` ..."
+not-included = """
+Hii binary ** haijumuishi ** utendaji wa ubadilishaji kwa muundo husika.
+Unahitaji kuwezesha kipengee kinachofaa katika `Cargo.toml` yako na kurudisha.
+Ikiwa programu hii haijumuishi utendaji unaolingana, tafadhali wasilisha suala."""
+not-saved = "Yaliyomo ** hayataokolewa kwa sababu `--save` haikuitwa."
+unknown-fmt = "Fomati ya faili isiyojulikana"
+unsupported = "Ubadilishaji wa muundo ambao haujasaidiwa"

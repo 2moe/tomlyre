@@ -1,0 +1,13 @@
+auto-detection-failed = "La detección automática de formato falló, por favor especifique manualmente."
+conv-error = "Error de conversión"
+currently-supported = "Lista actual de formatos soportados"
+dst = "Ruta del archivo de destino"
+"invalid-json1.0" = "El archivo no es un formato JSON 1.0 válido, intentando analizar como `json5`..."
+not-included = """
+Este archivo binario no contiene funciones de conversión para este formato.
+Debe habilitar la función correspondiente en su archivo `Cargo.toml` y volver a compilar.
+Si este software no contiene esta función, presente un problema (issue)."""
+not-saved = "Dado que no se llamó a la opción `--save`, el siguiente contenido **no será** guardado."
+not-support-deser-sexp = "**Actualmente no compatible** convertir `Lisp S-Expression` a `otros formatos`"
+unknown-fmt = "Formato de archivo desconocido"
+unsupported = "Conversión de formato no soportada"

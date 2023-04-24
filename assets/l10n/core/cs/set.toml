@@ -1,0 +1,3 @@
+invalid-path = "Neplatná cesta souboru."
+new-value = "Nová hodnota"
+unsave-warn = "Upravený obsah ** nebude ** uložen, protože `--sv` nebyl volán."

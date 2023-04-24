@@ -1,0 +1,13 @@
+auto-detection-failed = "E ile ea hloleha ho fumana sebopeho.Ka kopo bolela ka boomo."
+conv-error = "Phoso ea ho soka"
+currently-supported = "Hajoale lenane la lifoto tsa formats:"
+dst = "Tsela ea faele ea faele"
+"invalid-json1.0" = "Faele ha se sebopeho se sebetsang sa `Json 1."
+not-included = """
+Binary ena ** ha e kenyeletse ** ts'ebetso ea phetoho bakeng sa sebopeho se amehang.
+U hloka ho nolofalletsa karolo e loketseng ho `cego.toml` le hape.
+Haeba software ena e sa kenyeletse ts'ebetso e lumellanang, ka kopo fana ka bothata."""
+not-saved = "Mathata a latelang ** a ke ke a pholoha hobane `--save` e ne e sa bitsoa."
+not-support-deser-sexp = "** ha e tšehelitsoe empa ** ha e tšehelitsoe"
+unknown-fmt = "Forama e sa tsejoeng"
+unsupported = "Ho fetola sebopeho sa sebopeho sa"

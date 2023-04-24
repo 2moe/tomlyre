@@ -1,0 +1,331 @@
+get-opts = "Haal de waarde op van de opgegeven configuratie"
+get-opts-help = """
+Voorbeeld 1: `get Cargo.toml -k package.name`
+Voorbeeld 2: `get cfg.yaml -k .`
+"""
+key = "Zoek de waarde op met behulp van de sleutel"
+
+key-help = """
+De notatie is als volgt: "a.b.c", gebruik de "." (dot) om subtabellen of array-indexen te verbinden.
+Als er maar één "." is, wordt de hele tabel weergegeven."""
+
+set-opts = "Maak / update / verwijder de structuur van het configuratiebestand"
+set-opts-help = """
+# set
+
+Selecteer eerst met de opgegeven sleutel en wijzig vervolgens met de opgegeven datatype-waarde.
+
+> Wanneer alleen de sleutel wordt verstrekt en geen waarde, worden de respectieve datatypen en waarden weergegeven.
+> Bijvoorbeeld `set Cargo.toml -k package`, toont de tabel voor package en de onderliggende tabellen, en biedt meer gedetailleerde informatie dan `get`.
+
+## Voorbeelden
+
+### Voorbeeld 1：
+```sh
+--ts md set test.toml --key package.edition --str 2021
+```
+
+Omdat `--str` in plaats van `--num` is gespecificeerd, is "2021" een string-type, geen integer-type.
+
+| package | nieuwe waarde |
+|---------|-----------|
+| edition | "2021"    |
+
+
+```toml
+[package]
+edition = "2021"
+```
+
+### Voorbeeld 2：
+```sh
+set ~/.config/Code/User/settings.json --ck remote.SSH.remotePlatform --ck test --map k1 v1 --to /tmp/code.yaml
+```
+
+```yaml
+remote.SSH.remotePlatform:
+  test:
+    k1: v1
+```
+
+### Voorbeeld 3：
+```sh
+set test.yml -k main -a hello -a wonderful -a world --pre --to ron --save
+```
+
+```ron
+"main": [
+  /*[0]: Dit is de eerste index*/ "hello",
+  /*[1]*/ "wonderful",
+  /*[2]*/ "world",
+]
+```
+
+> Opmerking: Deze voorbeelden beginnen met een argument of subopdracht en laten de naam van de hoofdopdracht weg. In werkelijke bewerkingen moet u deze handmatig aanvullen."""
+
+set-kv = "Stel de k-v pair in, `--kv x.y.z value` staat gelijk aan `-k x.y.z -s value`"
+
+set-key = """Selecteer de opgegeven sleutel, gebruik "." als scheidingsteken"""
+
+concat-key = """Voer de sleutel in in segmenten, de resultaten worden automatisch samengevoegd zonder "." als scheidingsteken"""
+concat-key-help = """
+In tegenstelling tot `-k`, split `--ck` geen strings met '.'
+Voor [a.b.c], `-k a.b.c` en `--ck a --ck b --ck c` zijn hetzelfde.
+Voor eenvoudige gevallen zal `-k` handiger zijn.
+
+Als de sleutel '.' bevat, gebruik dan `--ck` in plaats van `-k`.
+Bijvoorbeeld:
+
+```json
+"[typescript]": {
+    "editor.defaultFormatter": "rome.rome"
+}
+```
+
+In deze structuur is "editor.defaultFormatter" een complete string, en is `defaultFormatter` geen sub-sleutel van `editor`.
+
+Wanneer u `-k '[typescript]'.'editor.defaultFormatter'` gebruikt, splitst het de sleutel in:
+
+- "[typescript]"
+- "editor"
+- "defaultFormatter"
+
+Terwijl `--ck '[typescript]' --ck editor.defaultFormatter` de sleutel beschouwt als:
+
+- "[typescript]"
+- "editor.defaultFormatter"
+
+Dit laatste is de juiste structuur."""
+preview = "Bekijk het volledige bestand na de wijzigingen vooraf"
+string = "String (string-type)"
+bool = "Bool (booleaanse type), kan alleen `true` of `false` zijn"
+num = "i64: 64-bit signed integer type, bijv. 1145"
+f64 = "Double-precision floating-point number (IEEE 754-2008 standard), bijv. 3.14159265359"
+
+set-save-to-help = """
+Lijkt erg op de `-t` van de `conv` sub-opdracht, maar het grootste verschil is dat `-t` van `conv` meerdere keren achter elkaar kan worden opgeroepen om naar verschillende formaten / bestanden te converteren.
+De `-t` van de `set` sub-opdracht kan slechts één keer worden aangeroepen en output naar een enkel bestand.
+
+> Opmerking: Na het uitvoeren van de conversie-operatie verwijdert `conv` alle opmerkingen in alle bestandsindelingen.
+> Terwijl de `set` sub-opdracht de **toml** opmerkingen behoudt, alle andere indelingen behouden geen opmerkingen.
+
+- Als `--save` wordt aangeroepen zonder `-t`, wordt het huidige bestand overschreven.
+- Als `-t` is aangeroepen en `--save` ook, wordt het gewijzigde bestand opgeslagen in het bestand waarnaar `-t` verwijst.
+- Tenzij het bronbestand overeenkomt met het bestand waarnaar `-t` verwijst, zal het gedrag van `-t` van de `set` sub-opdracht vergelijkbaar zijn met dat van `-t` van de `conv` sub-opdracht, waarbij beide automatisch niet-schrijfbare bestanden hernoemen.
+  - Stel bijvoorbeeld dat "from" is **test.yml** en "to" is **json**, dan wordt het uitvoerbestand **test.json** in plaats van **json**.
+  - Als u deze functie niet nodig heeft, gebruik dan `-t ./json` of `-t $PWD/json`, in plaats van `-t json`. """
+
+set-save = "Oproepen zonder `--to`, overschrijft het huidige bestand als deze opgeroepen wordt"
+set-save-to = "Opslaan in het opgegeven formaat / bestand, slechts één keer per keer"
+array = "String array"
+array-help = """
+Gebruik `-a` meerdere keren om array-elementen in te stellen.
+Voorbeeld:
+```sh
+set test.toml -k test.array -a hello -a wonderful -a world
+```
+
+> Stel het element van index 0 in tijdens de eerste aanroep, stel het element van index 1 in tijdens de tweede oproep, enzovoort.
+
+```toml
+[test]
+array = ["hello", "wonderful", "world"]
+```"""
+
+num-arr = "Array van i64's"
+num-arr-help = """
+Voorbeeld:
+```sh
+set test.json -k hello --na -1 --na -45 --na 14
+```
+
+```json
+"hello": [
+    -1,
+    -45,
+    14
+]
+```"""
+
+f64-arr = "Array van f64's"
+f64-arr-help = """
+Voorbeeld:
+```sh
+set test.yml -k hello --fa 3.14 --fa 45e-2 --fa NaN --fa Inf
+```
+
+```yaml
+hello:
+- 3.14
+- 0.45
+- .nan
+- .inf
+```
+
+> JSON 1.0 ondersteunt geen NaN en Inf, deze produceert `null` in plaats van `NaN`.
+
+```sh
+set test.yml -k zz --fa NaN --fa Inf --to json --pre
+```
+
+```json
+"zz": [
+    null,
+    null
+]
+```
+"""
+
+bool-arr = "Array van bool's"
+bool-arr-help = """
+Voorbeeld:
+```sh
+set test.ron -k hello --ba true --ba false --ba true
+```
+
+```ron
+"hello": [
+    // [0]: Het eerste element is waar
+    true,
+    /*[1]*/ false,
+    /*[2]*/ true,
+]
+```"""
+
+aot = "Tabel-array (gebruik: `--aot 'k1, v1, k2, v2' --aot 'k1, v1'`)"
+aot-help = """
+Voorbeeld:
+```sh
+set test.toml -k package --aot 'name, glossa, version, 0.0.1-alpha.6' --aot 'name, wasm-bindgen, version, 0.2.84, version, 0.2.84'
+```
+
+```toml
+[[package]]
+name = "glossa"
+version = "0.0.1-alpha.6"
+
+[[package]]
+name = "wasm-bindgen"
+version = "0.2.84"
+```"""
+
+saot = "Tabel-array met één key-value-paar (gebruik: `--saot k1 v1 --saot k2 v2...`)"
+saot-help = """
+Opmerking: Hoewel u met `--saot` slechts één K-V-paar per tabel kunt maken, kunt u eerst de index van de tabelarray opgeven en vervolgens andere opties gebruiken om uit te breiden.
+
+Voorbeeld:
+```sh
+set test.toml -k mount --saot src "/sdcard/Download" --saot src "/data/media/0" --save --pre
+```
+
+```toml
+[[mount]]
+src = "/sdcard/Download"
+
+[[mount]]
+src = "/data/media/0"
+```"""
+
+table = "Standaardtabel voor het opslaan van meerdere K-V-paren"
+table-help = """
+Voorbeeld 1:
+```sh
+set test.toml -k mount.1.test --map name sd --map os android
+```
+
+```toml
+[[mount]]
+src = "/data/media/0"
+
+[mount.test]
+name = "sd"
+os = "android"
+```
+
+Voorbeeld 2:
+```sh
+set test.yml -k container --tb arch riscv64 --tb os debian --tb codename trixie
+```
+
+```yaml
+container:
+  arch: riscv64
+  codename: trixie
+  os: debian
+```"""
+
+inline-table = "Inline-tabel, vergelijkbaar met een compactere standaardtabel"
+inline-table-help = """
+Voorbeeld:
+```sh
+set test.toml -k container --itb arch riscv64 --itb os fedora --itb codename rawhide
+```
+
+```toml
+container = { arch = "riscv64", os = "fedora", codename = "rawhide" }
+```
+
+Opmerking: Behalve in `toml` zullen andere formaten de standaardtabel gebruiken in plaats van de inline-tabel.
+
+```json
+"container": {
+    "arch": "riscv64",
+    "codename": "rawhide",
+    "os": "fedora"
+}
+```"""
+
+datetime = "Type voor datum en tijd"
+datetime-help = """
+Voorbeeld:
+```sh
+set test.toml -k time --datetime '2023-04-16 09:14:44Z'
+```
+
+```toml
+time = 2023-04-16T09:14:44Z
+```
+
+Deze optie is alleen beschikbaar voor `toml`. Als we `-t json` aan het einde van het commando toevoegen, wordt het als volgt weergegeven:
+
+```json
+"time": {
+    "$__toml_private_datetime": "2023-04-16T09:14:44Z"
+}
+```"""
+
+none = "Verwijder de opgegeven sleutel (key)"
+
+none-help = """
+Opmerking: Ron heeft echt het type `Option<T>` dat kan worden `Some(T)` of `None`.
+Hier verwijst `--none` naar het verwijderen van de opgegeven sleutel (key), niet het echte type `Option<T>`.
+
+Stel dat we de volgende tabel-array hebben in `test.yml`:
+
+```yaml
+bin:
+- doc: false
+  name: tomlyre
+  path: src/main.rs
+- doc: true
+  name: test
+  path: src/test.rs
+```
+
+Als we bijvoorbeeld **name: test** willen verwijderen, kunnen we dit doen met het volgende commando:
+```sh
+set test.yml -k bin.1.name --none
+```
+
+Opmerking: Een lege tekenreeks en `None` zijn niet hetzelfde.
+Het gebruik van `set test.yml --kv bin.1.name ""` zal het instellen op een lege tekenreeks, terwijl `--none` de hele sleutel zal verwijderen.
+
+Als we de tweede tabel (index 1) van `bin` willen verwijderen, kunnen we het volgende commando gebruiken:
+```sh
+set test.yml -k bin.1 --none
+```
+
+Of we kunnen `--rm` gebruiken:
+```sh
+set test.yml -k bin.1 --rm
+```"""

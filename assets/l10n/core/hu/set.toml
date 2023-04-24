@@ -1,0 +1,3 @@
+invalid-path = "Érvénytelen fájl elérési útja."
+new-value = "új érték"
+unsave-warn = "A módosított tartalom ** nem fog menteni, mert a `--sv` nem hívták meg."

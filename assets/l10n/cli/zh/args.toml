@@ -1,0 +1,91 @@
+theme = "指定语法高亮的主题名称"
+theme-help = """
+当仅使用 `-t` 参数时，会列出当前主题的列表。
+若未指定主题文件，则使用内置的主题集合。
+假设存在一个主题为 **ayu-dark**, 则您可以使用 `-t ayu-dark` 来使用该主题。
+若主题名称包含空格，则请使用双引号或单引号将其包裹起来。
+
+> 注：有一个特殊主题为 `None`，代表没有语法高亮的纯文本样式。
+
+当未指定 `--theme` 选项时，将会从环境变量 `$TOMLYRE_THEME` 中读取数据。
+此帮助信息的 **语法高亮** 主题也来自于该 **环境变量**。
+
+> 默认的帮助信息是硬编码的，加载速度非常快。  
+> 加载硬编码的文本与加载 `None` 主题的文本的速度是同一个数量级的，而动态加载则会变慢两个数量级及以上。  
+> 设置 `$TOMLYRE_THEME` 环境变量可能会导致它重新加载主题，这将 **严重** 拖慢启动速度。  
+> 除非您打算修改帮助信息的主题，或者是禁用语法高亮，否则请使用 `-t` 参数，而不是修改环境变量。  
+
+使用环境变量的例子：
+```sh
+TOMLYRE_THEME="Monokai Extended" tomlyre --help
+```
+
+使用命令行参数的例子:
+```sh
+tomlyre -t "Monokai Extended" get test.toml
+```
+
+对于手动执行 "conv/get/set" 等相关操作所输出的内容，`-t` 指定的主题的优先级 > 环境变量。
+若未调用 `-t`，则读取环境变量；若环境变量为空，则使用 **Monokai Extended**。"""
+
+theme-file = "自定义主题集合文件，您还需要搭配 `--theme` 指定主题名称"
+theme-file-help = """
+支持的文件格式为 rust crate `syntect` 所 dump 出来的二进制数据。  
+本质上，这些主题是旧版的 sublime 的主题。
+若未指定 `--tf`， 则读取环境变量 `$TOMLYRE_THEME_FILE` 的值。"""
+
+theme-uncompressed-file = "类似于`theme-file`, 但要求未压缩的 dump 数据(文件)"
+
+theme-uncompressed-file-help = """
+> 未压缩的版本要比压缩版本的优先级更高。  
+
+若未指定 `--tuf`， 则读取环境变量 `$TOMLYRE_THEME_UNCOMPRESSED_FILE` 的值。"""
+
+
+disable-theme-background = "禁用主题背景（默认为启用状态，若调用`--dis-theme-bg` 则禁用）"
+
+disable-theme-background-help = """
+若未指定 `--dis-theme-bg`， 则读取环境变量 `$TOMLYRE_THEME_BG` 的值。
+
+若该值为 false 则禁用
+
+```sh
+env TOMLYRE_THEME_BG=false TOMLYRE_THEME="ayu-dark" tomlyre --help
+```"""
+
+table-style = "指定表格的样式"
+table-style-help = """
+当仅使用 `--ts` 参数时，会列出内置的样式集合。
+除了 markdown 可以缩写为 md 外, 其他的样式都要用完整的名称。
+用法示例1：`--ts md` 
+用法示例2：`--table-style ascii`
+
+注：目前不支持从文件中读取 **表格样式** 的集合，如果您需要此功能或其他额外的功能，欢迎提交 issue 进行反馈。"""
+
+from-format = "手动指定来源的文件格式（默认会自动判断）"
+from-format-help = """
+当从 stdin 读取数据时，例如： `cat a | tomlyre conv -`，它首先会尝试自动判断文件格式。
+然而，自动判断有可能会失败，这时候就需要手动指定格式了。
+示例：`cat test.bson | tomlyre --src-fmt bson get -`"""
+
+shell-completion = "为 shell 生成补全脚本"
+shell-completion-help = """
+您需要手动指定 shell 的名称来生成补全脚本。
+例如，对于 Windows 上的 powershell, 您可以使用：`--sh-comp pwsh`
+
+> Q: 什么是 shell 的补全功能？
+
+> A: 当我们在命令行上输入命令时，如果按下Tab键，补全脚本就会被触发，开始搜索可能的补全选项，并将这些选项呈现出来以供选择。此功能可以极大地提高命令行输入的效率和准确性。
+
+不同 shell 的补全脚本所存放的位置是不一样的。对于 zsh，您需要将其存放于 `$fpath` 数组所包含的路径。
+您可以使用 `print -l $fpath` 来获取该数组的内容。
+假设里面包含了 `/usr/local/share/zsh/site-functions` 目录， 那么您可以使用以下命令来将补全脚本写入到该目录下的 `_tomlyre` 文件。
+
+```sh
+tomlyre --sh-comp zsh | doas tee /usr/local/share/zsh/site-functions/_tomlyre
+```
+
+为了避免使用 root 权限，您可以将其放在用户子目录下。比如说，您可以使用以下命令向该数组头部插入一个元素，再使用相关的目录。
+```zsh
+fpath=(~/.local/share/zsh/completions $fpath)
+```"""
