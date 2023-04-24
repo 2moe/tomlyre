@@ -145,7 +145,7 @@ jobs:
               x86_64* | i[3-6]86* | aarch64*) ;;
               *) export RUSTFLAGS="$RUSTFLAGS -C lto=false" ;;
           esac
-          ./cross r --profile ${{env.PROF}} -v --target ${{matrix.target}}
+          ./cross r --profile ${{env.PROF}} -v --target ${{matrix.target}} -- -h
       
       - name: cross build bsd & android bin
         if: contains(matrix.target, 'bsd') || contains(matrix.target, 'illumos') || contains(matrix.target, 'android')
