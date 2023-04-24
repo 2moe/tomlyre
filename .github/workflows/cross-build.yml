@@ -25,7 +25,7 @@ jobs:
 
       - name: get version
         id: get_ver
-        run: echo "ver=$(tomlyre get cli/Cargo.toml package.version)" >> $GITHUB_OUTPUT
+        run: echo "ver=$(tomlyre get cli/Cargo.toml -k package.version)" >> $GITHUB_OUTPUT
 
       - name: get name
         id: get_repo_name
@@ -95,6 +95,7 @@ jobs:
       DEB_DIR: target/${{matrix.target}}/debian
       BUILD_DIR: target/${{matrix.target}}/fat
       BIN: target/${{matrix.target}}/fat/${{ needs.get_repo_info.outputs.name }}
+      DK_DIR: assets/ci
       DK_FILE: assets/ci/tomlyre.dockerfile
       IS_X64: ${{ startsWith(matrix.target, 'x86_64') }}
       BLAKE3_URL: https://github.com/BLAKE3-team/BLAKE3/releases/download/1.3.3/
@@ -144,7 +145,7 @@ jobs:
               x86_64* | i[3-6]86* | aarch64*) ;;
               *) export RUSTFLAGS="$RUSTFLAGS -C lto=false" ;;
           esac
-          ./cross r --profile fat -v --target ${{matrix.target}}
+          ./cross r --profile ${{env.PROF}} -v --target ${{matrix.target}}
       
       - name: cross build bsd & android bin
         if: contains(matrix.target, 'bsd') || contains(matrix.target, 'illumos') || contains(matrix.target, 'android')
@@ -153,22 +154,23 @@ jobs:
               x86_64* | i[3-6]86* | aarch64*) ;;
               *) export RUSTFLAGS="-C lto=false" ;;
           esac
-          ./cross b --profile fat -v --target ${{matrix.target}}
+          ./cross b --profile ${{env.PROF}} -v --target ${{matrix.target}}
 
       - name: normal build
         if: (!startsWith(matrix.os, 'ubuntu')) || startsWith(matrix.target, 'wasm')
-        run: cargo b --profile fat -v --target ${{matrix.target}}
+        run: cargo b --profile ${{env.PROF}} -v --target ${{matrix.target}}
 
       - name: cp bin file
         id: cp_bin_file
         if: contains(matrix.target, 'linux')
-        run: cp ${{env.BIN}} assets/ci
+        run: cp ${{env.BIN}} ${{env.DK_DIR}}
 
       - name: push to ghcr
-        if: matrix.target == 'x86_64-unknown-linux-musl'
+        # if: matrix.target == 'x86_64-unknown-linux-musl'
+        if: contains(matrix.target, 'linux')
         uses: docker/build-push-action@v4
         with:
-          context: assets/ci
+          context: ${{env.DK_DIR}}
           file: ${{ env.DK_FILE }}
           push: true
           build-args: |
