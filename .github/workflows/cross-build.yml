@@ -34,6 +34,7 @@ jobs:
     needs: get_repo_info
     strategy:
       # max-parallel: 2
+      # fail-fast: false
       matrix:
         include:
           - target: wasm32-wasi
@@ -107,6 +108,7 @@ jobs:
           fetch-depth: 1
 
       - name: cache rust deps
+        if: (!startsWith(matrix.os, 'ubuntu')) || startsWith(matrix.target, 'wasm')
         uses: actions/cache@v3
         with:
           path: |
