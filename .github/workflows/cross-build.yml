@@ -37,10 +37,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - target: wasm32-wasi
+          # - target: wasm32-wasi
+          #   os: ubuntu-latest
+          - target: x86_64-unknown-linux-musl
             os: ubuntu-latest
-          # - target: x86_64-unknown-linux-musl
-            # os: ubuntu-latest
           # - target: aarch64-unknown-linux-musl
           #   os: ubuntu-latest
           # - target: riscv64gc-unknown-linux-gnu
@@ -62,27 +62,27 @@ jobs:
 
           # - target: x86_64-linux-android
           #   os: ubuntu-latest
-          - target: aarch64-linux-android
-            os: ubuntu-latest
+          # - target: aarch64-linux-android
+          #   os: ubuntu-latest
           # - target: armv7-linux-androideabi
           #   os: ubuntu-latest
           # - target: i686-linux-android
           #   os: ubuntu-latest
 
-          # - target: x86_64-unknown-netbsd
-          #   os: ubuntu-latest
+          - target: x86_64-unknown-netbsd
+            os: ubuntu-latest
           # - target: x86_64-unknown-freebsd
           #   os: ubuntu-latest
           # - target: x86_64-unknown-illumos
           #   os: ubuntu-latest
-          # - target: x86_64-apple-darwin
-          #   os: macos-latest
-          # - target: aarch64-apple-darwin
-          #   os: macos-latest
-          - target: x86_64-pc-windows-msvc
-            os: windows-latest
-          # - target: aarch64-pc-windows-msvc
+          - target: x86_64-apple-darwin
+            os: macos-latest
+          - target: aarch64-apple-darwin
+            os: macos-latest
+          # - target: x86_64-pc-windows-msvc
           #   os: windows-latest
+          - target: aarch64-pc-windows-msvc
+            os: windows-latest
           # 
           # release.ron
           # x86_64-unknown-linux.tar.xz
@@ -94,6 +94,7 @@ jobs:
       PKG_NAME: ${{ needs.get_repo_info.outputs.name }}
       DIR: target/${{matrix.target}}
       DEB_DIR: target/${{matrix.target}}/debian
+      DEB_WORKDIR: cli
       BUILD_DIR: target/${{matrix.target}}/fat
       BIN: target/${{matrix.target}}/fat/${{ needs.get_repo_info.outputs.name }}
       DK_DIR: assets/ci
@@ -115,6 +116,15 @@ jobs:
             ~/.cargo
             target/
           key: ${{ runner.os }}-rust-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: cache rust deps(cross build)
+        if: startsWith(matrix.os, 'ubuntu') && !startsWith(matrix.target, 'wasm')
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cargo
+            target/
+          key: ${{ matrix.target }}-rust-${{ hashFiles('**/Cargo.lock') }}
 
       - name: install rust
         uses: actions-rs/toolchain@v1
@@ -185,9 +195,10 @@ jobs:
 
       - name: pack deb
         if: contains(matrix.target, 'linux') && !contains(matrix.target, 'android')
+        working-directory: ${{env.DEB_WORKDIR}}
         run: |
           rm -rfv ${{env.DEB_DIR}} 2>/dev/null
-          ./cargo-deb --no-build --no-strip --profile fat -v --target ${{matrix.target}}
+          ./cargo-deb --no-build --no-strip --profile ${{env.PROF}} -v --target ${{matrix.target}}
           deb_file=$(find ${{env.DEB_DIR}} -maxdepth 1 -type f -name '*.deb' -print -quit)
           echo "archive=$deb_file" >> $GITHUB_ENV
 
