@@ -81,10 +81,10 @@ jobs:
           #   os: macos-latest
           # - target: aarch64-apple-darwin
           #   os: macos-latest
-          # - target: x86_64-pc-windows-msvc
-          #   os: windows-latest
-          # - target: aarch64-pc-windows-msvc
-          #   os: windows-latest
+          - target: x86_64-pc-windows-msvc
+            os: windows-latest
+          - target: aarch64-pc-windows-msvc
+            os: windows-latest
           - target: i686-pc-windows-msvc
             os: windows-latest
 
@@ -101,17 +101,8 @@ jobs:
       DK_DIR: assets/ci
       DK_FILE: assets/ci/tomlyre.dockerfile
       IS_X64: ${{ startsWith(matrix.target, 'x86_64') }}
-      IS_X86: ${{ contains(fromJSON('["i686-", "i586-"]'), matrix.target) }}
-      IS_WIN_X86: ${{ contains(fromJSON('["i686-pc-windows-msvc", "i586-pc-windows-msvc"]'), matrix.target) }}
-      # ${{ startsWith(matrix.target, 'i686') }} || ${{ startsWith(matrix.target, 'i586') }}
       BLAKE3_URL: https://github.com/BLAKE3-team/BLAKE3/releases/download/1.3.3/
       HASH_CFG_FILE: ${{ format('_{0}.yaml', matrix.target) }}
-
-    steps:
-      - name: test windows x86
-        if: contains(matrix.target, 'windows')
-        run: |
-          echo ${{env.IS_WIN_X86}} ${{env.IS_X86}}
 
       - uses: actions/checkout@v3
         with:
@@ -248,16 +239,21 @@ jobs:
           archive: "win_x64.exe.zip"
           arm64_archive: "win_arm64.exe.zip"
           x86_archive: "win_x86.exe.zip"
+          IS_X86: ${{ contains(fromJSON('["i686-pc-windows-msvc", "i586-pc-windows-msvc"]'), matrix.target) }}
         if: contains(matrix.target, 'windows')
         run: |
           $is_x64 = [bool]::Parse("${{env.IS_X64}}")
-          Write-Output $is_x64
-
+          $is_x86 = [bool]::Parse("${{env.IS_X86}}")
+          Write-Output $is_x64 $is_x86
           Copy-Item -Path ${{env.file}} -Destination . -Force
 
-          $zip_file = if ($is_x64) { "${{env.archive}}" } else { "${{env.arm64_archive}}" }
-          7z a -tzip -mm=Deflate64 -mmt -mx9 $zip_file ${{env.file_name}}
+          $zip_file = switch ($true) {
+            {$is_x64} {"${{env.archive}}"; break}
+            {$is_x86} {"${{env.x86_archive}}"; break}
+            default {"${{env.arm64_archive}}"; break}
+          }
 
+          7z a -tzip -mm=Deflate64 -mmt -mx9 $zip_file ${{env.file_name}}
           Write-Output archive="$zip_file" >> $env:GITHUB_ENV
 
 
