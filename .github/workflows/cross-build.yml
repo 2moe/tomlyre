@@ -94,7 +94,6 @@ jobs:
       DIR: target/${{matrix.target}}
       DEB_DIR: target/${{matrix.target}}/debian
       DEB_WORKDIR: cli
-      WORK_SPACE: ${{env.GITHUB_WORKSPACE}}
       BUILD_DIR: target/${{matrix.target}}/fat
       BIN: target/${{matrix.target}}/fat/${{ needs.get_repo_info.outputs.name }}
       DK_DIR: assets/ci
@@ -202,7 +201,7 @@ jobs:
 
           archive=$(awk -v file=$deb_file 'BEGIN { FS = "/"; split(file, arr, "/"); name = arr[length(arr)]; gsub("~", ".", name); print name }')
 
-          cp -v "$deb_file" "${{env.WORK_SPACE}}/$archive"
+          cp -v "$deb_file" "../$archive"
           echo "archive=$archive" >> $GITHUB_ENV
 
       - name: pack bsd & android
