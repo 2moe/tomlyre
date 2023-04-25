@@ -376,6 +376,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         env:
           url: ${{ format('{0}{1}.svg', env.svg_url_prefix, env.VER) }}
+          svg: ${{format('{0}.svg', env.VER)}}
         with:
           tag_name: ${{ env.VER }}
-          body: '![${{format('{0}.svg', env.VER)}}](${{env.url}})'
+          body: '![${{env.svg}}](${{env.url}})'
