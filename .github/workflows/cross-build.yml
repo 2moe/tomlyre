@@ -11,7 +11,7 @@ jobs:
   get_repo_info:
     runs-on: ubuntu-latest
     outputs:
-      name: ${{ steps.get_repo_name.outputs.name }}
+      name: ${{ steps.get_bin_name.outputs.name }}
       ver: ${{ steps.get_ver.outputs.ver }}
     steps:
       - uses: actions/checkout@v3
@@ -23,11 +23,11 @@ jobs:
 
       - name: get version
         id: get_ver
-        run: echo "ver=$(tomlyre get cli/Cargo.toml -k package.version)" >> $GITHUB_OUTPUT
+        run: echo "ver=$(./tomlyre get cli/Cargo.toml -k package.version)" >> $GITHUB_OUTPUT
 
       - name: get name
-        id: get_repo_name
-        run: echo "name=${GITHUB_REPOSITORY##*/}" >> $GITHUB_OUTPUT
+        id: get_bin_name
+        run: echo "name=$(./tomlyre get cli/Cargo.toml -k bin.0.name)" >> $GITHUB_OUTPUT
   cross:
     needs: get_repo_info
     strategy:
