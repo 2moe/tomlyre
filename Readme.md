@@ -14,6 +14,119 @@ A tool for handling configuration files is available, with which you can explore
 
 By default, the bson & xml features are not enabled.
 
+## Installation
+
+![latest-map](https://raw.githubusercontent.com/2moe/tomlyre/assets/assets/img/svg/latest.svg)
+
+First, click to open the SVG image, and then press the middle mouse button on the blue-highlighted hyperlink (e.g. "arm64.deb").
+If you don't have a mouse, you can long-press on the touch screen and manually select "Open in new tab" to download it.
+
+The above SVG will update automatically. If you cannot obtain the latest SVG due to browser cache, please go to Releases to obtain a fixed version of the SVG.
+
+### Ubuntu
+
+For **Ubuntu**, we can directly use `apt install [path/to/deb-file]` to install.
+
+> If you do not have root privileges, you need to use elevation commands like `sudo` or `doas`.
+
+Assuming the path to the deb file is `/app.deb`, the installation command would be `apt install /app.deb`.
+
+<table>
+  <tr>
+    <td><img src="assets/img/svg/logo/ubuntu.svg" alt="ubuntu"></td>
+    <td><img src="assets/img/en/apt_install_deb-file.png" alt="apt install deb"></td>
+  </tr>
+</table>
+
+### alpine
+
+Let's try to see if Alpine can install .deb!
+
+<table>
+  <tr>
+    <td><img src="assets/img/svg/logo/alpine.svg" alt="alpine"></td>
+    <td><img src="assets/img/en/alpine-riscv64.png" alt="alpine rv64 container"></td>
+  </tr>
+</table>
+
+It is `musl-linux-riscv64`, not `riscv64`. It looks like it cannot be installed.
+
+Let's force the installation and see.
+
+<table>
+  <tr>
+    <td><img src="assets/img/svg/logo/alpine.svg" alt="alpine"></td>
+    <td><img src="assets/img/en/alpine-dpkg-i.png" alt="alpine & dpkg"></td>
+  </tr>
+</table>
+
+> Q: Wow! That was amazing! Why did it work?
+
+A: Because it was statically compiled.
+
+> Sometimes, static compilation of glibc may cause problems. It is recommended to use static compilation of musl instead.
+
+Considering that package managers in different distributions may conflict with each other, it is recommended to use `apk` on Alpine instead of Debian's `dpkg`.
+
+<table>
+  <tr>
+    <td><img src="assets/img/svg/logo/alpine.svg" alt="alpine"></td>
+    <td><img src="assets/img/en/alpine_dpkg-X.png" alt="alpine & dpkg">You can extract it and use it separately.</td>
+  </tr>
+</table>
+
+### wasm
+
+<table>
+  <tr>
+    <td><img src="assets/img/svg/logo/wasm.svg" alt="wasm"></td>
+    <td><img src="assets/img/en/wasmtime-run-tomlyre.png" alt="alpine & dpkg"></td>
+  </tr>
+</table>
+
+After downloading the `wasm.zst` file, it needs to be extracted.
+
+Then, you need to obtain a runtime and let the runtime load this wasm file.
+
+For example, you can use `wasmer`:
+
+```sh
+wasmer --dir . --env LANG=en ./tomlyre.wasm
+```
+
+Or you can use `wasmtime`:
+
+```sh
+wasmtime --dir . --env LANG=en ./tomlyre.wasm
+```
+
+Or any other runtimes you prefer.
+
+### CI
+
+If you need to use it in a Linux x64 CI environment, you can use the following command:
+
+```sh
+docker run -it --rm \
+  -u $(id -u) \
+  -v $PWD:/local \
+  -w /data \
+  ghcr.io/2moe/tomlyre:x86_64-unknown-linux-musl \
+  cp tomlyre /local
+```
+
+This is equivalent to copying `/data/tomlyre` inside the container to the current directory.
+
+### Others
+
+For files with the `.tar.xz` or `.tar.bz2` suffix, we can use `tar -xvf [compressed-file]` to extract them.
+
+```sh
+tar -xvf x64.tar.xz
+```
+
+After extraction, call `./tomlyre` in the terminal to run.
+
 ## Features
 
 The core features of this tool are only three:

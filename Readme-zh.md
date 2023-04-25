@@ -6,6 +6,119 @@
 
 > 默认情况下，没有启用 bson 和 xml 功能。
 
+## 安装
+
+![latest-map](https://raw.githubusercontent.com/2moe/tomlyre/assets/assets/img/svg/latest.svg)
+
+先单击打开 svg 图片，然后对蓝色高亮的超链接处（例如 “arm64.deb”）按下鼠标中键。  
+如果没有鼠标的话，可以长按触摸屏，手动选择“在新标签页中打开”，这样子就可以下载了。
+
+上面那张 svg 会自动更新，如果因为浏览器缓存而导致无法获取最新的 svg，则请前往 releases 获取固定版本的 svg。
+
+### ubuntu
+
+对于 **ubuntu**，我们可以直接用 `apt install [deb文件的路径]` 来安装。
+
+> 如果没有 root 权限，则需要用 `sudo` 或 `doas` 之类的提权命令。
+
+假设 deb 文件的路径为 `/app.deb`, 那么安装命令就是 `apt install /app.deb`
+
+<table>
+  <tr>
+    <td><img src="assets/img/svg/logo/ubuntu.svg" alt="ubuntu"></td>
+    <td><img src="assets/img/en/apt_install_deb-file.png" alt="apt install deb"></td>
+  </tr>
+</table>
+
+### alpine
+
+让我们来试试 alpine 能不能安装 deb 吧！
+
+<table>
+  <tr>
+    <td><img src="assets/img/svg/logo/alpine.svg" alt="alpine"></td>
+    <td><img src="assets/img/en/alpine-riscv64.png" alt="alpine rv64 container"></td>
+  </tr>
+</table>
+
+它是 `musl-linux-riscv64`，而不是 `riscv64`, 看起来好像不能安装的样子咦？
+
+让我们来强制安装看看。
+
+<table>
+  <tr>
+    <td><img src="assets/img/svg/logo/alpine.svg" alt="alpine"></td>
+    <td><img src="assets/img/en/alpine-dpkg-i.png" alt="alpine & dpkg"></td>
+  </tr>
+</table>
+
+> Q: 喔哦! 真是太不可思议了！为什么它可以跑呢!
+
+A: 因为它是静态编译的。
+
+> 有时候 glibc 的静态编译会出问题，建议用 musl 的静态编译。
+
+考虑到不同发行版的包管理器可能会冲突，因此建议在 alpine 上使用 alpine 自家的 `apk`， 而不是 debian 的 `dpkg`。
+
+<table>
+  <tr>
+    <td><img src="assets/img/svg/logo/alpine.svg" alt="alpine"></td>
+    <td><img src="assets/img/en/alpine_dpkg-X.png" alt="alpine & dpkg">您可以把它拆出来用</td>
+  </tr>
+</table>
+
+### wasm
+
+<table>
+  <tr>
+    <td><img src="assets/img/svg/logo/wasm.svg" alt="wasm"></td>
+    <td><img src="assets/img/en/wasmtime-run-tomlyre.png" alt="alpine & dpkg"></td>
+  </tr>
+</table>
+
+下载完 `wasm.zst` 文件后，需要将其解压出来。
+
+接着需要获取 runtime，然后让 runtime 来加载这个 wasm 文件。
+
+比方说，您可以用 `wasmer`:
+
+```sh
+wasmer --dir . --env LANG=zh ./tomlyre.wasm
+```
+
+也可以用 `wasmtime`:
+
+```sh
+wasmtime --dir . --env LANG=zh ./tomlyre.wasm
+```
+
+或者是其他您喜欢的 runtimes。
+
+### CI
+
+您如果需要在 Linux x64 的 CI 环境中使用它，则可使用以下命令
+
+```sh
+docker run -it --rm \
+  -u $(id -u) \
+  -v $PWD:/local \
+  -w /data \
+  ghcr.io/2moe/tomlyre:x86_64-unknown-linux-musl \
+  cp tomlyre /local
+```
+
+这相当于把容器内部的 `/data/tomlyre` 复制到当前目录
+
+### 其他
+
+对于以 `tar.xz`/`tar.bz2` 为后缀的文件，我们可以使用 `tar -xvf [压缩包]` 来解压。
+
+```sh
+tar -xvf x64.tar.xz
+```
+
+解压完成后，在终端里调用 `./tomlyre` 即可。
+
 ## 功能
 
 核心功能只有三个：
