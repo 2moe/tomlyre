@@ -689,7 +689,7 @@
             <circle stroke-width="1.5" cx="78" cy="20" r="6" stroke="rgb(31, 119, 180)" fill="rgb(255, 255, 255)">
             </circle>
             <foreignObject class="markmap-foreign" x="8" y="0" width="62" height="20" style="opacity: 1;">
-                <div xmlns="http://www.w3.org/1999/xhtml">releases</div>
+                <div xmlns="http://www.w3.org/1999/xhtml">tomlyre</div>
             </foreignObject>
         </g>
     </g>
