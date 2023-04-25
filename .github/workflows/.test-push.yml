@@ -16,7 +16,7 @@ jobs:
     env:
       # VER: ${{ needs.get_repo_info.outputs.ver }}
       # archive: ${{ needs.cross.outputs.archive }}
-      VER: 0.0.1-beta.1
+      VER: v0.0.1-beta.1
       archive: tomlyre_0.0.1.beta.1-1_arm64.deb
       svg_dir: assets/img/svg
       svg_url_prefix: https://raw.githubusercontent.com/${{github.repository}}/assets/assets/img/svg/
