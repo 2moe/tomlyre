@@ -14,14 +14,12 @@ jobs:
       name: ${{ steps.get_repo_name.outputs.name }}
       ver: ${{ steps.get_ver.outputs.ver }}
     steps:
-      - name: get tomlyre
-        run: |
-          docker run -i --rm -v $PWD:/local ghcr.io/2moe/tomlyre:deb cp /app.deb /local
-          sudo apt-get install -y ./app.deb
-
       - uses: actions/checkout@v3
         with:
           fetch-depth: 1
+
+      - name: get tomlyre
+        run: docker run -i --rm -v $PWD:/local -w /data ghcr.io/2moe/tomlyre:x86_64-unknown-linux-musl cp tomlyre /local
 
       - name: get version
         id: get_ver
@@ -45,8 +43,8 @@ jobs:
           #   os: ubuntu-latest
           # - target: riscv64gc-unknown-linux-gnu
           #   os: ubuntu-latest
-          # - target: i586-unknown-linux-musl
-          #   os: ubuntu-latest
+          - target: i586-unknown-linux-musl
+            os: ubuntu-latest
           # - target: armv7-unknown-linux-musleabihf
           #   os: ubuntu-latest
           # - target: armv5te-unknown-linux-musleabi
@@ -81,12 +79,12 @@ jobs:
           #   os: macos-latest
           # - target: aarch64-apple-darwin
           #   os: macos-latest
-          - target: x86_64-pc-windows-msvc
-            os: windows-latest
-          - target: aarch64-pc-windows-msvc
-            os: windows-latest
-          - target: i686-pc-windows-msvc
-            os: windows-latest
+          # - target: x86_64-pc-windows-msvc
+          #   os: windows-latest
+          # - target: aarch64-pc-windows-msvc
+          #   os: windows-latest
+          # - target: i686-pc-windows-msvc
+          #   os: windows-latest
 
     runs-on: ${{matrix.os}}
     env:
@@ -199,7 +197,7 @@ jobs:
         working-directory: ${{env.DEB_WORKDIR}}
         # deb_file=$(find ${{env.DEB_DIR}} -maxdepth 1 -type f -name '*.deb' -print -quit)
         run: |
-          deb_file=$(./cargo-deb --no-build --no-strip --profile ${{env.PROF}} --target ${{matrix.target}} | tail -n1)
+          deb_file=$(./cargo-deb --no-build --no-strip --profile ${{env.PROF}} --target ${{matrix.target}} | tail -n1 | sed 's@~@.@g')
           echo "archive=$deb_file" >> $GITHUB_ENV
 
       - name: pack bsd & android
@@ -310,3 +308,4 @@ jobs:
             ${{ env.archive }}
             ${{ env.HASH_CFG_FILE }}
           tag_name: ${{ env.VER }}
+          fail_on_unmatched_files: true
