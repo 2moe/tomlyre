@@ -200,7 +200,7 @@
             <line x1="-1" x2="194" y1="40" y2="40" stroke="rgb(44, 160, 44)" stroke-width="1.5"></line>
             <foreignObject class="markmap-foreign" x="8" y="0" width="176" height="40" style="opacity: 1;">
                 <div xmlns="http://www.w3.org/1999/xhtml"><a
-                        href="https://github.com/2moe/tomlyre/releases/download/{{tag-name}}/i686-linux-android.tar.xz">i686-linux-android.tar.xz</a> 
+                        href="https://github.com/{{github-repo}}/releases/download/{{tag-name}}/i686-linux-android.tar.xz">i686-linux-android.tar.xz</a> 
                 </div>
             </foreignObject>
         </g>
@@ -264,7 +264,7 @@
             <line x1="-1" x2="194" y1="40" y2="40" stroke="rgb(148, 103, 189)" stroke-width="1.5"></line>
             <foreignObject class="markmap-foreign" x="8" y="0" width="176" height="40" style="opacity: 1;">
                 <div xmlns="http://www.w3.org/1999/xhtml"><a
-                        href="https://github.com/2moe/tomlyre/releases/download/{{tag-name}}/arm-linux-androideabi.tar.xz">arm-linux-androideabi.tar.xz</a> 
+                        href="https://github.com/{{github-repo}}/releases/download/{{tag-name}}/arm-linux-androideabi.tar.xz">arm-linux-androideabi.tar.xz</a> 
                 </div>
             </foreignObject>
         </g>
@@ -272,7 +272,7 @@
             <line x1="-1" x2="194" y1="40" y2="40" stroke="rgb(255, 127, 14)" stroke-width="1.5"></line>
             <foreignObject class="markmap-foreign" x="8" y="0" width="176" height="40" style="opacity: 1;">
                 <div xmlns="http://www.w3.org/1999/xhtml"><a
-                        href="https://github.com/2moe/tomlyre/releases/download/{{tag-name}}/thumbv7neon-linux-androideabi.tar.xz">thumbv7neon-linux-androideabi.tar.xz</a> 
+                        href="https://github.com/{{github-repo}}/releases/download/{{tag-name}}/thumbv7neon-linux-androideabi.tar.xz">thumbv7neon-linux-androideabi.tar.xz</a> 
                 </div>
             </foreignObject>
         </g>
@@ -296,7 +296,7 @@
             <line x1="-1" x2="194" y1="40" y2="40" stroke="rgb(227, 119, 194)" stroke-width="1.5"></line>
             <foreignObject class="markmap-foreign" x="8" y="0" width="176" height="40" style="opacity: 1;">
                 <div xmlns="http://www.w3.org/1999/xhtml"><a
-                        href="https://github.com/2moe/tomlyre/releases/download/{{tag-name}}/aarch64-linux-android.tar.xz">aarch64-linux-android.tar.xz</a> 
+                        href="https://github.com/{{github-repo}}/releases/download/{{tag-name}}/aarch64-linux-android.tar.xz">aarch64-linux-android.tar.xz</a> 
                 </div>
             </foreignObject>
         </g>
@@ -352,7 +352,7 @@
             <line x1="-1" x2="194" y1="40" y2="40" stroke="rgb(188, 189, 34)" stroke-width="1.5"></line>
             <foreignObject class="markmap-foreign" x="8" y="0" width="176" height="40" style="opacity: 1;">
                 <div xmlns="http://www.w3.org/1999/xhtml"><a
-                        href="https://github.com/2moe/tomlyre/releases/download/{{tag-name}}/x86_64-linux-android.tar.xz">x86_64-linux-android.tar.xz</a> 
+                        href="https://github.com/{{github-repo}}/releases/download/{{tag-name}}/x86_64-linux-android.tar.xz">x86_64-linux-android.tar.xz</a> 
                 </div>
             </foreignObject>
         </g>
