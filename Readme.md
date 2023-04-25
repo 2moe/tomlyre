@@ -64,7 +64,7 @@ Let's force the installation and see.
 
 A: Because it was statically compiled.
 
-> Sometimes, static compilation of glibc may cause problems. It is recommended to use static compilation of musl instead.
+> Sometimes, static compilation of glibc may cause problems. It is recommended to use musl instead.
 
 Considering that package managers in different distributions may conflict with each other, it is recommended to use `apk` on Alpine instead of Debian's `dpkg`.
 
