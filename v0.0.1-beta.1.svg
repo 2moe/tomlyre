@@ -216,7 +216,7 @@
             <line x1="-1" x2="89" y1="20" y2="20" stroke="rgb(127, 127, 127)" stroke-width="1.5"></line>
             <foreignObject class="markmap-foreign" x="8" y="0" width="71" height="20" style="opacity: 1;">
                 <div xmlns="http://www.w3.org/1999/xhtml"><a
-                        href="https://github.com/2moe/tomlyre/releases/download/v0.0.1-beta.1/aarch64-linux-android.tar.xz__i386.deb">i386.deb</a> 
+                        href="https://github.com/2moe/tomlyre/releases/download/v0.0.1-beta.1/tomlyre_0.0.1.beta.1-1_i386.deb">i386.deb</a> 
                 </div>
             </foreignObject>
         </g>
@@ -224,7 +224,7 @@
             <line x1="-1" x2="101" y1="20" y2="20" stroke="rgb(140, 86, 75)" stroke-width="1.5"></line>
             <foreignObject class="markmap-foreign" x="8" y="0" width="83" height="20" style="opacity: 1;">
                 <div xmlns="http://www.w3.org/1999/xhtml"><a
-                        href="https://github.com/2moe/tomlyre/releases/download/v0.0.1-beta.1/aarch64-linux-android.tar.xz__s390x.deb">s390x.deb</a> 
+                        href="https://github.com/2moe/tomlyre/releases/download/v0.0.1-beta.1/tomlyre_0.0.1.beta.1-1_s390x.deb">s390x.deb</a> 
                 </div>
             </foreignObject>
         </g>
@@ -232,7 +232,7 @@
             <line x1="-1" x2="115" y1="20" y2="20" stroke="rgb(214, 39, 40)" stroke-width="1.5"></line>
             <foreignObject class="markmap-foreign" x="8" y="0" width="97" height="20" style="opacity: 1;">
                 <div xmlns="http://www.w3.org/1999/xhtml"><a
-                        href="https://github.com/2moe/tomlyre/releases/download/v0.0.1-beta.1/aarch64-linux-android.tar.xz__ppc64el.deb">ppc64el.deb</a> 
+                        href="https://github.com/2moe/tomlyre/releases/download/v0.0.1-beta.1/tomlyre_0.0.1.beta.1-1_ppc64el.deb">ppc64el.deb</a> 
                 </div>
             </foreignObject>
         </g>
@@ -240,7 +240,7 @@
             <line x1="-1" x2="123" y1="20" y2="20" stroke="rgb(31, 119, 180)" stroke-width="1.5"></line>
             <foreignObject class="markmap-foreign" x="8" y="0" width="105" height="20" style="opacity: 1;">
                 <div xmlns="http://www.w3.org/1999/xhtml"><a
-                        href="https://github.com/2moe/tomlyre/releases/download/v0.0.1-beta.1/aarch64-linux-android.tar.xz__mips64el.deb">mips64el.deb</a> 
+                        href="https://github.com/2moe/tomlyre/releases/download/v0.0.1-beta.1/tomlyre_0.0.1.beta.1-1_mips64el.deb">mips64el.deb</a> 
                 </div>
             </foreignObject>
         </g>
@@ -248,7 +248,7 @@
             <line x1="-1" x2="105" y1="20" y2="20" stroke="rgb(188, 189, 34)" stroke-width="1.5"></line>
             <foreignObject class="markmap-foreign" x="8" y="0" width="87" height="20" style="opacity: 1;">
                 <div xmlns="http://www.w3.org/1999/xhtml"><a
-                        href="https://github.com/2moe/tomlyre/releases/download/v0.0.1-beta.1/aarch64-linux-android.tar.xz__mipsel.deb">mipsel.deb</a> 
+                        href="https://github.com/2moe/tomlyre/releases/download/v0.0.1-beta.1/tomlyre_0.0.1.beta.1-1_mipsel.deb">mipsel.deb</a> 
                 </div>
             </foreignObject>
         </g>
@@ -256,7 +256,7 @@
             <line x1="-1" x2="99" y1="20" y2="20" stroke="rgb(227, 119, 194)" stroke-width="1.5"></line>
             <foreignObject class="markmap-foreign" x="8" y="0" width="81" height="20" style="opacity: 1;">
                 <div xmlns="http://www.w3.org/1999/xhtml"><a
-                        href="https://github.com/2moe/tomlyre/releases/download/v0.0.1-beta.1/aarch64-linux-android.tar.xz__armel.deb">armel.deb</a> 
+                        href="https://github.com/2moe/tomlyre/releases/download/v0.0.1-beta.1/tomlyre_0.0.1.beta.1-1_armel.deb">armel.deb</a> 
                 </div>
             </foreignObject>
         </g>
@@ -280,7 +280,7 @@
             <line x1="-1" x2="100" y1="20" y2="20" stroke="rgb(31, 119, 180)" stroke-width="1.5"></line>
             <foreignObject class="markmap-foreign" x="8" y="0" width="82" height="20" style="opacity: 1;">
                 <div xmlns="http://www.w3.org/1999/xhtml"><a
-                        href="https://github.com/2moe/tomlyre/releases/download/v0.0.1-beta.1/aarch64-linux-android.tar.xz__armhf.deb">armhf.deb</a> 
+                        href="https://github.com/2moe/tomlyre/releases/download/v0.0.1-beta.1/tomlyre_0.0.1.beta.1-1_armhf.deb">armhf.deb</a> 
                 </div>
             </foreignObject>
         </g>
@@ -288,7 +288,7 @@
             <line x1="-1" x2="109" y1="20" y2="20" stroke="rgb(188, 189, 34)" stroke-width="1.5"></line>
             <foreignObject class="markmap-foreign" x="8" y="0" width="91" height="20" style="opacity: 1;">
                 <div xmlns="http://www.w3.org/1999/xhtml"><a
-                        href="https://github.com/2moe/tomlyre/releases/download/v0.0.1-beta.1/aarch64-linux-android.tar.xz__riscv64.deb">riscv64.deb</a> 
+                        href="https://github.com/2moe/tomlyre/releases/download/v0.0.1-beta.1/tomlyre_0.0.1.beta.1-1_riscv64.deb">riscv64.deb</a> 
                 </div>
             </foreignObject>
         </g>
@@ -304,7 +304,7 @@
             <line x1="-1" x2="104" y1="20" y2="20" stroke="rgb(140, 86, 75)" stroke-width="1.5"></line>
             <foreignObject class="markmap-foreign" x="8" y="0" width="86" height="20" style="opacity: 1;">
                 <div xmlns="http://www.w3.org/1999/xhtml"><a
-                        href="https://github.com/2moe/tomlyre/releases/download/v0.0.1-beta.1/aarch64-linux-android.tar.xz__arm64.deb">arm64.deb</a> 
+                        href="https://github.com/2moe/tomlyre/releases/download/v0.0.1-beta.1/tomlyre_0.0.1.beta.1-1_arm64.deb">arm64.deb</a> 
                 </div>
             </foreignObject>
         </g>
@@ -360,7 +360,7 @@
             <line x1="-1" x2="108" y1="20" y2="20" stroke="rgb(127, 127, 127)" stroke-width="1.5"></line>
             <foreignObject class="markmap-foreign" x="8" y="0" width="90" height="20" style="opacity: 1;">
                 <div xmlns="http://www.w3.org/1999/xhtml"><a
-                        href="https://github.com/2moe/tomlyre/releases/download/v0.0.1-beta.1/aarch64-linux-android.tar.xz__amd64.deb">amd64.deb</a> 
+                        href="https://github.com/2moe/tomlyre/releases/download/v0.0.1-beta.1/tomlyre_0.0.1.beta.1-1_amd64.deb">amd64.deb</a> 
                 </div>
             </foreignObject>
         </g>
