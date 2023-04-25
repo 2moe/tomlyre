@@ -197,8 +197,10 @@ jobs:
         working-directory: ${{env.DEB_WORKDIR}}
         # deb_file=$(find ${{env.DEB_DIR}} -maxdepth 1 -type f -name '*.deb' -print -quit)
         run: |
-          deb_file=$(./cargo-deb --no-build --no-strip --profile ${{env.PROF}} --target ${{matrix.target}} | tail -n1 | sed 's@~@.@g')
-          echo "archive=$deb_file" >> $GITHUB_ENV
+          deb_file=$(./cargo-deb --no-build --no-strip --profile ${{env.PROF}} --target ${{matrix.target}} | tail -n1)
+          archive=${deb_file//\~/\.}
+          cp -v "$deb_file" "$archive"
+          echo "archive=$archive" >> $GITHUB_ENV
 
       - name: pack bsd & android
         env:
