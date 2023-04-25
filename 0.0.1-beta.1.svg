@@ -304,7 +304,7 @@
             <line x1="-1" x2="104" y1="20" y2="20" stroke="rgb(140, 86, 75)" stroke-width="1.5"></line>
             <foreignObject class="markmap-foreign" x="8" y="0" width="86" height="20" style="opacity: 1;">
                 <div xmlns="http://www.w3.org/1999/xhtml"><a
-                        href="https://github.com/2moe/tomlyre/releases/download/0.0.1-beta.1/tomlyre_0.0.1.beta.1-1_amd64.deb">arm64.deb</a> 
+                        href="https://github.com/2moe/tomlyre/releases/download/0.0.1-beta.1/tomlyre_0.0.1.beta.1-1_arm64.deb">arm64.deb</a> 
                 </div>
             </foreignObject>
         </g>
