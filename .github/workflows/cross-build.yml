@@ -23,7 +23,7 @@ jobs:
 
       - name: get version
         id: get_ver
-        run: echo "ver=$(./tomlyre get cli/Cargo.toml -k package.version)" >> $GITHUB_OUTPUT
+        run: echo "ver=v$(./tomlyre get cli/Cargo.toml -k package.version)" >> $GITHUB_OUTPUT
 
       - name: get name
         id: get_bin_name
@@ -331,14 +331,15 @@ jobs:
       archive: ${{ needs.cross.outputs.archive }}
       svg_dir: assets/img/svg
       svg_url_prefix: https://raw.githubusercontent.com/${{github.repository}}/assets/assets/img/svg/
+      branch: assets
 
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 1
-          ref: assets
+          ref: ${{env.branch}}
 
-      - name: create local changes
+      - name: set git email of bot
         env:
           email: "41898282+github-actions[bot]@users.noreply.github.com"
           name: "github-actions[bot]"
@@ -347,7 +348,6 @@ jobs:
           git config --local user.name ${{env.name}}
 
       - name: get deb version
-        if: matrix.target == 'aarch64-unknown-linux-musl'
         env:
           dir: ${{env.svg_dir}}
         working-directory: ${{env.svg_dir}}
@@ -357,7 +357,7 @@ jobs:
             gsub("{{github-repo}}", "${{github.repository}}");
             gsub("{{tag-name}}", "${{env.VER}}");
             split("${{env.archive}}", v, "_");
-            s = v[1] "_" v[2]
+            s = v[1] "_" v[2];
             gsub("{{deb-pkg}}", s)
           }1' tmpl.svg > ${{env.VER}}.svg
           cp ${{env.VER}}.svg latest.svg
@@ -370,15 +370,12 @@ jobs:
       - name: push changes
         uses: ad-m/github-push-action@master
         with:
-          # repository: ""
-          # github_token: ${{ secrets.GH_TOKEN }}
-          branch: "assets"
+          branch: ${{env.branch}}
 
       - name: rewrite release body
-        if: matrix.target == 'aarch64-unknown-linux-musl'
         uses: softprops/action-gh-release@v1
         env:
           url: ${{ format('{0}{1}.svg', env.svg_url_prefix, env.VER) }}
         with:
           tag_name: ${{ env.VER }}
-          body: '![release](${{env.url}})'
+          body: '![${{format('{0}.svg', env.VER)}}](${{env.url}})'
