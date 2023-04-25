@@ -39,12 +39,12 @@ jobs:
           #   os: ubuntu-latest
           # - target: x86_64-unknown-linux-musl
           #   os: ubuntu-latest
-          # - target: aarch64-unknown-linux-musl
-          #   os: ubuntu-latest
+          - target: aarch64-unknown-linux-musl
+            os: ubuntu-latest
           # - target: riscv64gc-unknown-linux-gnu
           #   os: ubuntu-latest
-          - target: i586-unknown-linux-musl
-            os: ubuntu-latest
+          # - target: i586-unknown-linux-musl
+          #   os: ubuntu-latest
           # - target: armv7-unknown-linux-musleabihf
           #   os: ubuntu-latest
           # - target: armv5te-unknown-linux-musleabi
@@ -87,6 +87,8 @@ jobs:
           #   os: windows-latest
 
     runs-on: ${{matrix.os}}
+    outputs: 
+      archive: ${{ steps.archive_output.outputs.archive }}
     env:
       VER: ${{ needs.get_repo_info.outputs.ver }}
       PROF: fat
@@ -303,6 +305,11 @@ jobs:
           hex: ${{env.ARCHIVE_HASH}}
           url: ${{ format('https://github.com/{0}/releases/download/{1}/{2}', github.repository, env.VER, env.archive) }}" > ${{env.file}}
 
+      - name: archive >> OUTPUT
+        if: (!startsWith(matrix.os, 'windows'))
+        id: archive_output
+        run: echo archive=${{ env.archive }} >> $GITHUB_OUTPUT
+
       - name: Create a release
         id: create_release
         uses: softprops/action-gh-release@v1
@@ -313,3 +320,64 @@ jobs:
             ${{ env.HASH_CFG_FILE }}
           tag_name: ${{ env.VER }}
           fail_on_unmatched_files: true
+
+  gen_svg:
+    runs-on: ubuntu-latest
+    needs:
+      - get_repo_info
+      - cross
+    env:
+      VER: ${{ needs.get_repo_info.outputs.ver }}
+      archive: ${{ needs.cross.outputs.archive }}
+      svg_dir: assets/img/svg
+      svg_url_prefix: https://raw.githubusercontent.com/${{github.repository}}/assets/assets/img/svg/
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+          ref: assets
+
+      - name: create local changes
+        env:
+          email: "41898282+github-actions[bot]@users.noreply.github.com"
+          name: "github-actions[bot]"
+        run: |
+          git config --local user.email ${{env.email}}
+          git config --local user.name ${{env.name}}
+
+      - name: get deb version
+        if: matrix.target == 'aarch64-unknown-linux-musl'
+        env:
+          dir: ${{env.svg_dir}}
+        working-directory: ${{env.svg_dir}}
+        run: |
+          env
+          awk '{
+            gsub("{{github-repo}}", "${{github.repository}}");
+            gsub("{{tag-name}}", "${{env.VER}}");
+            split("${{env.archive}}", v, "_");
+            s = v[1] "_" v[2]
+            gsub("{{deb-pkg}}", s)
+          }1' tmpl.svg > ${{env.VER}}.svg
+
+      - name: commit files
+        run: |
+          git add .
+          git commit -am "chore: add ${{env.VER}}.svg"
+
+      - name: push changes
+        uses: ad-m/github-push-action@master
+        with:
+          # repository: ""
+          # github_token: ${{ secrets.GH_TOKEN }}
+          branch: "assets"
+
+      - name: rewrite release body
+        if: matrix.target == 'aarch64-unknown-linux-musl'
+        uses: softprops/action-gh-release@v1
+        env:
+          url: ${{ format('{0}{1}.svg', env.svg_url_prefix, env.VER) }}
+        with:
+          tag_name: ${{ env.VER }}
+          body: '![release](${{env.url}})'
