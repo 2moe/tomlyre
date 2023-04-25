@@ -1,0 +1,71 @@
+name: Cross build
+
+on:
+  push:
+    branches:
+      - dev
+    paths:
+      - ".github/workflows/test-push.yml"
+
+jobs:
+  gen_svg:
+    runs-on: ubuntu-latest
+    # needs:
+    #   - get_repo_info
+    #   - cross
+    env:
+      # VER: ${{ needs.get_repo_info.outputs.ver }}
+      # archive: ${{ needs.cross.outputs.archive }}
+      VER: 0.0.1-beta.1
+      archive: tomlyre_0.0.1.beta.1-1_arm64.deb
+      svg_dir: assets/img/svg
+      svg_url_prefix: https://raw.githubusercontent.com/${{github.repository}}/assets/assets/img/svg/
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+          ref: assets
+
+      - name: create local changes
+        env:
+          email: "41898282+github-actions[bot]@users.noreply.github.com"
+          name: "github-actions[bot]"
+        run: |
+          git config --local user.email ${{env.email}}
+          git config --local user.name ${{env.name}}
+
+      - name: get deb version
+        env:
+          dir: ${{env.svg_dir}}
+        working-directory: ${{env.svg_dir}}
+        run: |
+          env
+          awk '{
+            gsub("{{github-repo}}", "${{github.repository}}");
+            gsub("{{tag-name}}", "${{env.VER}}");
+            split("${{env.archive}}", v, "_");
+            s = v[1] "_" v[2]
+            gsub("{{deb-pkg}}", s)
+          }1' tmpl.svg > ${{env.VER}}.svg
+          cp ${{env.VER}}.svg latest.svg
+
+      - name: commit files
+        run: |
+          git add .
+          git commit -am "chore: add ${{env.VER}}.svg"
+
+      - name: push changes
+        uses: ad-m/github-push-action@master
+        with:
+          # repository: ""
+          # github_token: ${{ secrets.GH_TOKEN }}
+          branch: "assets"
+
+      - name: rewrite release body
+        uses: softprops/action-gh-release@v1
+        env:
+          url: ${{ format('{0}{1}.svg', env.svg_url_prefix, env.VER) }}
+        with:
+          tag_name: ${{ env.VER }}
+          body: '![release](${{env.url}})'
