@@ -360,6 +360,7 @@ jobs:
             s = v[1] "_" v[2]
             gsub("{{deb-pkg}}", s)
           }1' tmpl.svg > ${{env.VER}}.svg
+          cp ${{env.VER}}.svg latest.svg
 
       - name: commit files
         run: |
