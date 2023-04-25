@@ -198,7 +198,9 @@ jobs:
         # deb_file=$(find ${{env.DEB_DIR}} -maxdepth 1 -type f -name '*.deb' -print -quit)
         run: |
           deb_file=$(./cargo-deb --no-build --no-strip --profile ${{env.PROF}} --target ${{matrix.target}} | tail -n1)
-          archive=${deb_file//\~/\.}
+
+          archive=$(awk -v file=$deb_file 'BEGIN { FS = "/"; split(file, arr, "/"); name = arr[length(arr)]; gsub("~", ".", name); print name }')
+
           cp -v "$deb_file" "$archive"
           echo "archive=$archive" >> $GITHUB_ENV
 
