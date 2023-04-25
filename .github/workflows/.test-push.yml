@@ -1,11 +1,11 @@
 name: Cross build
 
-# on:
-#   push:
-#     branches:
-#       - dev
-#     paths:
-#       - ".github/workflows/test-push.yml"
+on:
+  push:
+    branches:
+      - dev
+    paths:
+      - ".github/workflows/test-push.yml"
 
 jobs:
   gen_svg:
