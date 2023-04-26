@@ -725,7 +725,7 @@ For this case, the standard table and the inline table are the same. (Although t
 
 However, when the key is `test.0.x.y.z` and there are multiple nonexistent nested sub-tables inside, you can try using `-m` and `-i` separately.
 
-After trying it out myself, I believe you will understand why not to use `-m`.
+After trying it out, I believe you will understand why not to use `-m`.
 
 ## Log Levels
 
