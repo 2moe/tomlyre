@@ -7,7 +7,7 @@ use crate::{
         serialisation::deser_yaml,
         ConvFmt,
     },
-    highlight::HighLightRes,
+    // highlight::HighLightRes,
     set::get_set_text,
     table::set_header,
 };
@@ -16,6 +16,7 @@ use anyhow::Result;
 use comfy_table::Table;
 use getset::Getters;
 use glossa::GetText;
+use hlight::HighLightRes;
 use log::info;
 use owo_colors::OwoColorize;
 use std::{fs, path::Path};

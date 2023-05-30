@@ -71,7 +71,12 @@ Esempio: `cat test.bson | tomlyre --src-fmt bson get -`"""
 shell-completion = "Generare uno script di completamento per shell"
 shell-completion-help = """
 È necessario specificare manualmente il nome della shell per generare lo script di completamento.
-Ad esempio, per powershell su Windows, puoi usare: `--sh-comp pwsh`
+Ad esempio, per powershell su Windows, puoi usare: 
+
+```pwsh
+[Console]::OutputEncoding = [Text.Encoding]::UTF8
+tomlyre --sh-comp pwsh > "_tomlyre.ps1"
+```
 
 > Domanda: Cos'è la funzione di completamento della shell?
 

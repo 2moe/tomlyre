@@ -25,7 +25,7 @@ Select first by specifying a key, and then modify it by specifying a value of th
 --ts md set test.toml --key package.edition --str 2021
 ```
 
-Because `--str` is specified instead of `--num`, "2021" is a string type, not an integer type.
+Because `--str` is specified instead of `--int`, "2021" is a string type, not an integer type.
 
 | package | new value |
 |---------|-----------|
@@ -259,9 +259,9 @@ container:
   os: debian
 ```"""
 
-inline-table = "It is more compact than the standard table. In addition, for nested keys that do not exist, please use inline tables."
+inline-table = "More compact than std table and support creating nested keys that do not exist."
 inline-table-help = """
-If you're not sure whether you should use the standard table, or the inline table, then use the inline table!
+If you are unsure whether to use a standard table or an inline table, then use the inline table!
 
 Example:
 ```sh
@@ -272,7 +272,7 @@ set test.toml -k container --itb arch riscv64 --itb os fedora --itb codename raw
 container = { arch = "riscv64", os = "fedora", codename = "rawhide" }
 ```
 
-> Except for `toml`, other formats will use standard tables instead of inline tables.
+> Apart from `toml`, the output of an inline table is the same as that of a standard table.
 
 ```json
 "container": {
@@ -280,7 +280,10 @@ container = { arch = "riscv64", os = "fedora", codename = "rawhide" }
     "codename": "rawhide",
     "os": "fedora"
 }
-```"""
+```
+
+> For `toml`, choose either "standard table" or "inline table" based on your requirements.
+> For formats other than `toml`, always choose "inline table"."""
 
 datetime = "Type for date and time."
 datetime-help = """

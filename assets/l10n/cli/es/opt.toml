@@ -28,7 +28,7 @@ Primero, seleccione la clave especificada y luego modifique la estructura del ar
 --ts md set test.toml --key package.edition --str 2021
 ```
 
-Dado que se especificó `--str`, en lugar de `--num`, "2021" se trata como una cadena de texto en lugar de un número.
+Dado que se especificó `--str`, en lugar de `--int`, "2021" se trata como una cadena de texto en lugar de un número.
 
 | package | nuevo valor |
 |---------|-----------|

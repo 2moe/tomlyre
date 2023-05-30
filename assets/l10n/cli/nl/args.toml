@@ -69,7 +69,12 @@ Voorbeeld: `cat test.bson | tomlyre --src-fmt bson get -`"""
 shell-completion = "Genereer autocompletie-scripts voor de shell"
 shell-completion-help = """
 U moet de naam van de shell opgeven om autocompletie-scripts te genereren.
-Bijvoorbeeld, voor PowerShell op Windows, kunt u `--sh-comp pwsh` gebruiken.
+Bijvoorbeeld, voor `powershell` op Windows kunt u het volgende gebruiken:
+
+```pwsh
+[Console]::OutputEncoding = [Text.Encoding]::UTF8
+tomlyre --sh-comp pwsh > "_tomlyre.ps1"
+```
 
 > V: Wat is de functie van autocompletie in de shell?
 

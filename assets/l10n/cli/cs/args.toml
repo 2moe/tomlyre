@@ -68,7 +68,12 @@ Příklad: `cat test.bson | tomlyre --src-fmt bson get -`"""
 shell-completion = "Vygenerování skriptu pro doplňování příkazů v shellu"
 shell-completion-help = """
 Musíte ručně specifikovat jméno shellu, pro který chcete vygenerovat skript pro doplňování příkazů.
-Například pro powershell na Windows můžete použít: `--sh-comp pwsh`
+Například pro powershell na Windows můžete použít: 
+
+```pwsh
+[Console]::OutputEncoding = [Text.Encoding]::UTF8
+tomlyre --sh-comp pwsh > "_tomlyre.ps1"
+```
 
 > Otázka: Co znamená funkce doplňování příkazů (tab completion)?
 

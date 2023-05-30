@@ -71,7 +71,12 @@ from-format-help = """
 shell-completion = "為 shell 生成補全指令碼"
 shell-completion-help = """
 您需要手動指定 shell 的名稱來生成補全指令碼。
-例如，對於 Windows 上的 powershell, 您可以使用：`--sh-comp pwsh`
+例如，對於 _Windows_ 上的 `powershell`, 您可以使用：
+
+```pwsh
+[Console]::OutputEncoding = [Text.Encoding]::UTF8
+tomlyre --sh-comp pwsh > "_tomlyre.ps1"
+```
 
 > Q: 什麼是 shell 的補全功能？
 

@@ -1,12 +1,10 @@
 use crate::opt::{args::Cli, set::SetOpts};
 use anyhow::Result;
+use hlight::HighLightRes;
 use std::{borrow::Cow, process::exit, str::FromStr};
-use tomlyre::{
-    highlight::HighLightRes,
-    set::{
-        Array, ArrayOfTables, CfgOpts, Datetime, InlineTable, TomlKey, TomlTable,
-        TomlValue, Value,
-    },
+use tomlyre::set::{
+    Array, ArrayOfTables, CfgOpts, Datetime, InlineTable, TomlKey, TomlTable,
+    TomlValue, Value,
 };
 
 /// The function first calls the `set_value` method on the provided `cfg_opts` with the input value converted into a `Some` option using the `Into` trait.

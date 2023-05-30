@@ -1,5 +1,10 @@
 use crate::{assets::get_l10n_text, opt::args::Cli};
 use glossa::{assets::OnceCell, GetText};
+use hlight::{
+    gen_syntax_highlight,
+    theme::{dumps, ThemeSet},
+    HighLightRes,
+};
 use owo_colors::OwoColorize;
 use std::{
     borrow::Cow,
@@ -7,9 +12,6 @@ use std::{
     io::{BufWriter, Write},
     path::PathBuf,
     process::exit,
-};
-use tomlyre::highlight::{
-    dumps, output::get_syntax_highlight, HighLightRes, ThemeSet,
 };
 
 const SAMPLE_HIGHLIGHT_TEXT: &str = r#"
@@ -91,7 +93,7 @@ impl Cli {
                     *res.get_name_mut() = Cow::from(name);
                     *res.get_theme_mut() = OnceCell::new();
 
-                    get_syntax_highlight(
+                    gen_syntax_highlight(
                         "toml",
                         SAMPLE_HIGHLIGHT_TEXT,
                         Some(&res),

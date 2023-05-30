@@ -26,7 +26,7 @@ Najpierw wybierz klucz, a następnie wprowadź wartość o określonym typie dan
 --ts md set test.toml --key package.edition --str 2021
 ```
 
-Ze względu na użycie `--str` zamiast `--num`, "2021" będzie traktowane jako ciąg znaków, a nie liczba całkowita.
+Ze względu na użycie `--str` zamiast `--int`, "2021" będzie traktowane jako ciąg znaków, a nie liczba całkowita.
 
 | package | nowa wartość |
 |---------|-----------|

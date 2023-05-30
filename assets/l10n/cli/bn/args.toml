@@ -74,7 +74,12 @@ shell-completion = "শেলের জন্য পূর্ণাঙ্গ স
 
 shell-completion-help = """
 আপনাকে স্ক্রিপ্ট তৈরি করতে শেলের নাম নির্দিষ্ট করতে হবে।
-উদাহরণঃ উইন্ডোজের জন্য powershell এর জন্য, আপনি ব্যবহার করতে পারেন : `--sh-comp pwsh`
+উদাহরণঃ উইন্ডোজের জন্য powershell এর জন্য, আপনি ব্যবহার করতে পারেন : 
+
+```pwsh
+[Console]::OutputEncoding = [Text.Encoding]::UTF8
+tomlyre --sh-comp pwsh > "_tomlyre.ps1"
+```
 
 > প্রশ্ন: শেলের কিছু ফাংশনালিটি কি?
 

@@ -23,16 +23,12 @@ xml = ["dep:quick-xml", "dep:quickxml_to_serde"]
 
 [dependencies]
 # thiserror = "1.0.40"
-anyhow = "1.0.70"
-toml_edit = "0.19.8"
-toml = { version = "0.7.3" }
-syntect = { version = "5.0.0", default-features = false, features = [
-    "parsing",
-    "regex-fancy",
-] }
+anyhow = "1.0.71"
+toml_edit = "0.19.10"
+toml = { version = "0.7.4" }
 owo-colors = "3.5.0"
 getset = "0.1.2"
-log = "0.4.17"
+log = "0.4.18"
 ron = { version = "0.8.0", optional = true }
 serde_json = { version = "1.0.96", optional = true }
 json5 = { version = "0.4.1", optional = true }
@@ -43,30 +39,27 @@ quick-xml = { version = "0.28.2", features = ["serialize"], optional = true }
 phf = "0.11.1"
 serde_yaml = { version = "0.9.21", optional = true }
 
-[dependencies.glossa]
-version = "0.0.1-alpha.9"
-# path = "../../glossa/glossa"
-
 [target.'cfg(not(target_family = "wasm"))'.dependencies]
 comfy-table = "6.1.4"
 
 [target.'cfg(target_family = "wasm")'.dependencies]
 comfy-table = { default-features = false, version = "6.1.4" }
 
-[build-dependencies]
-glossa-codegen = { version = "0.0.1-alpha.4", default-features = false, features = [
-    "yaml",
-    "toml",
-    "highlight",
-] }
+[dependencies.hlight]
+# version = "0.0.1-alpha.2"
+path = "../../hlight/hlight"
+
+[dependencies.glossa]
+version = "0.0.1-alpha.10"
+# path = "../../glossa/glossa"
+
+[build-dependencies.glossa-codegen]
+default-features = false
+features = ["yaml", "toml", "highlight"]
+version = "0.0.1-alpha.5"
+# path = "../../glossa/codegen"
 
 [dependencies.serde]
 features = ["derive"]
 version = "1.0.160"
-# optional = true
-
-[build-dependencies.syntect]
-version = "5.0.0"
-default-features = false
-features = ["parsing", "regex-fancy", "yaml-load", "plist-load"]
 # optional = true

@@ -8,12 +8,12 @@ use crate::{
         ConvFmt,
     },
     get::{get_config_file, walk_cfg, ConvertedContents},
-    highlight::{output::get_syntax_highlight, HighLightRes},
     table::set_header,
 };
 use anyhow::Result;
 use getset::{Getters, MutGetters};
 use glossa::GetText;
+use hlight::{HighLightRes, gen_syntax_highlight};
 use log::{debug, info, warn};
 use owo_colors::OwoColorize;
 use std::{
@@ -272,7 +272,7 @@ impl<'s, 'd> CfgOpts<'s, 'd> {
             match dst_fmt {
                 "toml" => converted = Some(modified_str.to_string()),
                 "bson" => {
-                    get_syntax_highlight(
+                    gen_syntax_highlight(
                         "toml",
                         &modified_str,
                         self.high_light,
@@ -291,7 +291,7 @@ impl<'s, 'd> CfgOpts<'s, 'd> {
                 }
             }
             if let Some(ref s) = converted {
-                get_syntax_highlight(dst_fmt, s, self.high_light, None)?;
+                gen_syntax_highlight(dst_fmt, s, self.high_light, None)?;
             }
             println!();
         }
@@ -398,7 +398,7 @@ impl<'s, 'd> CfgOpts<'s, 'd> {
             v.type_name().blue().bold(),
         );
         println!("\nvalue: ");
-        get_syntax_highlight(
+        gen_syntax_highlight(
             "toml",
             &v.to_string(),
             self.get_high_light().as_deref(),

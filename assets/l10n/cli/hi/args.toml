@@ -69,7 +69,12 @@ stdin से डेटा पढ़ने के लिए, जैसे: `cat a
 shell-completion = "शैली के लिए पूर्णता स्क्रिप्ट उत्पन्न करें"
 shell-completion-help = """
 आपको पूर्णता स्क्रिप्ट उत्पन्न करने के लिए शैली का नाम मैनुअल रूप से निर्दिष्ट करना होगा।
-उदाहरण के लिए, Windows पर powershell के लिए आप इस्तेमाल कर सकते हैं: `--sh-comp pwsh`
+उदाहरण के लिए, Windows पर powershell के लिए आप इस्तेमाल कर सकते हैं: 
+
+```pwsh
+[Console]::OutputEncoding = [Text.Encoding]::UTF8
+tomlyre --sh-comp pwsh > "_tomlyre.ps1"
+```
 
 > प्रश्न: शेल का पूरक क्या होता है?
 

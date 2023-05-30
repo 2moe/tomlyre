@@ -5,8 +5,8 @@ use crate::{
     },
 };
 use glossa::GetText;
+use hlight::{gen_syntax_highlight, theme::theme_monokai};
 use std::env;
-use tomlyre::highlight::{output::get_syntax_highlight, HighLightRes};
 
 pub(crate) const PKG_VERSION: &str = env!("CARGO_PKG_VERSION");
 
@@ -41,9 +41,7 @@ fn get_md(md_map: &str, key: &str, text_map: &str) -> String {
     }
 
     let style = get_static_theme_style();
-    if style.get_name().as_ref() == HighLightRes::monokai_theme_name()
-        && get_env_theme_bg()
-    {
+    if style.get_name().as_ref() == theme_monokai() && get_env_theme_bg() {
         return highlight_text();
     }
 
@@ -51,7 +49,7 @@ fn get_md(md_map: &str, key: &str, text_map: &str) -> String {
 
     let mut v = Vec::with_capacity(text.len());
 
-    get_syntax_highlight("md", text.as_ref(), Some(style), Some(&mut v))
+    gen_syntax_highlight("md", text.as_ref(), Some(style), Some(&mut v))
         .unwrap_or_else(|e| log::warn!("Failed to get `{}`\nErr: {e}", key));
 
     String::from_utf8(v).unwrap_or_else(|e| {

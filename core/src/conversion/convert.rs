@@ -1,12 +1,10 @@
-use crate::{
-    conversion::{
-        fmt::FORMATS,
-        get_conv_md, get_conv_text, get_static_stdin_data, is_src_stdin,
-        serialisation::{deser_toml, ser_toml},
-        ConvFmt,
-    },
-    highlight::{output::get_syntax_highlight, HighLightRes},
+use crate::conversion::{
+    fmt::FORMATS,
+    get_conv_md, get_conv_text, get_static_stdin_data, is_src_stdin,
+    serialisation::{deser_toml, ser_toml},
+    ConvFmt,
 };
+use hlight::{gen_syntax_highlight, HighLightRes};
 use log::warn;
 use owo_colors::OwoColorize;
 use std::{borrow::Cow, fs, io};
@@ -97,7 +95,7 @@ pub(crate) fn convert_data_format(
             return Ok(Some(contents));
         }
 
-        get_syntax_highlight(dst_fmt, &contents, high_light_style, None)?;
+        gen_syntax_highlight(dst_fmt, &contents, high_light_style, None)?;
 
         match dst_fmt {
             // print "\n"

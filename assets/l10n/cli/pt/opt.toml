@@ -26,7 +26,7 @@ Selecione primeiro com a chave especificada e, em seguida, modifique com o valor
 --ts md set test.toml --key package.edition --str 2021
 ```
 
-Como `--str` é especificado em vez de `--num`, "2021" é do tipo de string, não de inteiro.
+Como `--str` é especificado em vez de `--int`, "2021" é do tipo de string, não de inteiro.
 
 | package | new value |
 |---------|-----------|

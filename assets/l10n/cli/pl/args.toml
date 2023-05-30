@@ -68,7 +68,12 @@ Przykład użycia: `cat test.bson | tomlyre --src-fmt bson get -`"""
 shell-completion = "Generuje skrypt uzupełniania dla powłoki"
 shell-completion-help = """
 Musisz ręcznie podać nazwę powłoki (`shell`) w celu wygenerowania skryptu uzupełniania.
-Na przykład, dla powershell na Windowsie, możesz użyć: `--sh-comp pwsh`
+Na przykład, dla powershell na Windowsie, możesz użyć: 
+
+```pwsh
+[Console]::OutputEncoding = [Text.Encoding]::UTF8
+tomlyre --sh-comp pwsh > "_tomlyre.ps1"
+```
 
 > Q: Co to jest funkcja uzupełniania powłoki (shell completion)?
 

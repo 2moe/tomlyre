@@ -68,7 +68,12 @@ Ancak, otomatik belirleme başarısız olabilir, bu durumda dosya biçimini manu
 shell-completion = "Shell için tamamlama betiği oluşturun"
 shell-completion-help = """
 Tamamlama betiğini oluşturmak için, el ile kabuk adını belirtmeniz gerekir.
-Örneğin, Windows'taki PowerShell için şunları kullanabilirsiniz: `--sh-comp pwsh`
+Örneğin, Windows'taki PowerShell için şunları kullanabilirsiniz: 
+
+```pwsh
+[Console]::OutputEncoding = [Text.Encoding]::UTF8
+tomlyre --sh-comp pwsh > "_tomlyre.ps1"
+```
 
 > Soru: Nedir shell tamamlama işlevi?
 

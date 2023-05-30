@@ -2,12 +2,13 @@ use crate::{assets::get_l10n_text, opt::args::Cli};
 use clap::CommandFactory;
 use clap_complete::{generate, shells, Generator};
 use glossa::GetText;
+use hlight::{gen_syntax_highlight, HighLightRes};
 use log::info;
 use std::{
     env,
     io::{self, BufWriter, Write},
 };
-use tomlyre::highlight::{output::get_syntax_highlight, HighLightRes};
+// use tomlyre::highlight::{output::gen_syntax_highlight, HighLightRes};
 
 const BIN_NAME: &str = env!("CARGO_BIN_NAME");
 
@@ -68,8 +69,55 @@ pub(crate) fn get_shell_completion(
         _ => "zsh",
     };
 
-    get_syntax_highlight(fmt, &s, Some(theme), Some(&mut out))?;
+    gen_syntax_highlight(fmt, &s, Some(theme), Some(&mut out))?;
     out.flush()?;
 
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use anyhow::Result;
+
+    #[test]
+    fn get_zsh_comp() -> Result<()> {
+        let v = gen_completion(shells::Zsh);
+        let s = String::from_utf8_lossy(&v);
+        let res = HighLightRes::default().with_background(false);
+
+        // let syntax = res.get_syntax_set().syntaxes();
+        // for i in syntax.iter().map(|x| &x.name) {
+        //     println!("{i}")
+        // }
+        gen_syntax_highlight("zsh", &s, Some(&res), None)?;
+
+        Ok(())
+    }
+
+    #[test]
+    fn zsh_high_light() -> io::Result<()> {
+        let s = r#"
+        #compdef tomlyre
+
+        autoload -U is-at-least
+        
+        _tomlyre() {
+            typeset -A opt_args
+            typeset -a _arguments_options
+            local ret=1
+        
+            if is-at-least 5.2; then
+                _arguments_options=(-s -S -C)
+            else
+                _arguments_options=(-s -C)
+            fi
+        
+            local context curcontext="$curcontext" state line
+            _arguments "${_arguments_options[@]}" \
+        "#;
+
+        let res = HighLightRes::default();
+        gen_syntax_highlight("pwsh", s, Some(&res), None)
+    }
 }

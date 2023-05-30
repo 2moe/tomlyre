@@ -40,8 +40,8 @@ jobs:
           #   os: ubuntu-latest
           # - target: x86_64-unknown-linux-musl
           #   os: ubuntu-latest
-          - target: aarch64-unknown-linux-musl
-            os: ubuntu-latest
+          # - target: aarch64-unknown-linux-musl
+          #   os: ubuntu-latest
           # - target: riscv64gc-unknown-linux-gnu
           #   os: ubuntu-latest
           # - target: i586-unknown-linux-musl
@@ -80,12 +80,12 @@ jobs:
           #   os: macos-latest
           # - target: aarch64-apple-darwin
           #   os: macos-latest
-          # - target: x86_64-pc-windows-msvc
-          #   os: windows-latest
-          # - target: aarch64-pc-windows-msvc
-          #   os: windows-latest
-          # - target: i686-pc-windows-msvc
-          #   os: windows-latest
+          - target: x86_64-pc-windows-msvc
+            os: windows-latest
+          - target: aarch64-pc-windows-msvc
+            os: windows-latest
+          - target: i686-pc-windows-msvc
+            os: windows-latest
 
     runs-on: ${{matrix.os}}
     outputs: 
@@ -170,8 +170,16 @@ jobs:
           esac
           ./cross b --profile ${{env.PROF}} -v --target ${{matrix.target}}
 
-      - name: normal build
-        if: (!startsWith(matrix.os, 'ubuntu')) || startsWith(matrix.target, 'wasm')
+      - name: build windows bin
+        if: contains(matrix.target, 'windows')
+        env:
+          # 1. When LTO is enabled, the program may freeze for several seconds or even longer when a panic occurs in Windows Terminal. (rustc 1.69.0) (The integrated terminal in VSCode does not have this problem.) Therefore, LTO is disabled here.
+          # 2. To avoid the error of `VCRUNTIME140.dll is missing`, "+crt-static" is specified here. In this way, users do not need to install the Visual C++ Redistributable Package.
+          RUSTFLAGS: "-C target-feature=+crt-static -C lto=false"
+        run: cargo b --profile ${{env.PROF}} -v --target ${{matrix.target}} --all-features
+
+      - name: normal build(darwin or wasm)
+        if: startsWith(matrix.os, 'macos') || startsWith(matrix.target, 'wasm')
         run: cargo b --profile ${{env.PROF}} -v --target ${{matrix.target}}
 
       - name: cp bin file
@@ -256,12 +264,11 @@ jobs:
           $zip_file = switch ($true) {
             {$is_x64} {"${{env.archive}}"; break}
             {$is_x86} {"${{env.x86_archive}}"; break}
-            default {"${{env.arm64_archive}}"; break}
+            default {"${{env.arm64_archive}}"}
           }
 
           7z a -tzip -mm=Deflate64 -mmt -mx9 $zip_file ${{env.file_name}}
-          Write-Output archive="$zip_file" >> $env:GITHUB_ENV
-
+          archive="$zip_file" >> $env:GITHUB_ENV
 
       - name: get blake3 bin (linux)
         if: startsWith(matrix.os, 'ubuntu')
@@ -285,7 +292,7 @@ jobs:
         if: startsWith(matrix.os, 'windows')
         run: |
           $b3_hash = .\b3sum.exe ${{env.archive}} --no-names
-          Write-Output ARCHIVE_HASH="$b3_hash" >> $env:GITHUB_ENV
+          ARCHIVE_HASH="$b3_hash" >> $env:GITHUB_ENV
 
       - name: get blake3 hash (unix)
         if: (!startsWith(matrix.os, 'windows'))

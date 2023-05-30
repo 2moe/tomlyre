@@ -67,7 +67,12 @@ stdin からデータを読み取る場合、例： `cat a | tomlyre conv -`、�
 shell-completion = "シェルの補完スクリプトを生成します"
 shell-completion-help = """
 補完スクリプトを生成するために、シェルの名前を手動で指定する必要があります。
-たとえば、Windows 上の PowerShell の場合、 `--sh-comp pwsh` を使用できます。
+例えば、Windows 上の `powershell` の場合、以下のように使用することができます：
+
+```pwsh
+[Console]::OutputEncoding = [Text.Encoding]::UTF8
+tomlyre --sh-comp pwsh > "_tomlyre.ps1"
+```
 
 > Q. 何が shell の補完機能ですか？
 

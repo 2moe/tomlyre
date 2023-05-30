@@ -72,7 +72,12 @@ Ejemplo: `cat test.bson | tomlyre --src-fmt bson get -`"""
 shell-completion = "Genera un script de autocompletado para la shell especificada."
 shell-completion-help = """
 Debe especificar manualmente el nombre de la shell para generar un script de autocompletado.
-Por ejemplo, en PowerShell para Windows, puede usar: `--sh-comp pwsh`
+Por ejemplo, en PowerShell para Windows, puede usar: 
+
+```pwsh
+[Console]::OutputEncoding = [Text.Encoding]::UTF8
+tomlyre --sh-comp pwsh > "_tomlyre.ps1"
+```
 
 > P: ¿Qué es la función de autocompletado de shell?
 

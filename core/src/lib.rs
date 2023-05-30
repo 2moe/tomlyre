@@ -5,5 +5,5 @@ pub mod set;
 pub mod conversion;
 // #[cfg(feature = "highlight")]
 mod assets;
-pub mod highlight;
+// pub mod highlight;
 pub mod table;

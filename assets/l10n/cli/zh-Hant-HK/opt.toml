@@ -25,7 +25,7 @@ set-opts-help = """
 --ts md set test.toml --key package.edition --str 2021
 ```
 
-由於指定了 `--str`，而不是 `--num`, 因此 "2021" 是字符串類型，而不是整數類型。
+由於指定了 `--str`，而不是 `--int`, 因此 "2021" 是字符串類型，而不是整數類型。
 
 | package | new value |
 |---------|-----------|
@@ -258,7 +258,7 @@ container:
   os: debian
 ```"""
 
-inline-table = "內聯表，相當於更緊湊的標準表。此外，對於嵌套且不存在的keys，請使用內聯表，而不是標準表。"
+inline-table = "內聯表：比標準表更緊湊，並且支持創建嵌套且不存在的keys。"
 inline-table-help = """
 您如果不清楚自己該用標準表，還是內聯表，那就用內聯表！
 
@@ -271,7 +271,7 @@ set test.toml -k container --itb arch riscv64 --itb os fedora --itb codename raw
 container = { arch = "riscv64", os = "fedora", codename = "rawhide" }
 ```
 
-> 除了 `toml` 外，其他格式將會輸出為標準表的格式。
+> 除了 `toml` 外，內聯表輸出的內容與標準表相同。
 
 ```json
 "container": {
@@ -279,7 +279,10 @@ container = { arch = "riscv64", os = "fedora", codename = "rawhide" }
     "codename": "rawhide",
     "os": "fedora"
 }
-```"""
+```
+
+> 對於 `toml`，請根據需求選擇“標準表”或“內聯表”。
+> 對於 `toml` 以外的格式，請始終選擇“內聯表”。"""
 
 datetime = "日期與時間的類型"
 datetime-help = """

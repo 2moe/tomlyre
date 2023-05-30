@@ -66,7 +66,12 @@ from-format-help = """
 shell-completion = "يولد نص استكمال الأوامر لل shell."
 shell-completion-help = """
 يجب تحديد اسم ال Shell المستخدم لإنشاء نص استكمال الأوامر.
-على سبيل المثال، إذا كنت تستخدم PowerShell على Windows، يمكنك استخدام: `--sh-comp pwsh`
+على سبيل المثال، إذا كنت تستخدم PowerShell على Windows، يمكنك استخدام: 
+
+```pwsh
+[Console]::OutputEncoding = [Text.Encoding]::UTF8
+tomlyre --sh-comp pwsh > "_tomlyre.ps1"
+```
 
 > Q: ما هو استكمال الأوامر في ال Shell؟
 

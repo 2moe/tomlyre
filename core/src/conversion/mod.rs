@@ -8,11 +8,11 @@ use crate::{
             yml_is_yaml,
         },
     },
-    highlight::HighLightRes,
 };
 // json5_as_json,
 use anyhow::Result;
 use glossa::{assets::OnceCell, GetText};
+use hlight::HighLightRes;
 use std::{
     borrow::Cow,
     fs,

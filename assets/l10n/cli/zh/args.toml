@@ -71,7 +71,12 @@ from-format-help = """
 shell-completion = "为 shell 生成补全脚本"
 shell-completion-help = """
 您需要手动指定 shell 的名称来生成补全脚本。
-例如，对于 Windows 上的 powershell, 您可以使用：`--sh-comp pwsh`
+例如，对于 Windows 上的 `powershell`, 您可以使用：
+
+```pwsh
+[Console]::OutputEncoding = [Text.Encoding]::UTF8
+tomlyre --sh-comp pwsh > "_tomlyre.ps1"
+```
 
 > Q: 什么是 shell 的补全功能？
 

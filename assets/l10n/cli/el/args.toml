@@ -71,7 +71,12 @@ from-format-help = """
 shell-completion = "Δημιουργεί ένα σενάριο συμπλήρωσης για το shell"
 shell-completion-help = """
 Πρέπει να καθορίσετε χειροκίνητα το όνομα του shell που χρησιμοποιείτε, προκειμένου να δημιουργήσετε ένα σενάριο συμπλήρωσης.
-Για παράδειγμα, για το powershell σε Windows, μπορείτε να χρησιμοποιήσετε: `--sh-comp pwsh`
+Για παράδειγμα, για το powershell σε Windows, μπορείτε να χρησιμοποιήσετε: 
+
+```pwsh
+[Console]::OutputEncoding = [Text.Encoding]::UTF8
+tomlyre --sh-comp pwsh > "_tomlyre.ps1"
+```
 
 > Ε: Τι είναι η λειτουργία συμπλήρωσης για το shell;
 

@@ -69,7 +69,12 @@ from-format-help = """
 shell-completion = "Создание сценария для автодополнения оболочки"
 shell-completion-help = """
 Необходимо вручную указать имя используемой оболочки для генерации скрипта автодополнения.
-Например, для powershell на Windows можно использовать: `--sh-comp pwsh`
+Например, для powershell на Windows можно использовать:
+
+```pwsh
+[Console]::OutputEncoding = [Text.Encoding]::UTF8
+tomlyre --sh-comp pwsh > "_tomlyre.ps1"
+```
 
 > Q: Что такое автодополнение в оболочке?
 

@@ -68,7 +68,12 @@ stdin에서 데이터를 읽는 경우(`cat a | tomlyre conv -`와 같은 경우
 shell-completion = "쉘 완성 스크립트를 생성합니다."
 shell-completion-help = """
 쉘 이름을 지정하여 직접 완성 스크립트를 생성하십시오.
-예: 윈도우즈의 파워셸에서는 `--sh-comp pwsh`를 사용할 수 있습니다.
+예를 들어, Windows에서 `powershell`을 사용하는 경우 다음과 같이 사용할 수 있습니다:
+
+```pwsh
+[Console]::OutputEncoding = [Text.Encoding]::UTF8
+tomlyre --sh-comp pwsh > "_tomlyre.ps1"
+```
 
 > Q: 쉘 완성이란 무엇인가요?
 

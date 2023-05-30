@@ -91,7 +91,8 @@ pub(crate) struct Cli {
     /// Generates shell completion scripts for specified shells. Accepts the names of supported shells as its value. Has an additional visible alias of `sh-comp`.
     #[arg(
         long,
-        value_name = "zsh, fish, pwsh, bash, elvish",
+        // value_name = "zsh, fish, pwsh, bash, elvish",
+        value_parser = ["zsh", "fish", "pwsh", "powershell", "bash", "elvish"],
         visible_alias = "sh-comp",
         help = get_args_text("shell-completion"),
         // long_help = get_text("shell-completion-help"),

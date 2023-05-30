@@ -25,7 +25,7 @@ Tout d'abord, sélectionnez à l'aide de la clé spécifiée, puis modifiez à l
 --ts md set test.toml --key package.edition --str 2021
 ```
 
-Comme `--str` a été spécifié plutôt que `--num`, "2021" est une chaîne de caractères plutôt qu'un nombre entier.
+Comme `--str` a été spécifié plutôt que `--int`, "2021" est une chaîne de caractères plutôt qu'un nombre entier.
 
 | package | new value |
 |---------|-----------|

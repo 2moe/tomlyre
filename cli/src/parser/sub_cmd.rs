@@ -7,10 +7,9 @@ use crate::{
     parser::set_opts::handle_setopts,
 };
 use anyhow::Result;
+use hlight::HighLightRes;
 use std::borrow::Cow;
-use tomlyre::{
-    conversion, get::get_config_file, highlight::HighLightRes, set::TomlKey,
-};
+use tomlyre::{conversion, get::get_config_file, set::TomlKey};
 
 /// All subcommands are handled here.
 ///

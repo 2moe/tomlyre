@@ -56,7 +56,7 @@
 
 A: 因为它是静态编译的。
 
-> 有时候 glibc 的静态编译会出问题，建议用 musl。
+> 有时候 glibc 的静态链接可能会出问题，建议用 musl。
 
 考虑到不同发行版的包管理器可能会冲突，因此建议在 alpine 上使用 alpine 自家的 `apk`， 而不是 debian 的 `dpkg`。
 
@@ -139,8 +139,8 @@ tar -xvf x64.tar.xz
 
 <table>
   <tr>
-    <td><img src="assets/img/zh/set_help.jpg" alt="set_help"></td>
-    <td><img src="assets/img/zh/conv_help.jpg" alt="conv_help"></td>
+    <td><img src="assets/img/zh/set_help.jpg" alt="set_help"><p align="center"><code>set --help</code></p></td>
+    <td><img src="assets/img/zh/conv_help.jpg" alt="conv_help"><p align="center"><code>conv --help</code></p></td>
   </tr>
 </table>
 
@@ -156,31 +156,45 @@ tar -xvf x64.tar.xz
 
 > 这些主题大都使用 MIT License，您可以在 **assets/theme** 目录下找到内置主题以及相关的许可证文件。
 
-<!-- ![tomlyre-t](assets/img/theme/dracula.png)
-![MONOKAI](assets/img/theme/monokai.png)
-![onedark](assets/img/theme/onedark.png)
-![onehalf](assets/img/theme/onehalf.png)
-![ayu](assets/img/theme/ayu.png)
-![ayu-dark](assets/img/theme/ayu-dark.png) -->
-
 <table>
   <tr>
-    <td><img src="assets/img/theme/dracula.png" alt="dracula"></td>
-    <td><img src="assets/img/theme/monokai.png" alt="monokai"></td>
+    <td><img src="assets/img-branch/theme/dracula.png" alt="dracula"></td>
+    <td><img src="assets/img-branch/theme/monokai-bright.png" alt="monokai-bright"></td>
   </tr>
 </table>
 
 <table>
   <tr>
-      <td><img src="assets/img/theme/onedark.png" alt="onedark"></td>
-      <td><img src="assets/img/theme/onehalf.png" alt="onehalf"></td>
+      <td><img src="assets/img-branch/theme/monokai.png" alt="monokai"></td>
+      <td><img src="assets/img-branch/theme/monokai-light.png" alt="monokai-light"></td>
   </tr>
 </table>
 
 <table>
   <tr>
-    <td><img src="assets/img/theme/ayu-dark.png" alt="ayu-dark"></td>
-    <td><img src="assets/img/theme/ayu.png" alt="ayu"></td>
+      <td><img src="assets/img-branch/theme/onedark.png" alt="onedark"></td>
+      <td><img src="assets/img-branch/theme/one-dark-tomorrow.png" alt="one-dark-tomorrow"></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+      <td><img src="assets/img-branch/theme/one-half-dark.png" alt="one-half-dark"></td>
+      <td><img src="assets/img-branch/theme/one-half-light.png" alt="one-half-light"></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td><img src="assets/img-branch/theme/widget-one-dark.png" alt="widget-one-dark"></td>
+    <td><img src="assets/img-branch/theme/ayu-light.png" alt="ayu-light.png"></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td><img src="assets/img-branch/theme/ayu-dark.png" alt="ayu-dark"></td>
+    <td><img src="assets/img-branch/theme/ayu-migrage.png" alt="ayu-migrage"></td>
   </tr>
 </table>
 
@@ -701,8 +715,10 @@ a = { hello = "world" }
 
 我们可以通过设置环境变量来修改日志级别
 
+> v0.0.1-beta.1 及其之前的版本使用 `RUST_LOG` 环境变量， 而不是 `TOMLYRE_LOG`
+
 ```sh
-env RUST_LOG=debug tomlyre
+env TOMLYRE_LOG=debug tomlyre
 ```
 
 ## 题外话

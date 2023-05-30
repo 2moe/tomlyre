@@ -69,7 +69,12 @@ Sida loogu baahan yahay: `cat test.bson | tomlyre --src-fmt bson get -`"""
 shell-completion = "Laga bilaabo shell-ga ah oo ku shaqeeya xaqiijinta"
 shell-completion-help = """
 Waxaad u baahan tahay inaad soo jeediyaan magaca shell-ga si aad ugu shaqeyso xaqiijinta.
-Tusaale sida, powershell ee Windows -ku, waxaad adeegsan kartaa: `--sh-comp pwsh`
+Tusaale sida, powershell ee Windows -ku, waxaad adeegsan kartaa: 
+
+```pwsh
+[Console]::OutputEncoding = [Text.Encoding]::UTF8
+tomlyre --sh-comp pwsh > "_tomlyre.ps1"
+```
 
 > Q: Maxaa la bilaabayo xaqiijinta shell?
 

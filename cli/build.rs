@@ -6,34 +6,26 @@ use glossa_codegen::{
     highlight::{HighLight, HighLightFmt, HighLightRes},
     prelude::*,
 };
-use std::{
-    borrow::Cow,
-    collections::HashMap,
-    ffi::OsStr,
-    fs::File,
-    io::{self, BufWriter},
-    path::PathBuf,
-};
+use std::{borrow::Cow, collections::HashMap, ffi::OsStr, io, path::PathBuf};
 
 fn main() -> io::Result<()> {
     let ver = get_pkg_version!();
 
-    // Create a new `PathBuf` from the result of calling `get_l10n_rs_file_arr()`
-    let mut path = PathBuf::from_iter(default_l10n_rs_file_arr());
+    let rs_path = PathBuf::from_iter(default_l10n_rs_file_arr());
 
-    if is_same_version(&path, Some(ver))? && EARLY_RT {
+    if is_same_version(&rs_path, Some(ver))? && EARLY_RT {
         return Ok(());
     }
+    append_to_l10n_mod(&rs_path)?;
 
-    append_to_l10n_mod(&path)?;
+    // let file = BufWriter::new(File::create(&rs_path)?);
+    let tmp = rs_path.with_extension("tmp");
+    let mut writer = MapWriter::new(&tmp, &rs_path);
 
-    let file = BufWriter::new(File::create(&path)?);
-
-    let mut writer = MapWriter::new(file);
     *writer.get_visibility_mut() = "pub(super)";
-    // Update the `PathBuf` to point to the directory containing the localisation data
-    // path = PathBuf::from_iter(parent_l10n_dir_arr());
-    path = PathBuf::from_iter(
+
+    // The directory containing the localisation data
+    let l10n_path = PathBuf::from_iter(
         parent_l10n_dir_arr()
             .into_iter()
             .chain(["cli"]),
@@ -51,12 +43,10 @@ fn main() -> io::Result<()> {
     ]);
 
     // println!("cargo:warning=");
-    let mut generator = Generator::new(path).with_version(ver);
+    let mut generator = Generator::new(l10n_path).with_version(ver);
 
     let res = HighLightRes::default();
     *generator.get_highlight_mut() = Some(HighLight::new(res, map));
 
-    generator.run(writer)?;
-
-    Ok(())
+    generator.run(writer)
 }

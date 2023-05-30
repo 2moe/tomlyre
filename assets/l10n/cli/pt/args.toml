@@ -73,7 +73,12 @@ Exemplo: `cat test.bson | tomlyre --src-fmt bson get -`"""
 shell-completion = "Gere um script de conclusão para o shell especificado"
 shell-completion-help = """
 Você precisa especificar manualmente o nome do shell para gerar um script de conclusão.
-Por exemplo, para powershell no Windows, você pode usar: `--sh-comp pwsh`
+Por exemplo, para powershell no Windows, você pode usar: 
+
+```pwsh
+[Console]::OutputEncoding = [Text.Encoding]::UTF8
+tomlyre --sh-comp pwsh > "_tomlyre.ps1"
+```
 
 > P: O que é a função de conclusão automática do shell?
 

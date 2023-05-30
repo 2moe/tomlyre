@@ -1,12 +1,14 @@
 # TomLyre
 
-library: [![crates.io](https://img.shields.io/crates/v/tomlyre.svg)](https://crates.io/crates/tomlyre)
+[![crates.io](<https://img.shields.io/crates/v/tomlyre.svg?label=lib(tomlyre)>)](https://crates.io/crates/tomlyre)
 
-cli: [![crates.io](https://img.shields.io/crates/v/tomlyre-cli.svg)](https://crates.io/crates/tomlyre-cli)
+<!-- https://img.shields.io/docsrs/tomlyre -->
 
-[![Documentation](https://docs.rs/tomlyre/badge.svg)](https://docs.rs/tomlyre)
+[![crates.io](<https://img.shields.io/crates/v/tomlyre-cli.svg?label=bin(tomlyre-cli)>)](https://crates.io/crates/tomlyre-cli)
 
-[![Apache-2 licensed](https://img.shields.io/crates/l/tomlyre-cli.svg)](./License)
+<!-- https://docs.rs/tomlyre/badge.svg -->
+
+[![Documentation](https://img.shields.io/docsrs/tomlyre?label=lib-doc)](https://docs.rs/tomlyre) [![Apache-2 licensed](https://img.shields.io/crates/l/tomlyre-cli.svg)](./License)
 
 [中文](Readme-zh.md)
 
@@ -143,10 +145,11 @@ Use `--help` to get detailed help information.
 - `tomlyre set --help` outputs very detailed information.
 - Similarly, other subcommands can also call `--help`.
 
+<!-- style="text-align:center;" -->
 <table>
   <tr>
-    <td><img src="assets/img/en/set_help.png" alt="set_help"><code>get --help</code></td>
-    <td><img src="assets/img/en/conv_help.png" alt="conv_help"><code>conv --help</code></td>
+    <td><img src="assets/img/en/set_help.png" alt="set_help"><p align="center"><code>get --help</code></p></td>
+    <td><img src="assets/img/en/conv_help.png" alt="conv_help"><p align="center"><code>conv --help</code></p></td>
   </tr>
 </table>
 
@@ -159,22 +162,32 @@ If you don't know how to do it, please feel free to submit an issue.
 
 <table>
   <tr>
-    <td style="text-align:center;"><img src="assets/img/es/set_help.png" alt="es_set_help">español(España)</td>
-    <td style="text-align:center;"><img src="assets/img/de/set_help.png" alt="de_set_help">Deutsch(Deutschland)</td>
+    <td><img src="assets/img/es/set_help.png" alt="es_set_help"><p align="center">español(España)</td>
+    <td><img src="assets/img/de/set_help.png" alt="de_set_help"><p align="center">Deutsch(Deutschland)</p></td>
   </tr>
 </table>
 
 <table>
   <tr>
-    <td style="text-align:center;"><img src="assets/img/ja/set_help.png" alt="ja_set_help">日本語</td>
-    <td style="text-align:center;"><img src="assets/img/ar/set_help.png" alt="ar_set_help">العربية</td>
+    <td><img src="assets/img/ja/set_help.png" alt="ja_set_help"><p align="center">日本語</p></td>
+    <td><img src="assets/img/ar/set_help.png" alt="ar_set_help">
+      <p align="center">
+        العربية
+      </p>
+    </td>
   </tr>
 </table>
 
 <table>
   <tr>
-    <td style="text-align:center;"><img src="assets/img/pt/get_help.png" alt="pt_get_help">português(Brasil)</td>
-    <td style="text-align:center;"><img src="assets/img/fr/get_help.png" alt="fr_get_help">français(France)</td>
+    <td><img src="assets/img/pt/get_help.png" alt="pt_get_help">
+      <p align="center">
+        português(Brasil)
+      </p>
+    </td>
+    <td><img src="assets/img/fr/get_help.png" alt="fr_get_help">
+      <p align="center">français(France)</p>
+    </td>
   </tr>
 </table>
 
@@ -190,31 +203,45 @@ The following are built-in themes, but you can also manually load a collection o
 
 > Most of these themes use the MIT License, and you can find the built-in themes and related license files in the **assets/theme** directory.
 
-<!-- ![tomlyre-t](assets/img/theme/dracula.png)
-![MONOKAI](assets/img/theme/monokai.png)
-![onedark](assets/img/theme/onedark.png)
-![onehalf](assets/img/theme/onehalf.png)
-![ayu](assets/img/theme/ayu.png)
-![ayu-dark](assets/img/theme/ayu-dark.png) -->
-
 <table>
   <tr>
-    <td><img src="assets/img/theme/dracula.png" alt="dracula"></td>
-    <td><img src="assets/img/theme/monokai.png" alt="monokai"></td>
+    <td><img src="assets/img-branch/theme/dracula.png" alt="dracula"></td>
+    <td><img src="assets/img-branch/theme/monokai-bright.png" alt="monokai-bright"></td>
   </tr>
 </table>
 
 <table>
   <tr>
-      <td><img src="assets/img/theme/onedark.png" alt="onedark"></td>
-      <td><img src="assets/img/theme/onehalf.png" alt="onehalf"></td>
+      <td><img src="assets/img-branch/theme/monokai.png" alt="monokai"></td>
+      <td><img src="assets/img-branch/theme/monokai-light.png" alt="monokai-light"></td>
   </tr>
 </table>
 
 <table>
   <tr>
-    <td><img src="assets/img/theme/ayu-dark.png" alt="ayu-dark"></td>
-    <td><img src="assets/img/theme/ayu.png" alt="ayu"></td>
+      <td><img src="assets/img-branch/theme/onedark.png" alt="onedark"></td>
+      <td><img src="assets/img-branch/theme/one-dark-tomorrow.png" alt="one-dark-tomorrow"></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+      <td><img src="assets/img-branch/theme/one-half-dark.png" alt="one-half-dark"></td>
+      <td><img src="assets/img-branch/theme/one-half-light.png" alt="one-half-light"></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td><img src="assets/img-branch/theme/widget-one-dark.png" alt="widget-one-dark"></td>
+    <td><img src="assets/img-branch/theme/ayu-light.png" alt="ayu-light.png"></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td><img src="assets/img-branch/theme/ayu-dark.png" alt="ayu-dark"></td>
+    <td><img src="assets/img-branch/theme/ayu-migrage.png" alt="ayu-migrage"></td>
   </tr>
 </table>
 
@@ -737,8 +764,10 @@ The default level is `info`.
 
 We can modify the log level by setting an environment variable:
 
+> v0.0.1-beta.1 and earlier versions use the `RUST_LOG` environment variable instead of `TOMLYRE_LOG`.
+
 ```sh
-env RUST_LOG=debug tomlyre
+env TOMLYRE_LOG=debug tomlyre
 ```
 
 ## Off-topic

@@ -1,10 +1,10 @@
 [package]
 edition = "2021"
 name = "tomlyre-cli"
-version = "0.0.1-beta.1"
+version = "0.0.1-beta.2"
 license = "Apache-2.0"
 authors = ["Moe <m@tmoe.me>"]
-categories = ["command-line-interface"]
+categories = ["command-line-utilities", "config"]
 repository = "https://github.com/2moe/tomlyre"
 description = "This CLI utility facilitates effortless manipulation and exploration of TOML, YAML, JSON and RON files."
 readme = "../Readme.md"
@@ -27,15 +27,15 @@ lexpr = ["tomlyre/lexpr"]
 xml = ["tomlyre/xml"]
 
 [dependencies]
-anyhow = "1.0.70"
-clap_complete = "4.2.1"
+anyhow = "1.0.71"
+clap_complete = "4.3.0"
 getset = "0.1.2"
-log = "0.4.17"
+log = "0.4.18"
 thiserror = "1.0.40"
 env_logger = { version = "0.10.0", default-features = false, features = [
     "regex",
 ] }
-time = { version = "0.3.20", default-features = false, features = [
+time = { version = "0.3.21", default-features = false, features = [
     "local-offset",
 ] }
 owo-colors = "3.5.0"
@@ -43,31 +43,33 @@ phf = "0.11.1"
 paste = "1.0.12"
 
 [dependencies.tomlyre]
-# path = "../core"
-version = "0.0.1-beta.1"
+path = "../core"
+# version = "0.0.1-beta.1"
 default-features = false
-
-[dependencies.glossa]
-version = "0.0.1-alpha.9"
-# path = "../../glossa/glossa"
 
 [dependencies.clap]
 features = ["unicode", "derive", "color"]
-version = "4.2.4"
+version = "4.3.0"
 
-[dev-dependencies]
+[dependencies.glossa]
+version = "0.0.1-alpha.10"
+# path = "../../glossa/glossa"
+# git = "https://github.com/2moe/glossa"
 
 [build-dependencies.glossa-codegen]
-version = "0.0.1-alpha.4"
-# path = "../../glossa/codegen"
 default-features = false
+version = "0.0.1-alpha.5"
+# path = "../../glossa/codegen"
 features = ["toml", "yaml", "highlight"]
 
-# x86_64-unknown-freebsd.tar.xz
-# macOS-intel(x64).tar.bz2
-# macOS-apple-silicon(arm64).tar.bz2
-# win_x64.exe.zip
-# win_arm64.exe.zip
+[dependencies.hlight]
+# version = "0.0.1-alpha.2"
+path = "../../hlight/hlight"
+
+[build-dependencies.tomlyre]
+path = "../core"
+# version = "0.0.1-beta.1"
+default-features = false
 
 [package.metadata.deb]
 name = "tomlyre"
