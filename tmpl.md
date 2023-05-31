@@ -4,7 +4,7 @@ markmap:
   maxWidth: 170
 ---
 
-# <div style="display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 1.7em;">tomlyre</div><br /><div>{{v0.0.0-beta.1}}</div>
+# <div style="display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 1.8em;">tomlyre&ensp;</div><br /><div style="display: grid; grid-template-columns: 1fr; text-align: center;">{{release-version}}</div>
 
 ## wasm32&ensp;
 
