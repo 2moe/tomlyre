@@ -1,6 +1,0 @@
-debug: Debug
-error: errore
-info: info
-init-logger: Inizializà Logger ...
-trace: traccia
-warn: avisa

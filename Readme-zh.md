@@ -154,7 +154,7 @@ tar -xvf x64.tar.xz
 
 以下是内置的主题，您可以手动载入主题集合包，并指定名称，而不是使用内置的主题。
 
-> 这些主题大都使用 MIT License，您可以在 **assets/theme** 目录下找到内置主题以及相关的许可证文件。
+> 这些主题大都使用 MIT License，您可以在 [hlight/dev/assets/theme](https://github.com/2moe/hlight/tree/dev/assets) 里找到内置主题以及相关的许可证文件。
 
 <table>
   <tr>

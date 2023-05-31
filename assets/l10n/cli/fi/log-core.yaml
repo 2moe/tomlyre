@@ -1,6 +1,0 @@
-debug: virheenkorjaus
-error: virhe
-info: tiedot
-init-logger: Loggerin alustaminen ...
-trace: Jälki
-warn: varoita

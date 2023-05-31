@@ -1,6 +1,0 @@
-debug: DEBUG
-error: CHYBA
-info: INFORMACE
-init-logger: Inicializuji logger...
-trace: STOPA
-warn: VAROVÁNÍ

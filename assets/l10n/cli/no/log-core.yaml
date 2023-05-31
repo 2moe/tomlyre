@@ -1,6 +1,0 @@
-debug: DEBUG
-error: Feil
-info: Info
-init-logger: Initialisere logger ...
-trace: Spor
-warn: Advarsel

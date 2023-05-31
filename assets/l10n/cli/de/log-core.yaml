@@ -1,7 +1,0 @@
-# debug: Fehlerbehebung
-debug: DEBUG
-error: FEHLER
-info: INFO
-init-logger: Logger wird initialisiert ...
-trace: SPUR
-warn: WARNUNG

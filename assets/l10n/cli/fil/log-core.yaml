@@ -1,6 +1,0 @@
-debug: DEBAG
-error: ERROR
-info: IMPORMASYON
-init-logger: Pagsisimula ng logger...
-trace: TUMUTULONG
-warn: BABALA

@@ -1,6 +1,0 @@
-debug: DEBUG
-error: ERRORE
-info: INFORMAZIONE
-init-logger: Inizializzazione del logger...
-trace: TRACCIA
-warn: AVVERTIMENTO

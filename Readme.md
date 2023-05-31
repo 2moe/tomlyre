@@ -201,7 +201,7 @@ When no theme name is specified, all themes will be listed.
 
 The following are built-in themes, but you can also manually load a collection of themes and specify the name instead of using the built-in ones.
 
-> Most of these themes use the MIT License, and you can find the built-in themes and related license files in the **assets/theme** directory.
+> Most of these themes use the MIT License, and you can find the built-in themes and related license files in the [hlight/dev/assets/theme](https://github.com/2moe/hlight/tree/dev/assets).
 
 <table>
   <tr>

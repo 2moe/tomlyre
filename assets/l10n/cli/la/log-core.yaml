@@ -1,6 +1,0 @@
-debug: Debug
-error: Error
-info: Info
-init-logger: Initializing Logger ...
-trace: vestigium
-warn: monere
