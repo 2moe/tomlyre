@@ -1,9 +1,5 @@
-use crate::{
-    logger::{before_init, init_logger},
-    parser::parse_args,
-};
+use crate::parser::parse_args;
 mod assets;
-mod logger;
 mod opt;
 mod parser;
 
@@ -11,17 +7,12 @@ const fn get_pkg_name() -> &'static str {
     env!("CARGO_PKG_NAME")
 }
 
+use log_l10n::logger::{before_init, env_logger};
+
 fn main() -> anyhow::Result<()> {
     let env_name = "TOMLYRE_LOG";
     before_init(get_pkg_name(), env_name);
-    init_logger(env_name);
+    env_logger::init(env_name, Some("info"));
     parse_args()?;
     Ok(())
 }
-
-// #[test]
-// fn get_parse() {
-//     let z = assets::get_l10n_text()
-//         .get_or_default("parser_ayu-dark", "sh-completion::about-stderr");
-//     println!("{z}")
-// }

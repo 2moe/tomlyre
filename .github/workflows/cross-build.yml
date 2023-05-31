@@ -3,7 +3,7 @@ name: Cross build
 on:
   push:
     branches:
-      - dev
+      - test
     paths:
       - ".github/workflows/cross-build.yml"
       - assets/ci/tomlyre.dockerfile
@@ -88,7 +88,7 @@ jobs:
             os: windows-latest
 
     runs-on: ${{matrix.os}}
-    outputs: 
+    outputs:
       archive: ${{ steps.archive_output.outputs.archive }}
     env:
       VER: ${{ needs.get_repo_info.outputs.ver }}
@@ -146,9 +146,7 @@ jobs:
 
       - name: get cross
         if: startsWith(matrix.os, 'ubuntu') && !startsWith(matrix.target, 'wasm')
-        run: |
-          docker run -i --rm -v $PWD:/local ghcr.io/2moe/cross:glibc cp /bin/cross /bin/cross-util /local
-          sudo mv -vf cross-util /usr/local/bin
+        run: docker run -i --rm -v $PWD:/local ghcr.io/2moe/cross:glibc cp /bin/cross /local
 
       - name: static build linux bin
         if: contains(matrix.target, 'linux') && !contains(matrix.target, 'android')
@@ -160,7 +158,7 @@ jobs:
               *) export RUSTFLAGS="$RUSTFLAGS -C lto=thin" ;;
           esac
           ./cross r --profile ${{env.PROF}} -v --target ${{matrix.target}} -- -h
-      
+
       - name: cross build bsd & android bin
         if: contains(matrix.target, 'bsd') || contains(matrix.target, 'illumos') || contains(matrix.target, 'android')
         run: |
@@ -342,6 +340,10 @@ jobs:
       branch: assets
 
     steps:
+      - name: check archive env
+        run: |
+          [[ -z $archive ]] && exit 1
+
       - uses: actions/checkout@v3
         with:
           fetch-depth: 1
@@ -387,4 +389,4 @@ jobs:
           svg: ${{format('{0}.svg', env.VER)}}
         with:
           tag_name: ${{ env.VER }}
-          body: '![${{env.svg}}](${{env.url}})'
+          body: "![${{env.svg}}](${{env.url}})"

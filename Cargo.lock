@@ -461,7 +461,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0c68ed06eae37ee3e03a2b1d363d83bfeff9ea42a4a916789eac1f80e2254854"
 dependencies = [
  "getset",
- "hlight 0.0.1-alpha.2",
+ "hlight",
  "lang-id",
  "log",
  "once_cell",
@@ -498,19 +498,9 @@ checksum = "7f24254aa9a54b5c858eaee2f5bccdb46aaf0e486a595ed5fd8f86ba55232a70"
 
 [[package]]
 name = "hlight"
-version = "0.0.1-alpha.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "668db959e38cd751bca7c39b1f461558dacfd058601eee2d0e2c9795ef05640a"
-dependencies = [
- "getset",
- "log",
- "once_cell",
- "syntect",
-]
-
-[[package]]
-name = "hlight"
 version = "0.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c0d9078e8ec845b612b8384dee7d5a3b31300cfd4cc3df5b64d6eeb1073c016b"
 dependencies = [
  "getset",
  "log",
@@ -643,6 +633,20 @@ name = "log"
 version = "0.4.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "518ef76f2f87365916b142844c16d8fefd85039bc5699050210a7778ee1cd1de"
+
+[[package]]
+name = "log-l10n"
+version = "0.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "39886124567171f0dadce57236e73e2be837e5722c4c91a6c5695984e037eaed"
+dependencies = [
+ "env_logger",
+ "glossa",
+ "glossa-codegen",
+ "owo-colors",
+ "phf",
+ "time",
+]
 
 [[package]]
 name = "memchr"
@@ -1337,7 +1341,7 @@ dependencies = [
  "getset",
  "glossa",
  "glossa-codegen",
- "hlight 0.0.1",
+ "hlight",
  "json5",
  "log",
  "owo-colors",
@@ -1360,17 +1364,15 @@ dependencies = [
  "anyhow",
  "clap",
  "clap_complete",
- "env_logger",
  "getset",
  "glossa",
  "glossa-codegen",
- "hlight 0.0.1",
+ "hlight",
  "log",
- "owo-colors",
+ "log-l10n",
  "paste",
  "phf",
  "thiserror",
- "time",
  "tomlyre",
 ]
 

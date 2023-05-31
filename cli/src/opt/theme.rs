@@ -5,7 +5,7 @@ use hlight::{
     theme::{dumps, ThemeSet},
     HighLightRes,
 };
-use owo_colors::OwoColorize;
+use log_l10n::level::color::OwoColorize;
 use std::{
     borrow::Cow,
     env,

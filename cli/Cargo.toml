@@ -32,13 +32,6 @@ clap_complete = "4.3.0"
 getset = "0.1.2"
 log = "0.4.18"
 thiserror = "1.0.40"
-env_logger = { version = "0.10.0", default-features = false, features = [
-    "regex",
-] }
-time = { version = "0.3.21", default-features = false, features = [
-    "local-offset",
-] }
-owo-colors = "3.5.0"
 phf = "0.11.1"
 paste = "1.0.12"
 
@@ -63,8 +56,14 @@ version = "0.0.1-alpha.5"
 features = ["toml", "yaml", "highlight"]
 
 [dependencies.hlight]
-# version = "0.0.1-alpha.2"
-path = "../../hlight/hlight"
+version = "0.0.1"
+# path = "../../hlight/hlight"
+
+[dependencies.log-l10n]
+version = "0.0.0"
+# path = "../../log-l10n"
+default-features = false
+features = ["env-logger"]
 
 [build-dependencies.tomlyre]
 path = "../core"

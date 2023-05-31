@@ -5,7 +5,7 @@ use crate::{
 use anyhow::Result;
 use clap::Parser;
 use log::{debug, trace};
-use owo_colors::OwoColorize;
+use log_l10n::level::color::OwoColorize;
 use std::{
     borrow::Cow,
     io::{BufWriter, Write},

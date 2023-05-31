@@ -18,8 +18,7 @@ fn main() -> io::Result<()> {
     }
     append_to_l10n_mod(&rs_path)?;
 
-    // let file = BufWriter::new(File::create(&rs_path)?);
-    let tmp = rs_path.with_extension("tmp");
+    let tmp = get_shmem_path(&rs_path)?;
     let mut writer = MapWriter::new(&tmp, &rs_path);
 
     *writer.get_visibility_mut() = "pub(super)";

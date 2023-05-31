@@ -17,3 +17,4 @@ core/src/main.rs
 test.*
 tests.*
 tmp
+*.tmp
