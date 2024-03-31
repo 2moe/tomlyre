@@ -3,7 +3,11 @@ use crate::{
     conversion::{
         convert::convert_data_format,
         // fmt::json5_as_json,
-        get_conv_dft, get_dst, get_dst_fmt, get_static_stdin_data, is_src_stdin,
+        get_conv_dft,
+        get_dst,
+        get_dst_fmt,
+        get_static_stdin_data,
+        is_src_stdin,
         serialisation::{deser_toml_to_yaml, deser_yaml, ser_toml},
         ConvFmt,
     },
@@ -13,7 +17,7 @@ use crate::{
 use anyhow::Result;
 use getset::{Getters, MutGetters};
 use glossa::GetText;
-use hlight::{HighLightRes, gen_syntax_highlight};
+use hlight::{gen_syntax_highlight, HighLightRes};
 use log::{debug, info, warn};
 use owo_colors::OwoColorize;
 use std::{
@@ -24,7 +28,7 @@ use std::{
 pub use toml_edit::{
     Array, ArrayOfTables, Datetime, InlineTable, Table as TomlTable, Value,
 };
-use toml_edit::{Document, Item};
+use toml_edit::{DocumentMut as Document, Item};
 
 /// Used to get the mutable Item in toml Document.
 ///
@@ -256,7 +260,7 @@ impl<'s, 'd> CfgOpts<'s, 'd> {
                     .to_string_lossy()
                     .to_ascii_lowercase();
 
-                let fmt = 
+                let fmt =
                 // json5_as_json(
                     get_dst_fmt(&dst_fmt_lcase, false).unwrap_or(src_fmt)
                 // )

@@ -1,12 +1,12 @@
 name: Cross build
 
-on:
-  push:
-    branches:
-      - test
-    paths:
-      - ".github/workflows/cross-build.yml"
-      - assets/ci/tomlyre.dockerfile
+# on:
+#   push:
+#     branches:
+#       - dev
+#     paths:
+#       - ".github/workflows/cross-build.yml"
+#       - assets/ci/tomlyre.dockerfile
 
 jobs:
   get_repo_info:
@@ -146,7 +146,9 @@ jobs:
 
       - name: get cross
         if: startsWith(matrix.os, 'ubuntu') && !startsWith(matrix.target, 'wasm')
-        run: docker run -i --rm -v $PWD:/local ghcr.io/2moe/cross:glibc cp /bin/cross /local
+        run: |
+          docker run -i --rm -v $PWD:/local ghcr.io/2moe/cross:glibc cp /bin/cross /bin/cross-util /local
+          sudo mv -vf cross-util /usr/local/bin
 
       - name: static build linux bin
         if: contains(matrix.target, 'linux') && !contains(matrix.target, 'android')

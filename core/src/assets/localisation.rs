@@ -1,4 +1,4 @@
-// Version: 0.0.1-beta.1
+// Version: 0.0.1-beta.2
 #![allow(dead_code)]
 
 use super::{lang_id_consts, HashMap, LangID};
