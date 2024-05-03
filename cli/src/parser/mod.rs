@@ -1,17 +1,19 @@
-use crate::{
-    opt::{args::Cli, theme::get_env_theme_bg, PKG_VERSION},
-    parser::{completion::get_shell_completion, sub_cmd::handle_sub_cmds},
-};
-use anyhow::Result;
-use clap::Parser;
-use log::{debug, trace};
-use log_l10n::level::color::OwoColorize;
 use std::{
     borrow::Cow,
     io::{BufWriter, Write},
     process::exit,
 };
+
+use anyhow::Result;
+use clap::Parser;
+use log::{debug, trace};
+use log_l10n::level::color::OwoColorize;
 use tomlyre::table::{set_header, Table, STYLES};
+
+use crate::{
+    opt::{args::Cli, theme::get_env_theme_bg, PKG_VERSION},
+    parser::{completion::get_shell_completion, sub_cmd::handle_sub_cmds},
+};
 mod completion;
 mod set_opts;
 mod sub_cmd;

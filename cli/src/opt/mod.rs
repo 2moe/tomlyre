@@ -1,12 +1,14 @@
+use std::env;
+
+use glossa::GetText;
+use hlight::{gen_syntax_highlight, theme::theme_monokai};
+
 use crate::{
     assets::get_l10n_text,
     opt::theme::{
         get_env_theme_bg, get_highlight_resource_from_os_env, get_static_theme_style,
     },
 };
-use glossa::GetText;
-use hlight::{gen_syntax_highlight, theme::theme_monokai};
-use std::env;
 
 pub(crate) const PKG_VERSION: &str = env!("CARGO_PKG_VERSION");
 

@@ -61,9 +61,11 @@ pub(crate) fn ser_ron<S: Serialize>(s: &S) -> Result<String> {
 
 #[cfg(feature = "bson")]
 pub(crate) fn deser_bson(file: &Path) -> Result<bson::Bson> {
-    use crate::conversion::is_src_stdin;
-    use log::info;
     use std::io::{self, Read};
+
+    use log::info;
+
+    use crate::conversion::is_src_stdin;
 
     if is_src_stdin(file) {
         info!("Getting bson data from stdin");

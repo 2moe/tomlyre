@@ -1,12 +1,13 @@
 const EARLY_RT: bool = true;
 // const EARLY_RT: bool = false;
 
+use std::{borrow::Cow, collections::HashMap, ffi::OsStr, io, path::PathBuf};
+
 use glossa_codegen::{
     consts::*,
     highlight::{HighLight, HighLightFmt, HighLightRes},
     prelude::*,
 };
-use std::{borrow::Cow, collections::HashMap, ffi::OsStr, io, path::PathBuf};
 
 fn main() -> io::Result<()> {
     gen_10n_text()?;

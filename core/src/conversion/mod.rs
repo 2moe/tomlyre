@@ -1,3 +1,15 @@
+use std::{
+    borrow::Cow,
+    fs,
+    io::{self, Read},
+    path::{Path, PathBuf},
+};
+
+// json5_as_json,
+use anyhow::Result;
+use glossa::{assets::OnceCell, GetText};
+use hlight::HighLightRes;
+
 use crate::{
     assets::get_l10n_text,
     conversion::{
@@ -8,16 +20,6 @@ use crate::{
             yml_is_yaml,
         },
     },
-};
-// json5_as_json,
-use anyhow::Result;
-use glossa::{assets::OnceCell, GetText};
-use hlight::HighLightRes;
-use std::{
-    borrow::Cow,
-    fs,
-    io::{self, Read},
-    path::{Path, PathBuf},
 };
 
 pub(crate) mod convert;
@@ -75,7 +77,7 @@ pub fn task(
         _ if is_src_stdin(src) => auto_detect_unknown_fmt(get_static_stdin_data()),
         // Otherwise, try to get the format from the file extension of the source file. If that fails, attempt to automatically detect the format using the content of the file.
         _ => match get_src_format(src) {
-            s if s.is_empty() => auto_detect_unknown_fmt(&fs::read_to_string(src)?),
+            "" => auto_detect_unknown_fmt(&fs::read_to_string(src)?),
             s => s,
         },
     };
@@ -126,13 +128,12 @@ pub(crate) fn write_to_dst(
             })
         })
     {
-        let dst_fmt =
-            get_dst_fmt(&dst_fname, true).unwrap_or_else(|| 
-                // 
+        let dst_fmt = get_dst_fmt(&dst_fname, true).unwrap_or_else(
+            ||
+                //
                 // json5_as_json(
-                    src_fmt
-                // )
-                );
+                    src_fmt, // )
+        );
 
         let dst = get_dst(org_dst, dst_fmt, src);
 
@@ -176,7 +177,7 @@ pub(crate) fn get_dst(org: &Path, dst_fmt: &str, src: &Path) -> PathBuf {
     match org.extension() {
         None if org.components().count() == 1 => match org.to_str() {
             Some(o) if o == dst_fmt => src.with_extension(dst_fmt),
-            Some(o) if o == "yml" => src.with_extension("yml"),
+            Some(o @ "yml") => src.with_extension(o),
             _ if org.is_dir() => org.join(new_dir_path()),
             _ => org.with_extension(dst_fmt),
         },

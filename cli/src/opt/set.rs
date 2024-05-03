@@ -1,7 +1,9 @@
-use crate::opt::{get_opt_md, get_opt_text, sample_directory};
+use std::path::PathBuf;
+
 use clap::Parser;
 use getset::Getters;
-use std::path::PathBuf;
+
+use crate::opt::{get_opt_md, get_opt_text, sample_directory};
 
 #[derive(Parser, Debug, Getters)]
 #[getset(get = "pub(crate) with_prefix")]

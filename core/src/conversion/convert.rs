@@ -1,37 +1,31 @@
+use std::{borrow::Cow, fs, io};
+
+use hlight::{gen_syntax_highlight, HighLightRes};
+use log::warn;
+use owo_colors::OwoColorize;
+
+#[cfg(all(feature = "json5", feature = "json"))]
+use crate::conversion::serialisation::deser_json5;
+#[cfg(feature = "json5")]
+use crate::conversion::serialisation::ser_json5;
+#[cfg(feature = "lexpr")]
+use crate::conversion::serialisation::ser_lexpr;
+#[cfg(feature = "bson")]
+use crate::conversion::serialisation::{deser_bson, ser_bson_to_bin};
+#[cfg(feature = "json")]
+use crate::conversion::serialisation::{deser_json, ser_json};
+#[cfg(feature = "ron")]
+use crate::conversion::serialisation::{deser_ron, ser_ron};
+#[cfg(feature = "xml")]
+use crate::conversion::serialisation::{deser_xml, ser_xml};
+#[cfg(feature = "yaml")]
+use crate::conversion::serialisation::{deser_yaml, ser_yaml};
 use crate::conversion::{
     fmt::FORMATS,
     get_conv_md, get_conv_text, get_static_stdin_data, is_src_stdin,
     serialisation::{deser_toml, ser_toml},
     ConvFmt,
 };
-use hlight::{gen_syntax_highlight, HighLightRes};
-use log::warn;
-use owo_colors::OwoColorize;
-use std::{borrow::Cow, fs, io};
-
-#[cfg(feature = "xml")]
-use crate::conversion::serialisation::{deser_xml, ser_xml};
-
-#[cfg(feature = "lexpr")]
-use crate::conversion::serialisation::ser_lexpr;
-
-#[cfg(feature = "bson")]
-use crate::conversion::serialisation::{deser_bson, ser_bson_to_bin};
-
-#[cfg(feature = "json")]
-use crate::conversion::serialisation::{deser_json, ser_json};
-
-#[cfg(all(feature = "json5", feature = "json"))]
-use crate::conversion::serialisation::deser_json5;
-
-#[cfg(feature = "json5")]
-use crate::conversion::serialisation::ser_json5;
-
-#[cfg(feature = "ron")]
-use crate::conversion::serialisation::{deser_ron, ser_ron};
-
-#[cfg(feature = "yaml")]
-use crate::conversion::serialisation::{deser_yaml, ser_yaml};
 
 pub(crate) fn convert_data_format(
     conv: ConvFmt,
@@ -137,7 +131,7 @@ pub(crate) fn convert_data_format(
         #[cfg(feature = "json5")]
         ("toml", "json5") => to_dst(ser_json5(&deser_toml(&s)?)?)?,
 
-        #[cfg(all(feature = "yaml"))]
+        #[cfg(feature = "yaml")]
         ("yaml", "toml") => to_dst(ser_toml(&deser_yaml(&s)?)?)?,
         #[cfg(feature = "yaml")]
         ("yaml", "yaml") => to_dst(ser_yaml(&deser_yaml(&s)?)?)?,

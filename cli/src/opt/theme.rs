@@ -1,11 +1,3 @@
-use crate::{assets::get_l10n_text, opt::args::Cli};
-use glossa::{assets::OnceCell, GetText};
-use hlight::{
-    gen_syntax_highlight,
-    theme::{dumps, ThemeSet},
-    HighLightRes,
-};
-use log_l10n::level::color::OwoColorize;
 use std::{
     borrow::Cow,
     env,
@@ -13,6 +5,16 @@ use std::{
     path::PathBuf,
     process::exit,
 };
+
+use glossa::{assets::OnceCell, GetText};
+use hlight::{
+    gen_syntax_highlight,
+    theme::{dumps, ThemeSet},
+    HighLightRes,
+};
+use log_l10n::level::color::OwoColorize;
+
+use crate::{assets::get_l10n_text, opt::args::Cli};
 
 const SAMPLE_HIGHLIGHT_TEXT: &str = r#"
 [[bin]]

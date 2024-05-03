@@ -1,3 +1,9 @@
+use std::borrow::Cow;
+
+use anyhow::Result;
+use hlight::HighLightRes;
+use tomlyre::{conversion, get::get_config_file, set::TomlKey};
+
 use crate::{
     opt::{
         args::{Cli, Sub},
@@ -6,10 +12,6 @@ use crate::{
     },
     parser::set_opts::handle_setopts,
 };
-use anyhow::Result;
-use hlight::HighLightRes;
-use std::borrow::Cow;
-use tomlyre::{conversion, get::get_config_file, set::TomlKey};
 
 /// All subcommands are handled here.
 ///

@@ -1,9 +1,10 @@
 pub(crate) mod localisation;
-use crate::assets::localisation::locale_hashmap;
 use glossa::{
     assets::{lang_id_consts, HashMap, OnceCell},
     LangID, MapLoader,
 };
+
+use crate::assets::localisation::locale_hashmap;
 
 pub(crate) fn get_l10n_text() -> &'static MapLoader {
     // Create a new `OnceCell` that can hold a `MapLoader` instance.

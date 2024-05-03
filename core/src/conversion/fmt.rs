@@ -1,29 +1,26 @@
-use owo_colors::OwoColorize;
-
-use crate::conversion::{get_conv_dft, serialisation::deser_toml, ConvFmt};
 use std::{
     borrow::Cow,
     ffi::OsStr,
     path::{Path, PathBuf},
 };
 
+use owo_colors::OwoColorize;
+
+use crate::conversion::{get_conv_dft, serialisation::deser_toml, ConvFmt};
+
 // The array contains some string elements representing different data formats: TOML, YAML (both .yaml and .yml extensions), JSON, RON, BSON, S-expression, XML, and JSON5.
 pub(crate) const FORMATS: [&str; 9] = [
     "toml", "yaml", "yml", "json", "ron", "bson", "sexp", "xml", "json5",
 ];
 
-#[cfg(all(feature = "xml", feature = "json"))]
-use crate::conversion::serialisation::deser_xml;
-
 #[cfg(feature = "json")]
 use crate::conversion::serialisation::deser_json;
-
 #[cfg(feature = "json5")]
 use crate::conversion::serialisation::deser_json5;
-
 #[cfg(feature = "ron")]
 use crate::conversion::serialisation::deser_ron;
-
+#[cfg(all(feature = "xml", feature = "json"))]
+use crate::conversion::serialisation::deser_xml;
 #[cfg(feature = "yaml")]
 use crate::conversion::serialisation::deser_yaml;
 

@@ -1,11 +1,13 @@
-use crate::opt::{args::Cli, set::SetOpts};
+use std::{borrow::Cow, process::exit, str::FromStr};
+
 use anyhow::Result;
 use hlight::HighLightRes;
-use std::{borrow::Cow, process::exit, str::FromStr};
 use tomlyre::set::{
     Array, ArrayOfTables, CfgOpts, Datetime, InlineTable, TomlKey, TomlTable,
     TomlValue, Value,
 };
+
+use crate::opt::{args::Cli, set::SetOpts};
 
 /// The function first calls the `set_value` method on the provided `cfg_opts` with the input value converted into a `Some` option using the `Into` trait.
 /// If this succeeds, indicating that the value was successfully set in the `CfgOpts`, the function then calls the `exit` function with a status code of 0, terminating the program.

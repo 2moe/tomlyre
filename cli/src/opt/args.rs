@@ -1,11 +1,13 @@
+use std::path::PathBuf;
+
+use clap::{ColorChoice, Parser, Subcommand};
+use getset::Getters;
+use glossa::GetText;
+
 use crate::{
     assets::get_l10n_text,
     opt::{conversion::ConvOpts, get::GetOpts, get_md, set::SetOpts, PKG_VERSION},
 };
-use clap::{ColorChoice, Parser, Subcommand};
-use getset::Getters;
-use glossa::GetText;
-use std::path::PathBuf;
 
 #[derive(Parser, Debug, Getters)]
 #[getset(get = "pub(crate) with_prefix")]

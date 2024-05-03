@@ -1,5 +1,6 @@
-pub use comfy_table::Table;
+use std::fmt::Display;
 
+pub use comfy_table::Table;
 use comfy_table::{
     modifiers::{UTF8_ROUND_CORNERS, UTF8_SOLID_INNER_BORDERS},
     presets::{
@@ -9,14 +10,11 @@ use comfy_table::{
     },
     Cell, ContentArrangement,
 };
-
 #[cfg(not(target_family = "wasm"))]
 use comfy_table::{
     Attribute, // Styling attributes for cells
     Color,     // Text color of cells
 };
-
-use std::fmt::Display;
 // Constant &str for using UTF-8 border characters
 const UTF8_THIN: &str = "││──├─┼┤┆╌┼├┤┬┴┌┐└┘";
 

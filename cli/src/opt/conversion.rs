@@ -1,11 +1,13 @@
+use std::path::PathBuf;
+
+use clap::Parser;
+use getset::Getters;
+use glossa::GetText;
+
 use crate::{
     assets::get_l10n_text,
     opt::{get_md, sample_directory},
 };
-use clap::Parser;
-use getset::Getters;
-use glossa::GetText;
-use std::path::PathBuf;
 
 #[derive(Parser, Debug, Getters)]
 #[getset(get = "pub(crate) with_prefix")]

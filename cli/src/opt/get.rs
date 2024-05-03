@@ -1,8 +1,9 @@
 use std::path::PathBuf;
 
-use crate::opt::{get_opt_md, get_opt_text, sample_directory};
 use clap::Parser;
 use getset::Getters;
+
+use crate::opt::{get_opt_md, get_opt_text, sample_directory};
 
 /// `tomlyre get /path/to/file -k x.y.z`
 #[derive(Parser, Debug, Getters)]

@@ -1,13 +1,15 @@
-use crate::{assets::get_l10n_text, opt::args::Cli};
+use std::{
+    env,
+    io::{self, BufWriter, Write},
+};
+
 use clap::CommandFactory;
 use clap_complete::{generate, shells, Generator};
 use glossa::GetText;
 use hlight::{gen_syntax_highlight, HighLightRes};
 use log::info;
-use std::{
-    env,
-    io::{self, BufWriter, Write},
-};
+
+use crate::{assets::get_l10n_text, opt::args::Cli};
 // use tomlyre::highlight::{output::gen_syntax_highlight, HighLightRes};
 
 const BIN_NAME: &str = env!("CARGO_BIN_NAME");
@@ -31,7 +33,9 @@ pub(crate) fn get_shell_completion(
     args: &Cli,
     theme: &HighLightRes,
 ) -> anyhow::Result<()> {
-    let Some(sh) = args.get_shell_completion() else { return Ok(()) };
+    let Some(sh) = args.get_shell_completion() else {
+        return Ok(());
+    };
 
     fn gen<G: Generator>(g: G) -> Vec<u8> {
         gen_completion(g)
@@ -77,8 +81,9 @@ pub(crate) fn get_shell_completion(
 
 #[cfg(test)]
 mod tests {
-    use super::*;
     use anyhow::Result;
+
+    use super::*;
 
     #[test]
     fn get_zsh_comp() -> Result<()> {
@@ -101,18 +106,18 @@ mod tests {
         #compdef tomlyre
 
         autoload -U is-at-least
-        
+
         _tomlyre() {
             typeset -A opt_args
             typeset -a _arguments_options
             local ret=1
-        
+
             if is-at-least 5.2; then
                 _arguments_options=(-s -S -C)
             else
                 _arguments_options=(-s -C)
             fi
-        
+
             local context curcontext="$curcontext" state line
             _arguments "${_arguments_options[@]}" \
         "#;

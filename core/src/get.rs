@@ -1,3 +1,16 @@
+use std::{fs, path::Path};
+
+use anyhow::Result;
+use comfy_table::Table;
+use getset::Getters;
+use glossa::GetText;
+use hlight::HighLightRes;
+use log::info;
+use owo_colors::OwoColorize;
+// use toml::Value;
+// use ron::Value;
+use serde_yaml::Value;
+
 use crate::{
     assets::get_l10n_text,
     conversion::{
@@ -12,18 +25,6 @@ use crate::{
     table::set_header,
 };
 
-use anyhow::Result;
-use comfy_table::Table;
-use getset::Getters;
-use glossa::GetText;
-use hlight::HighLightRes;
-use log::info;
-use owo_colors::OwoColorize;
-use std::{fs, path::Path};
-// use toml::Value;
-// use ron::Value;
-use serde_yaml::Value;
-
 #[derive(Getters, Debug)]
 #[getset(get = "pub with_prefix")]
 pub struct ConvertedContents<'f> {
@@ -37,9 +38,9 @@ impl<'f> ConvertedContents<'f> {
     }
 }
 
-/// Generates a table from src and the associated key.  
+/// Generates a table from src and the associated key.
 ///
-/// It first converts the src file to a toml string.  
+/// It first converts the src file to a toml string.
 /// If the key is empty, then it will only print the full toml document (with syntax highlighting).
 /// If the key is "." , then it will output a complete table.
 /// If key is a valid string, then it will find the data in the table by key.
@@ -70,7 +71,7 @@ pub fn get_config_file<'a>(
     let src_fmt = match src_format {
         // If an optional `src_format` is provided and it's not "bson" while the source is stdin, it saves the `src_format` to `cfg_str`.
         Some(s) if is_stdin && s != "bson" => {
-            cfg_str = get_static_stdin_data().to_owned();
+            get_static_stdin_data().clone_into(&mut cfg_str);
             s
         }
         Some(s) => {
@@ -80,12 +81,12 @@ pub fn get_config_file<'a>(
         // If no `src_format` is provided and the source is stdin, it uses `auto_detect_unknown_fmt` to determine the format of the input data.
         _ if is_stdin => {
             let data = get_static_stdin_data();
-            cfg_str = data.to_owned();
+            data.clone_into(&mut cfg_str);
             auto_detect_unknown_fmt(data)
         }
         // If the input is not from stdin, it uses the `get_src_format` function to determine the format of the input.
         _ => match get_src_format(src) {
-            x if x.is_empty() => {
+            "" => {
                 cfg_str = fs::read_to_string(src)?;
                 auto_detect_unknown_fmt(&cfg_str)
             }
@@ -278,7 +279,7 @@ pub fn walk_cfg(value: &Value, table: &mut Table, query: &str) -> bool {
         }
     }
     // Returns true if at least one row was added to the table.
-    matches!(table.row(0), Some(_))
+    table.row(0).is_some()
 }
 
 /// A helper function that takes in a key, query string, prefix, and value as its arguments.

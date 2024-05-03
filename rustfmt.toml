@@ -1,0 +1,11 @@
+# Run: cargo +nightly fmt
+#
+max_width = 85
+single_line_if_else_max_width = 80
+chain_width = 32
+format_code_in_doc_comments = false
+
+imports_granularity = "Crate"
+group_imports = "StdExternalCrate"
+format_macro_matchers = true
+condense_wildcard_suffixes = true

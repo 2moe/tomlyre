@@ -1,3 +1,20 @@
+use std::{
+    borrow::Cow,
+    fs, io,
+    path::{Path, PathBuf},
+};
+
+use anyhow::Result;
+use getset::{Getters, MutGetters};
+use glossa::GetText;
+use hlight::{gen_syntax_highlight, HighLightRes};
+use log::{debug, info, warn};
+use owo_colors::OwoColorize;
+pub use toml_edit::{
+    Array, ArrayOfTables, Datetime, InlineTable, Table as TomlTable, Value,
+};
+use toml_edit::{DocumentMut as Document, Item};
+
 use crate::{
     assets::get_l10n_text,
     conversion::{
@@ -14,21 +31,6 @@ use crate::{
     get::{get_config_file, walk_cfg, ConvertedContents},
     table::set_header,
 };
-use anyhow::Result;
-use getset::{Getters, MutGetters};
-use glossa::GetText;
-use hlight::{gen_syntax_highlight, HighLightRes};
-use log::{debug, info, warn};
-use owo_colors::OwoColorize;
-use std::{
-    borrow::Cow,
-    fs, io,
-    path::{Path, PathBuf},
-};
-pub use toml_edit::{
-    Array, ArrayOfTables, Datetime, InlineTable, Table as TomlTable, Value,
-};
-use toml_edit::{DocumentMut as Document, Item};
 
 /// Used to get the mutable Item in toml Document.
 ///
@@ -356,7 +358,7 @@ impl<'s, 'd> CfgOpts<'s, 'd> {
     fn reread_toml_str(&self, src_fmt: &str, cfg_str: &mut String) -> Result<()> {
         match src_fmt {
             "toml" if is_src_stdin(self.get_src()) => {
-                *cfg_str = get_static_stdin_data().to_owned()
+                get_static_stdin_data().clone_into(cfg_str)
             }
             "toml" => *cfg_str = fs::read_to_string(self.get_src())?,
             _ => *cfg_str = ser_toml(&deser_yaml(cfg_str)?)?,
